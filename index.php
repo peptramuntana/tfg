@@ -4,5 +4,4 @@
 
     //Create a new instance of the Core class
     $init = new Core;
-
 ?>
