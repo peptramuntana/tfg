@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+Options -Multiviews
+
+#Rewrite in the following url
+RewriteEngine On
+
+#URL to overwrite
+RewriteBase /public
+
+#If it exists, load the file
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#If not exists, load index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)$ index.php?/$1 [L,QSA]
+</IfModule
