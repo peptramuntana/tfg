@@ -1,0 +1,29 @@
+# <IfModule mod_rewrite.c>
+#     RewriteEngine On
+#     RewriteRule ^$ public/ [L]
+#     RewriteRule (.*) public/$1 [L]
+# <IfModule>
+
+
+# <IfModule mod_rewrite.c>   
+#     #Rewrite in the following url
+#     RewriteEngine On
+    
+#     #URL to overwrite
+#     RewriteBase /public
+    
+#     #If it exists, load the file
+#     RewriteCond %{REQUEST_FILENAME} !-d
+    
+#     #If not exists, load index.php
+#     RewriteCond %{REQUEST_FILENAME} !-f
+#     RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+# </IfModule>
+
+
+<IfModule mod_rewrite.c>   
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ /index.php?url=$1 [L,QSA]
+</IfModule>
