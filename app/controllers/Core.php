@@ -7,17 +7,21 @@ class Core {
     protected $params = [];
 
     // Constructor
-    public function __construct() {
-        $url = $this->getUrl();
-    }
+    // public function __construct() {
+    //     $url = $this->getUrl();
+    // }
 
 
-    public function getUrl() {
+    static function getUrl() {
         //It gets the URL, starting from "index.php"
         echo "Hello world";
+        echo "<br>";
+        echo "<br>";
         var_dump($_GET);
-
+        echo "<br>";
         echo $_GET['url'];
+        echo "<br>";
+        echo "<br>";
     }
 }
 
