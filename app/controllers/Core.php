@@ -2,26 +2,19 @@
 
 /* Map the loaded URL from Client */
 class Core {
-    protected $currentController = 'Pages';
-    protected $currentMethod = 'index';
-    protected $params = [];
-
-    // Constructor
-    // public function __construct() {
-    //     $url = $this->getUrl();
-    // }
-
 
     static function getUrl() {
-        //It gets the URL, starting from "index.php"
-        echo "Hello world";
-        echo "<br>";
-        echo "<br>";
-        var_dump($_GET);
-        echo "<br>";
-        echo $_GET['url'];
-        echo "<br>";
-        echo "<br>";
+        if(isset($_GET['url'])) {
+            //It removes the last slash
+            $url = rtrim($_GET['url'], '/');
+            //It removes the slashes
+            $url = filter_var($url, FILTER_SANITIZE_URL);
+            //It splits the URL into an array
+            $url = explode('/', $url);
+            return $url;
+        } else {
+            return null;
+        }
     }
 }
 
