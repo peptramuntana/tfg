@@ -1,3 +1,3 @@
 <?php
-    include_once('app/models/db.php');
+    require_once('app/models/db.php');
 ?>
