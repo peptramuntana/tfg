@@ -1,42 +1,48 @@
 <?php
 
-/* Map the loaded URL from Client */
 class Core {
 
     static function getUrl() {
-        //if(isset($_GET['url'])) {
-            //It removes the last slash
+
+        // Define variables 
+        $output = [];
+
+        // Get the User URL
         $urlTmp = $_SERVER["REQUEST_URI"];
+        // Removes the strange characters
         $urlTmp = filter_var($urlTmp, FILTER_SANITIZE_URL);
-        $urlCompleta = explode('?',$urlTmp);
-        $url = explode('/', $urlCompleta[0]);
-        //$url = rtrim($_SERVER["REQUEST_URI"], '?');
-        //It removes the slashes
-        //$url = filter_var($url, FILTER_SANITIZE_URL);
-        //It splits the URL into an array
+        // Split the URL into an array of 1 index
+        $urlComplete = explode('?',$urlTmp);
+        // Split the index[0] in more indexes split by /
+        $url = explode('/', $urlComplete[0]);
+        // Remove the first index of the array (empty)
         $url = array_filter($url);
-        $salida = [];
-        $primerItem = array_shift($url);
-        if(strlen($primerItem) == 2)
+
+        // Get the first parameter of the URL
+        $firstParam = array_shift($url);
+        // Check if the first parameter is a language
+        if(strlen($firstParam) == 2)
         {
-            // Defines IDIOMA
-            define("LANG", $primerItem);
+            // Define language set by the user
+            define("LANG", $firstParam);
         }
         else{
-            $salida[] = $primerItem;
+            // Define the default language
+            define("LANG", "es");
         }
-        foreach ($url as $key => $value) {
-            # code...
-            $salida[] = $value;
-        }
-        defined("LANG_TAG") or define("LANG_TAG", "es");
-        return $salida;
-       // } else {
-          //  return null;
-        //}
 
-        // define("LANG", "es");
+        // Add the first param to the array
+        $output[] = $firstParam;
+
+        // Add the rest of the params to the array
+        foreach ($url as $key => $value) {
+            $output[] = $value;
+        }
+        
+        return $output;
     }
+
+
     // Pasamos Array con URLs (ej: proyectos/categoria/filtro2) 
     static function dameVista($url)
     {
