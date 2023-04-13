@@ -2,7 +2,7 @@
 
 class Core {
 
-    public function defineGlobalVariables($array) {
+    static function urlVariables($array) {
         // Get the first parameter of the URL
         $firstParam = array_shift($array);
         // Check if the first parameter is a language
@@ -10,12 +10,12 @@ class Core {
         {
             // Define language set by the user
             define("LANG", $firstParam);
-            define("VISTA", $array[0]);
+            define("VIEW", $array[0]);
         }
         else{
             // Define the default language
             define("LANG", "es");
-            define("VISTA", $firstParam);
+            define("VIEW", $firstParam);
         }
     }
 
@@ -39,19 +39,9 @@ class Core {
         foreach ($url as $key => $value) {
             $output[] = $value;
         }
-
-        // We create a new instance of the class to use the method
-        $classInstance = new Core();
-        // We call the method to define the global variables
-        $classInstance ->defineGlobalVariables($output);
-
-
         return $output;
     }
 
-
-
-    // Pasamos Array con URLs (ej: proyectos/categoria/filtro2) 
     static function getView($url)
     {
         if(count($url) == 1){
