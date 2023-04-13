@@ -1,29 +1,20 @@
-# <IfModule mod_rewrite.c>
-#     RewriteEngine On
-#     RewriteRule ^$ public/ [L]
-#     RewriteRule (.*) public/$1 [L]
-# <IfModule>
-
-
-# <IfModule mod_rewrite.c>   
-#     #Rewrite in the following url
-#     RewriteEngine On
-    
-#     #URL to overwrite
-#     RewriteBase /public
-    
-#     #If it exists, load the file
-#     RewriteCond %{REQUEST_FILENAME} !-d
-    
-#     #If not exists, load index.php
-#     RewriteCond %{REQUEST_FILENAME} !-f
-#     RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
-# </IfModule>
-
-
-<IfModule mod_rewrite.c>   
+#Set this options in the .htaccess file to let the user insert any url
+#Options +FollowSymLinks --> Follow the links and directorys of the website
+#Options +Indexes --> Show any file of the directory with no index needed.
+Options +Indexes +FollowSymlinks
+#Work only if the server let rewrite the urls activating the mod_rewrite module.
+<IfModule mod_rewrite.c> 
 RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-f
+#Define the base url of the website, in this case: the root.
+RewriteBase /
+#Condition the directory to redirect to: 
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /index.php?url=$1 [NC,L,QSA]
+#Condition the systems file (like css, js, php...) to redirect to: 
+RewriteCond %{REQUEST_FILENAME} !-f
+#Condition the regular files (like jpg, pdf...) to redirect to: 
+RewriteCond %{REQUEST_FILENAME} !-l
+# RewriteCond %{REQUEST_URI} !^/administrator/
+# RewriteCond %{REQUEST_URI} !^/login/
+#The conditions above rewrite to the index.php file.
+RewriteRule ^(.+)$ index.php [QSA,L]
 </IfModule>
