@@ -2,28 +2,32 @@
     require_once('Core.php');
     
     // Get the URL
-    $url = Core::getUrl();
+    $urlData = Core::getUrl();
     // Define the global variables from the URL
-    Core::urlVariables($url);
-
-
-    print_r($url);
-
-    echo "<br>";
-    print_r("The language is ". LANG);
+    Core::clientURL($urlData);
+    print_r($urlData);
     echo "<br>";
 
-    print_r("La vista is ".VIEW .'.php');
-    echo "<br>";
+    $langData = Database::getLang();
 
-    $langId = Database::getLangId(LANG);
-    echo "<br>";
 
+    $lang = Core::systemLang($langData);
+    print_r($lang);
     echo "<br>";
+    // $viewData = Database::getView();
+    // Core::systemURL($viewData);
 
-    print_r($langId);
-    // $view = Database::getView();
-    print_r($view);
+
+    // print_r("SYSTEM LANG --> " . DATABASE_LANG);
+    // echo "<br>";
+    // print_r("SYSTEM VIEW --> " . SYSTEM_VIEW);
+    // echo "<br>";
+    // print_r("SYSTEM VIEW URL--> " . SYSTEM_VIEW_URL);
+    // echo "<br>";
+    // print_r("SYSTEM URL --> " . SYSTEM_URL);
+    // echo "<br>";
+
+
     // Cargamos si tenemos el controlador específico de la vista
     // include __DIR__ . '/'.Core::dameVista($url).'.php'; // REVISAR
 ?>

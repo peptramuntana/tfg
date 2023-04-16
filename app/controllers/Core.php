@@ -2,23 +2,73 @@
 
 class Core {
 
-    static function urlVariables($array) {
+    static function clientURL($array) {
         // Get the first parameter of the URL
-        $firstParam = array_shift($array);
+        // $firstParam = array_shift($array);
         // Check if the first parameter is a language
-        if(strlen($firstParam) == 2)
+        if(strlen($array[0]) == 2)
         {
-            // Define language set by the user
-            define("LANG", $firstParam);
-            define("VIEW", $array[0]);
+            if(array_key_exists(3, $array)) {
+                define("URL_LANG", strtolower($array[0]));
+                define("URL_MENU", "error404");
+                // Error 404
+            } else {
+                if(array_key_exists(2, $array)) {
+                    define("URL_LANG", strtolower($array[0]));
+                    define("URL_MENU", strtolower($array[1]));
+                    define("URL_PARAM", strtolower($array[2]));
+                } else {
+                    define("URL_LANG", strtolower($array[0]));
+                    if(array_key_exists(1, $array)) {
+                        define("URL_MENU", strtolower($array[1]));
+                    } else {
+                        define("URL_MENU", "");}
+                }
+            }
         }
-        else{
+        else {
             // Define the default language
-            define("LANG", "es");
-            define("VIEW", $firstParam);
+            define("URL_LANG", "es");
+            if(array_key_exists(2, $array)) {
+                define("URL_MENU", "Error404");
+            } else {
+                define("URL_MENU", strtolower($array[1]));
+            }
         }
     }
 
+    static function systemURL($array) {
+        if(empty($array))
+        {
+            define("SYSTEM_VIEW", "error404");
+            define("SYSTEM_VIEW_URL", "app/views");
+            define("SYSTEM_URL", "");
+        } else {
+            foreach($array as $key) {
+                define("SYSTEM_LANG", $key->lang_tag);
+                if(empty($key->view_name)) {
+                    define("SYSTEM_VIEW", "error404");
+                }
+                else {
+                    define("SYSTEM_VIEW", $key->view_name);
+                }
+                define("SYSTEM_VIEW_URL", $key->view_url);
+                define("SYSTEM_URL", $key->menu_url);
+            }
+
+        }
+    }
+
+    static function systemLang($langData) {
+        if(empty($langData)) {
+            $lang = "es";
+        }
+        else {
+            $lang = $langData[0]->tag;
+        }
+        return $lang;
+    }
+    
     static function getUrl() {
 
         // Define variables 
