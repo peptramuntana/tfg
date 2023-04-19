@@ -2,74 +2,7 @@
 
 class Core {
 
-    static function clientURL($array) {
-        // Get the first parameter of the URL
-        // $firstParam = array_shift($array);
-        // Check if the first parameter is a language
-        if(strlen($array[0]) == 2)
-        {
-            if(array_key_exists(3, $array)) {
-                define("URL_LANG", strtolower($array[0]));
-                define("URL_MENU", "error404");
-                // Error 404
-            } else {
-                if(array_key_exists(2, $array)) {
-                    define("URL_LANG", strtolower($array[0]));
-                    define("URL_MENU", strtolower($array[1]));
-                    define("URL_PARAM", strtolower($array[2]));
-                } else {
-                    define("URL_LANG", strtolower($array[0]));
-                    if(array_key_exists(1, $array)) {
-                        define("URL_MENU", strtolower($array[1]));
-                    } else {
-                        define("URL_MENU", "");}
-                }
-            }
-        }
-        else {
-            // Define the default language
-            define("URL_LANG", "es");
-            if(array_key_exists(2, $array)) {
-                define("URL_MENU", "Error404");
-            } else {
-                define("URL_MENU", strtolower($array[1]));
-            }
-        }
-    }
-
-    static function systemURL($array) {
-        if(empty($array))
-        {
-            define("SYSTEM_VIEW", "error404");
-            define("SYSTEM_VIEW_URL", "app/views");
-            define("SYSTEM_URL", "");
-        } else {
-            foreach($array as $key) {
-                define("SYSTEM_LANG", $key->lang_tag);
-                if(empty($key->view_name)) {
-                    define("SYSTEM_VIEW", "error404");
-                }
-                else {
-                    define("SYSTEM_VIEW", $key->view_name);
-                }
-                define("SYSTEM_VIEW_URL", $key->view_url);
-                define("SYSTEM_URL", $key->menu_url);
-            }
-
-        }
-    }
-
-    static function systemLang($langData) {
-        if(empty($langData)) {
-            $lang = "es";
-        }
-        else {
-            $lang = $langData[0]->tag;
-        }
-        return $lang;
-    }
-    
-    static function getUrl() {
+    static function getClientUrl() {
 
         // Define variables 
         $output = [];
@@ -92,14 +25,112 @@ class Core {
         return $output;
     }
 
-    static function getView($url)
-    {
-        if(count($url) == 1){
-            // HAgo query y me devuelve datos de la vista   
-            //return $vista['view'];
-        }// Buscar $url[0] en menu: X
-        // Si $url[1], buscar en menu y asociaciones si es hijo de X
-        return $url[0];
+    static function defineClientVariables($array) {
+
+        // Check if the $array is not in the root
+        if(!empty($array)) {
+            if(strlen($array[0]) == 2)
+            {
+                if(array_key_exists(3, $array)) {
+                    define("URL_LANG", strtolower($array[0]));
+                    define("URL_MENU", "error404");
+                    // Error 404
+                } else {
+                    if(array_key_exists(2, $array)) {
+                        define("URL_LANG", strtolower($array[0]));
+                        define("URL_MENU", strtolower($array[1]));
+                        define("URL_PARAM", strtolower($array[2]));
+                    } else {
+                        define("URL_LANG", strtolower($array[0]));
+                        if(array_key_exists(1, $array)) {
+                            define("URL_MENU", strtolower($array[1]));
+                        } else {
+                            define("URL_MENU", "");}
+                    }
+                }
+            }
+            else {
+                // Define the default language
+                define("URL_LANG", "es");
+                if(array_key_exists(1, $array)) {
+                    define("URL_MENU", "error404");
+                } else {
+                    define("URL_MENU", strtolower($array[0]));
+                }
+            }
+        } else {
+            // Define the default language
+            define("URL_LANG", "es");
+            define("URL_MENU", "");
+        }
+
+    }
+
+    static function defineSystemLang($langData) {
+        if(empty($langData)) {
+            define("SYSTEM_LANG", "es");
+        }
+        else {
+            define("SYSTEM_LANG", $langData[0]->tag);
+        }
+    }
+
+    static function defineSystemURL($array) {
+        if(defined('URL_PARAM') || URL_MENU != $array[0]->menu_url || URL_LANG !== SYSTEM_LANG) {
+
+            // echo "Error 404 defined in defineSystemURL()";
+            // echo "<br>";
+
+            // if (URL_MENU != $array[0]->menu_url) {
+            //     echo "URL_MENU --> ".URL_MENU;
+            //     echo "<br>";
+            //     echo "array[0]->menu_url --> ".$array[0]->menu_url;
+            //     echo "<br>";
+            // }
+
+            // if (URL_LANG !== SYSTEM_LANG) {
+            //     echo "URL_LANG --> ".URL_LANG;
+            //     echo "<br>";
+            //     echo "SYSTEM_LANG --> ".SYSTEM_LANG;
+            //     echo "<br>";
+            // }
+
+            // if(defined('URL_PARAM')){
+            //     echo "URL_PARAM --> ".URL_PARAM;
+            // }
+
+            define("SYSTEM_VIEW", "error404");
+            define("SYSTEM_VIEW_URL", "app/views");
+            define("SYSTEM_URL", "");
+        } else {
+            // echo "System variables correctly defined in defineSystemURL()";
+            // echo "<br>";
+
+            foreach($array as $key) {
+                define("SYSTEM_VIEW", $key->view_name);
+                define("SYSTEM_VIEW_URL", $key->view_url);
+                define("SYSTEM_URL", $key->menu_url);
+            }
+
+        }
+    }
+
+    static function redirect() {
+        if(URL_LANG != SYSTEM_LANG || URL_MENU != SYSTEM_URL) {
+            header("Location: http://localhost/".SYSTEM_LANG."/error404");
+        }
+    }
+
+    static function loadView() {
+        if(URL_LANG != SYSTEM_LANG || URL_MENU != SYSTEM_URL) {
+            // echo "Load view error 404";
+            // echo "<br>";
+            require_once(SYSTEM_VIEW_URL."/error404.php");
+        } else {
+            // echo "Load system view";
+            // echo "<br>";
+            require_once(SYSTEM_VIEW_URL."/".SYSTEM_VIEW.".php");
+        }
     }
 }
 
