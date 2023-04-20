@@ -45,5 +45,4 @@
         // echo "<br>";
 
         Core::redirect();
-        Core::loadView();
 ?>

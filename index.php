@@ -7,10 +7,5 @@
     include('app/views/indexViews.php');
     //include 'app/views/'.Core::dameVista($url).'.php';
     
-   
-    echo "<pre>";
-    print_r($url);
-    // print_r($output);
-    echo '</pre>';
     
 ?>
