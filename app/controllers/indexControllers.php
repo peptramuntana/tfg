@@ -18,9 +18,10 @@
 
         $viewData = Database::getView();
 
-        // print_r("viewData --> ");
-        // var_dump($viewData);
-        // echo "<br>";
+        print_r("viewData --> ");
+        var_dump($viewData);
+        echo "<br>";
+        echo "<br>";
         // echo "<br>";
 
         Core::defineSystemURL($viewData);

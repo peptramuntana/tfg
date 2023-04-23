@@ -69,9 +69,11 @@ class Core {
     static function defineSystemLang($langData) {
         if(empty($langData)) {
             define("SYSTEM_LANG", "es");
+            define("SYSTEM_LANG_ID", "1");
         }
         else {
             define("SYSTEM_LANG", $langData[0]->tag);
+            define("SYSTEM_LANG_ID", $langData[0]->id);
         }
     }
 
