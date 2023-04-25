@@ -22,7 +22,6 @@
         var_dump($viewData);
         echo "<br>";
         echo "<br>";
-        // echo "<br>";
 
         Core::defineSystemURL($viewData);
 

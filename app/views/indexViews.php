@@ -2,12 +2,13 @@
 <html lang="<?php echo SYSTEM_LANG; ?>">
 
 <head>
-    <?php include __DIR__ . '/modules/header.php'; ?>
-    <link rel="stylesheet" href="/public/templates/css/styles.css">
-    <script src="/public/templates/js/scripts.js"></script>
-</head>
+    <?php include __DIR__ . '/modules/head.php'; ?>
+</head> 
 
 <body>
+    <?php echo "Hello world from indexViews.php"; ?>
+    <?php echo "<br>"; ?>
+    <?php echo "<br>"; ?>
     <?php Core::loadView(); ?>
     <?php include __DIR__ . '/modules/footer.php'; ?>
 </body>
