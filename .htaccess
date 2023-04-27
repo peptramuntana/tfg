@@ -7,14 +7,29 @@ Options +Indexes +FollowSymlinks
 RewriteEngine on
 #Define the base url of the website, in this case: the root.
 RewriteBase /
+
+# Exclude specific POST requests from the redirect
+RewriteCond %{REQUEST_METHOD} =POST
+RewriteCond %{REQUEST_URI} !^/login
+RewriteCond %{REQUEST_URI} !^/login/
+RewriteCond %{REQUEST_URI} !^/es/login
+RewriteCond %{REQUEST_URI} !^/es/login/
+RewriteRule ^ - [L]
+
 #Condition the directory to redirect to: 
 RewriteCond %{REQUEST_FILENAME} !-d
 #Condition the systems file (like css, js, php...) to redirect to: 
 RewriteCond %{REQUEST_FILENAME} !-f
 #Condition the regular files (like jpg, pdf...) to redirect to: 
 RewriteCond %{REQUEST_FILENAME} !-l
-# RewriteCond %{REQUEST_URI} !^/administrator/
-# RewriteCond %{REQUEST_URI} !^/login/
+
+#RewriteCond %{REQUEST_URI} !^/administrator/
+#RewriteCond %{REQUEST_URI} !^/login/
+#RewriteCond %{REQUEST_URI} !^/es/administrator/
+#RewriteCond %{REQUEST_URI} !^/es/login/
+
+
+#Login and Administrator URL are excluded from the redirect
 #The conditions above rewrite to the index.php file.
 RewriteRule ^(.+)$ index.php [QSA,L]
 </IfModule>

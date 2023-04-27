@@ -134,6 +134,44 @@ class Core {
             require_once(SYSTEM_VIEW_URL."/".SYSTEM_VIEW.".php");
         }
     }
+
+    static function checkLogin() {
+        print_r("Check login");
+        echo "
+        <script>
+            console.log('Check login');
+        </script>
+        
+        ";        
+        $counter = Database::checkLogin();
+        if ($counter != 0) {
+            $_SESSION['login'] = true;
+            header("Location: http://localhost/es/administrator");
+        } else {
+            $_SESSION['login'] = false;
+            echo ("
+            <script>
+                window.alert('Usuario o contraseña incorrect@.');
+            </script>
+            ");
+            header("Location: http://localhost/es/login");
+        }
+    }
+
+    static function checkSession() {
+        session_start();
+        if (!isset($_SESSION["login"])) {
+            header("Location: http://localhost/es/login");
+        } else {
+            session_regenerate_id(true);
+        }
+    }
+
+    static function closeSession() {
+        session_start();
+        session_destroy();
+        header("Location: http://localhost/es/login");
+    }
 }
 
 ?>
