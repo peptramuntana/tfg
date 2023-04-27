@@ -10,20 +10,26 @@ let stateCheck = setInterval(() => {
 }, 100);
 
 function slider() {
-    let slider = document.getElementById('slider');
-    if (slider) {
-        console.log("in slider")
-        let keenSlider = new KeenSlider(
-            '#slider',
-            {
-              loop: true,
-              created: () => {
-                console.log('created')
-              },
-            },
-            [
-              // add plugins here
-            ]
-          )
+    let sliders = document.querySelectorAll('.swiper');
+    if(sliders) {
+    sliders.forEach(slider => {
+      const swiper = new Swiper('.swiper', {
+        // Optional parameters
+        direction: 'horizontal',
+        loop: true,
+      
+        // If we need pagination
+        pagination: {
+          el: '.swiper-pagination',
+        },
+      
+        // Navigation arrows
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+
+      });
+    });
     }
 }

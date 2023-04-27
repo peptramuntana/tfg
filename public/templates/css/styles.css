@@ -1,3 +1,46 @@
 body {
     margin: 0;
+    font-family: "Inter", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#slider img {
+    width: 650px;
+    height: 455px;
+    width: 100%;
+    height: 100%;
+}
+
+.swiper {
+    width: 650px;
+    height: 455px;
+  }
+
+  section.projects {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(3,1fr);
+    column-gap: 60px;
+    row-gap: 80px;
+    justify-items: center;
+}
+
+section.projects > div {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: auto;
+    width: 100%;
+    max-width: 650px;
+    grid-row: auto / span 3;
+}
+
+section.projects > div {
+    grid-row: auto / span 3;
+}
+
+section.projects > div:first-of-type {
+    grid-row: 2 / span 3;
+    grid-column: 2;
 }
