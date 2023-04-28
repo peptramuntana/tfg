@@ -135,35 +135,27 @@ class Core {
         }
     }
 
-    static function checkLogin() {
-        print_r("Check login");
-        echo "
-        <script>
-            console.log('Check login');
-        </script>
-        
-        ";        
+    static function checkLogin() {     
         $counter = Database::checkLogin();
         if ($counter != 0) {
-            $_SESSION['login'] = true;
+            session_start();
+            $_SESSION['login'] = $_POST["password"];
             header("Location: http://localhost/es/administrator");
         } else {
-            $_SESSION['login'] = false;
+            session_destroy();
             echo ("
             <script>
                 window.alert('Usuario o contraseña incorrect@.');
+                window.location.href = 'http://localhost/es/login';
             </script>
             ");
-            header("Location: http://localhost/es/login");
         }
     }
 
     static function checkSession() {
         session_start();
-        if (!isset($_SESSION["login"])) {
+        if ($_SESSION['login'] = false || !isset($_SESSION['login'])) {
             header("Location: http://localhost/es/login");
-        } else {
-            session_regenerate_id(true);
         }
     }
 

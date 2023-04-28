@@ -1,4 +1,4 @@
-<h1>LOGIN</h1>
+<h1>Login</h1>
 <div class="login">
     <form action="" method="POST">
         <input type="text" name="name" placeholder="Username" required>
@@ -8,21 +8,18 @@
 </div>
 
 <?php
+
+if(isset($_SESSION["login"])){
+    echo "Session login is set";
+    echo "<br>";
+} else {
+    echo "Session login is not set";
+    echo "<br>";
+}
+
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Handle the form submission and call the Core::checkLogin() method
-    $loginResult = Core::checkLogin();
-    
-    // Additional code for handling the form submission
-    if ($loginResult > 0) {
-        // Login successful
-        echo "Login successful";
-        echo "<br>";
-    } else {
-        // Login failed
-        echo "Login failed";
-        echo "<br>";
-
-    }
+    Core::checkLogin();
 }
 ?>
