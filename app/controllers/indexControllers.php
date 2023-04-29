@@ -1,5 +1,7 @@
 <?php
+
     require_once('Core.php');
+
     
     // Get the URL
     $urlData = Core::getClientUrl();

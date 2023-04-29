@@ -6,11 +6,20 @@
 </head> 
 
 <body>
+    <?php
+        if(SYSTEM_VIEW !== "administrator") {
+            include __DIR__ . '/modules/header.php';
+        }
+    ?>
     <?php echo "Hello world from indexViews.php"; ?>
     <?php echo "<br>"; ?>
     <?php echo "<br>"; ?>
     <?php Core::loadView(); ?>
-    <?php include __DIR__ . '/modules/footer.php'; ?>
+    <?php
+        if(SYSTEM_VIEW !== "administrator") {
+            include __DIR__ . '/modules/footer.php';    
+        }
+    ?>
 </body>
 
 </html>

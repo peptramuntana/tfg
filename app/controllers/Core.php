@@ -107,7 +107,6 @@ class Core {
         } else {
             // echo "System variables correctly defined in defineSystemURL()";
             // echo "<br>";
-
             foreach($array as $key) {
                 define("SYSTEM_VIEW", $key->view_name);
                 define("SYSTEM_VIEW_URL", $key->view_url);
@@ -128,6 +127,7 @@ class Core {
             // echo "Load view error 404";
             // echo "<br>";
             require_once(SYSTEM_VIEW_URL."/error404.php");
+            
         } else {
             // echo "Load system view";
             // echo "<br>";
@@ -140,30 +140,45 @@ class Core {
         if ($counter != 0) {
             session_start();
             $_SESSION['login'] = $_POST["password"];
-            header("Location: http://localhost/es/administrator");
-        } else {
+            echo ("
+                <script>
+                    window.alert('Entrando al administrador...');
+                    window.location.href = 'http://localhost/administrator';
+                </script>
+            ");
+            } else {
             session_destroy();
             echo ("
-            <script>
-                window.alert('Usuario o contraseña incorrect@.');
-                window.location.href = 'http://localhost/es/login';
-            </script>
+                <script>
+                    window.alert('Usuario, password o ambos incorrecto.');
+                    window.location.href = 'http://localhost/login';
+                </script>
             ");
         }
     }
 
     static function checkSession() {
         session_start();
-        if ($_SESSION['login'] = false || !isset($_SESSION['login'])) {
-            header("Location: http://localhost/es/login");
-        }
+        echo ("
+            <script>
+                window.alert('In --> checkSession().');
+            </script>
+        ");
+        if (!isset($_SESSION['login'])) {
+            echo ("
+                    <script>
+                        window.alert('Necesitas iniciar sesión para acceder.');
+                        window.location.href = 'http://localhost/login';
+                    </script>
+                ");
+            }
     }
 
     static function closeSession() {
         session_start();
-        session_destroy();
-        header("Location: http://localhost/es/login");
-    }
-}
-
-?>
+        if (isset($_SESSION['login'])) {
+            unset($_SESSION['login']);
+            session_destroy();
+            header("Location: http://localhost/login");
+        }
+}}

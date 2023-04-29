@@ -1,16 +1,9 @@
-<?php
-    Core::checkSession();
-    echo "<br>";
-    if(isset($_SESSION["login"])){
-        echo "Session login is set";
-        echo "<br>";
-    } else {
-        echo "Session login is not set";
-        echo "<br>";
-    }
-    echo "<br>";
-    echo "Hello world from AdministratorView.php";
-    echo "<br>";
-
-
+<?php 
+require_once('../controllers/administratorController.php');
 ?>
+
+<div class="log-out">
+    <form action="app/controllers/formsController" method="POST">
+        <input type="submit" name="logout" value="Cerrar sesión" class="btn">
+    </form>
+</div>
