@@ -5,6 +5,14 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.btn {
+    max-width: 300px;
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
 /* Slider */
 #slider img {
     width: 650px;
@@ -47,4 +55,70 @@ section.projects > div:first-of-type {
 }
 
 /* Login */
+
+/* Administrator  */
+
+.log-out form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+}
+
+.admin-project {
+    padding: 50px 0;
+    margin: 10px 0;
+    border-top: 1px solid green;
+}
+
+.admin-project .elements {
+    margin: 0 auto;
+    display: grid;
+    grid-template: auto / repeat(2,600px);
+    justify-content: center;
+}
+
+.admin-project .elements > label {
+    grid-column: 1;
+}
+
+.admin-project .elements > input,
+.admin-project .elements > textarea {
+    grid-column: 2;
+}
+
+.admin-project .elements > .images-box {
+    grid-column: 2;
+    grid-row: 1 / span 5;
+}
+
+.admin-project .elements > input.btn {
+    grid-column: 1 / span 2;
+    margin: 050px auto;
+}
+
+.admin-project .elements > .images-box > .images {
+    display: grid;
+    grid-template-columns: 80px auto;
+    padding: 30px 0;
+}
+
+.admin-project .elements > .images-box > .images > * {
+    margin: 5px 0;
+}
+
+.admin-project .elements > .images-box > .images > p {
+    grid-column: 1 / span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-project .elements > .images-box > .images > label {
+    display: flex;
+    align-items: center;
+}
+
+
+
 

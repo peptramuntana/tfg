@@ -1,8 +1,5 @@
 <?php
-echo "Hello world from ProjectsView.php";
-echo "<br>";
-echo "<br>";
-$projects = Database::getProjects();
+$projects = Database::getProjects(1);
 ?>
 <section class="projects">
     <?php foreach ($projects as $project) : ?>

@@ -11,9 +11,6 @@
             include __DIR__ . '/modules/header.php';
         }
     ?>
-    <?php echo "Hello world from indexViews.php"; ?>
-    <?php echo "<br>"; ?>
-    <?php echo "<br>"; ?>
     <?php Core::loadView(); ?>
     <?php
         if(SYSTEM_VIEW !== "administrator") {
