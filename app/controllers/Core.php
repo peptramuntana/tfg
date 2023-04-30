@@ -140,37 +140,35 @@ class Core {
         if ($counter != 0) {
             session_start();
             $_SESSION['login'] = $_POST["password"];
-            echo ("
-                <script>
-                    window.alert('Entrando al administrador...');
-                    window.location.href = 'http://localhost/administrator';
-                </script>
-            ");
+            // echo ("
+            //     <script>
+            //         window.alert('Entrando al administrador...');
+            //         window.location.href = 'http://localhost/administrator';
+            //     </script>
+            // ");
+            header("Location: http://localhost/administrator");
             } else {
             session_destroy();
-            echo ("
-                <script>
-                    window.alert('Usuario, password o ambos incorrecto.');
-                    window.location.href = 'http://localhost/login';
-                </script>
-            ");
+            // echo ("
+            //     <script>
+            //         window.alert('Usuario, password o ambos incorrecto.');
+            //         window.location.href = 'http://localhost/login';
+            //     </script>
+            // ");
+            header("Location: http://localhost/login");
         }
     }
 
     static function checkSession() {
         session_start();
-        echo ("
-            <script>
-                window.alert('In --> checkSession().');
-            </script>
-        ");
         if (!isset($_SESSION['login'])) {
-            echo ("
-                    <script>
-                        window.alert('Necesitas iniciar sesión para acceder.');
-                        window.location.href = 'http://localhost/login';
-                    </script>
-                ");
+            header("Location: http://localhost/login");
+            // echo ("
+            //         <script>
+            //             window.alert('Necesitas iniciar sesión para acceder.');
+            //             window.location.href = 'http://localhost/login';
+            //         </script>
+            //     ");
             }
     }
 
@@ -180,5 +178,7 @@ class Core {
             unset($_SESSION['login']);
             session_destroy();
             header("Location: http://localhost/login");
+        } else {
+            header("Location: http://localhost/administrator");
         }
 }}
