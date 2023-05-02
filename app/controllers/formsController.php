@@ -19,38 +19,29 @@
         $description = $_POST['description'];
     
         $images = [];
-        foreach ($_POST as $key => $value) {
-            echo $key;
-            echo '<br>';
-            echo $value;
-            echo '<br>';
-            // if (substr($key, 0, -1) === 'image-url-') {
-            //     $counter = substr($value, -1);
-            //     $image = [
-            //         'url' => $_POST['image-url-' . $counter],
-            //         'alt' => $_POST['image-alt-' . $counter],
-            //         'title' => $_POST['image-title-' . $counter]
-            //     ];
-            //     $images[] = $image;
-            // }
-            if (strpos($value, 'image-url-') !== false) {
-                $counter = substr($key, -1);
-                $image = [
-                    'url' => $_POST['image-url-' . $counter],
-                    'alt' => $_POST['image-alt-' . $counter],
-                    'title' => $_POST['image-title-' . $counter]
+        foreach ($_POST as $post => $value ) {
+            if(substr($post,0, -1) === 'image-id-') {
+                $counter = substr($post, -1);
+                $arrayImage = [
+                    'id' => $_POST['image-id-'.$counter],
+                    'url' => $_POST['image-url-'.$counter],
+                    'alt' => $_POST['image-alt-'.$counter],
+                    'title' => $_POST['image-title-'.$counter]
                 ];
-                $images[] = $image;
+                array_push($images, $arrayImage);
             }
         }
         
-        print_r("images[] -->".var_dump($images));
-        echo '<br>';
-
-        foreach ($_POST as $post => $value) {
-            var_dump($post. ' --> ' .$value);
+        foreach($images as $image => $value) {
+            print_r(var_dump($value));
             echo '<br>';
         }
+        // echo '<br>';
+
+        // foreach ($images as $image => $value) {
+        //     print_r(var_dump("image --> ".$value));
+        //     echo '<br>';
+        // }
         
         echo '<br>';
         print_r("projectID -->$projectID");

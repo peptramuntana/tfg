@@ -20,8 +20,6 @@ $projects = Database::getProjects(0);
             $projectTitle = $projectTexts[0]->project_title;
             $projectSlider = Database::getProjectSlider($project->id);
             $counter = 0;
-            /*app/controllers/formsController.php*/
-            print_r($_POST)
         ?>
         <section class="admin-project">
             <form action="http://localhost/app/controllers/formsController.php" class="elements" method="POST">
@@ -36,6 +34,9 @@ $projects = Database::getProjects(0);
                 <?php $counter++;?>
                 <div class="images">
                     <p>IMÁGEN <?php echo $counter; ?></p>
+
+                    <input type="hidden" name="image-id-<?php echo $counter ?>" value="<?php echo isset($img->img_id) ? $img->img_id : '' ?>">
+
                     <label for="image-url-<?php echo $counter ?>">URL:</label>
                     <input type="text" id="image-url-<?php echo $counter ?>" name="image-url-<?php echo $counter ?>" class="image" value="/public/images/projects/<?php echo isset($img->img_url) ? $img->img_url : '' ?>.jpg">
 
@@ -47,6 +48,7 @@ $projects = Database::getProjects(0);
                 <?php endforeach; ?>
             </div>
             <input type="hidden" name="projectID" value="<?php echo $projectID?>">
+            <input type="hidden" name="lang" value="<?php echo SYSTEM_LANG ?>">
             <input type="submit" name="update" value="Editar" class="btn">
             </form>
         </section>
