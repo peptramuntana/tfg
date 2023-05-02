@@ -146,7 +146,7 @@ class Core {
             //         window.location.href = 'http://localhost/administrator';
             //     </script>
             // ");
-            header("Location: http://localhost/administrator");
+            header("Location: http://localhost/".SYSTEM_LANG."/administrator");
             } else {
             session_destroy();
             // echo ("
