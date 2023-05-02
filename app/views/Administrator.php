@@ -3,7 +3,7 @@
 ?>
 
 <div class="log-out">
-    <form action="app/controllers/formsController.php" method="POST">
+    <form action="http://localhost/app/controllers/formsController.php" method="POST">
         <input type="submit" name="logout" value="Cerrar sesión" class="btn">
     </form>
 </div>
@@ -24,7 +24,7 @@ $projects = Database::getProjects(0);
             print_r($_POST)
         ?>
         <section class="admin-project">
-            <form class="elements" method="post" action="app/controllers/formsController.php">
+            <form action="http://localhost/app/controllers/formsController.php" class="elements" method="POST">
             <label for="title">Título del proyecto:</label>
             <input type="text" id="title" name="title" value="<?php echo isset($projectTitle) ? $projectTitle : '' ?>" class="editable">
             <?php foreach ($projectTexts as $text) : ?>
@@ -36,15 +36,14 @@ $projects = Database::getProjects(0);
                 <?php $counter++;?>
                 <div class="images">
                     <p>IMÁGEN <?php echo $counter; ?></p>
-                    <label for="image-url-<? echo $counter ?>">URL --></label>
-                    <input type="text" id="image-url-<? echo $counter ?>" name="image-url-<? echo $counter ?>" class="image editable-small" value="/public/images/projects/<?php echo isset($img->img_url) ? $img -> img_url : '' ?>.jpg">
- 
-                    <label for="image-alt-<? echo $counter ?>">Alt --></label>
-                    <input type="text" id="image-alt-<? echo $counter ?>" name="image-alt-<?php echo $counter ?>" class="image editable-small" value="<?php echo isset($img->img_alt) ? $img->img_alt : '' ?>">
+                    <label for="image-url-<?php echo $counter ?>">URL:</label>
+                    <input type="text" id="image-url-<?php echo $counter ?>" name="image-url-<?php echo $counter ?>" class="image" value="/public/images/projects/<?php echo isset($img->img_url) ? $img->img_url : '' ?>.jpg">
 
-                    <label for="image-title-<? echo $counter ?>">Title --></label>
-                    <input type="text" id="image-title-<? echo $counter ?>" name="image-title-<? echo $counter ?>" class="image editable-small" value="<?php echo isset($img->img_title) ? $img->img_title : '' ?>">
-                </div>
+                    <label for="image-alt-<?php echo $counter ?>">Alt:</label>
+                    <input type="text" id="image-alt-<?php echo $counter ?>" name="image-alt-<?php echo $counter ?>" class="image" value="<?php echo isset($img->img_alt) ? $img->img_alt : '' ?>">
+
+                    <label for="image-title-<?php echo $counter ?>">Title:</label>
+                    <input type="text" id="image-title-<?php echo $counter ?>" name="image-title-<?php echo $counter ?>" class="image" value="<?php echo isset($img->img_title) ? $img->img_title : '' ?>">                </div>
                 <?php endforeach; ?>
             </div>
             <input type="hidden" name="projectID" value="<?php echo $projectID?>">
