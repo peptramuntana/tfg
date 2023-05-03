@@ -2,7 +2,10 @@
     require_once('../models/db.php');
     require_once('Core.php');
 
-    define("SYSTEM_LANG", $_POST['lang']);
+    define("SYSTEM_LANG", $_POST['system_lang']);
+    define("SYSTEM_LANG_ID", $_POST['system_lang_id']);
+    $system_lang = SYSTEM_LANG;
+    $system_lang_id = SYSTEM_LANG_ID;
 
     if (isset($_POST['login'])) {
         Core::checkLogin();
@@ -14,9 +17,9 @@
 
     if (isset($_POST['update'])) {
         
-        $projectID = $_POST['projectID'];
-        $title = $_POST['title'];
-        $description = $_POST['description'];
+        $project_id = $_POST['project_id'];
+        $project_title = $_POST['project_title'];
+        $project_content = $_POST['project_content'];
     
         $images = [];
         foreach ($_POST as $post => $value ) {
@@ -31,25 +34,22 @@
                 array_push($images, $arrayImage);
             }
         }
-        
+        Database::updateProjectTexts($system_lang_id, $project_id, $project_title, $project_content);
         foreach($images as $image => $value) {
-            print_r(var_dump($value));
-            echo '<br>';
+            $image_id = $value['id'];
+            $image_url = $value['url'];
+            $image_alt = $value['alt'];
+            $image_title = $value['title'];
+            Database::updateImageProject($system_lang_id, $project_id, $image_id, $image_url, $image_title, $image_alt);
         }
-        // echo '<br>';
+        header("Location: http://localhost/".SYSTEM_LANG."/administrator");
+    }
 
-        // foreach ($images as $image => $value) {
-        //     print_r(var_dump("image --> ".$value));
-        //     echo '<br>';
-        // }
-        
-        echo '<br>';
-        print_r("projectID -->$projectID");
-        echo '<br>';
-        print_r("title -->$title");
-        echo '<br>';        
-        print_r("description -->$description");
-        echo '<br>';
-        
+    if (isset($_POST['hide-project'])) {
+        $project_id = $_POST['project_id'];
+        $project_state = $_POST['project_state'];
+        $project_state === 1 ? $switched_state = 0 : $switched_state = 1;
+        Database::hideProject($system_lang_id, $project_id, $switched_state);
+        header("Location: http://localhost/".SYSTEM_LANG."/administrator");
     }
 ?>

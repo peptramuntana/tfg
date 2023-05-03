@@ -1,5 +1,5 @@
-<?php 
-    Core::checkSession();
+<?php
+Core::checkSession();
 ?>
 
 <div class="log-out">
@@ -13,43 +13,62 @@ $projects = Database::getProjects(0);
 
 ?>
 
-    <?php foreach ($projects as $project) : ?>
-        <?php
-            $projectID = $project->id;
-            $projectTexts = Database::getProjectTexts($project->id);
-            $projectTitle = $projectTexts[0]->project_title;
-            $projectSlider = Database::getProjectSlider($project->id);
-            $counter = 0;
-        ?>
-        <section class="admin-project">
-            <form action="http://localhost/app/controllers/formsController.php" class="elements" method="POST">
-            <label for="title">Título del proyecto:</label>
-            <input type="text" id="title" name="title" value="<?php echo isset($projectTitle) ? $projectTitle : '' ?>" class="editable">
+<?php foreach ($projects as $project) : ?>
+    <?php
+    $project_id = $project->id;
+    $projectTexts = Database::getProjectTexts($project->id, 0);
+    $projectState = $projectTexts[0]->active;
+    $projectTitle = $projectTexts[0]->project_title;
+    $projectSlider = Database::getProjectSlider($project->id, 0);
+    $counter = 0;
+    ?>
+    <section class="admin-project">
+        <form class="update <?php echo $projectState == 1 ? '' : 'hided'?>" action="http://localhost/app/controllers/formsController.php"  method="POST">
+            <div class="heading"><?php echo $projectTitle?></div>
+            <label for="project_title">Título del proyecto:</label>
+            <input type="text" id="project_title" name="project_title" value="<?php echo isset($projectTitle) ? $projectTitle : '' ?>" class="editable">
             <?php foreach ($projectTexts as $text) : ?>
-                <label for="description">Descripción:</label>
-                <textarea id="description" name="description" class="editable"><?php echo isset($text->project_description) ? $text->project_description : ''?></textarea>
+                <label for="project_content">Descripción:</label>
+                <textarea id="project_content" name="project_content" class="editable"><?php echo isset($text->project_description) ? $text->project_description : '' ?></textarea>
             <?php endforeach; ?>
-            <div class="images-box">
-            <?php foreach ($projectSlider as $img) : ?>
-                <?php $counter++;?>
-                <div class="images">
-                    <p>IMÁGEN <?php echo $counter; ?></p>
+            <div class="images-container">
+                <?php foreach ($projectSlider as $img) : ?>
+                    <?php $counter++; ?>
+                    <div class="images">
+                        <p>IMÁGEN <?php echo $counter; ?></p>
+                        <img src="/public/images/projects/<?php echo isset($img->img_url) ? $img->img_url : '' ?>.jpg" alt="<?php echo isset($img->img_alt) ? $img->img_alt : '' ?>" title="<?php echo isset($img->img_title) ? $img->img_title : '' ?>">
+                        <input type="hidden" name="image-id-<?php echo $counter ?>" value="<?php echo isset($img->img_id) ? $img->img_id : '' ?>">
 
-                    <input type="hidden" name="image-id-<?php echo $counter ?>" value="<?php echo isset($img->img_id) ? $img->img_id : '' ?>">
+                        <label for="image-url-<?php echo $counter ?>">URL:</label>
+                        <input type="text" id="image-url-<?php echo $counter ?>" name="image-url-<?php echo $counter ?>" class="image" value="<?php echo isset($img->img_url) ? $img->img_url : '' ?>">
 
-                    <label for="image-url-<?php echo $counter ?>">URL:</label>
-                    <input type="text" id="image-url-<?php echo $counter ?>" name="image-url-<?php echo $counter ?>" class="image" value="/public/images/projects/<?php echo isset($img->img_url) ? $img->img_url : '' ?>.jpg">
+                        <label for="image-alt-<?php echo $counter ?>">Alt:</label>
+                        <input type="text" id="image-alt-<?php echo $counter ?>" name="image-alt-<?php echo $counter ?>" class="image" value="<?php echo isset($img->img_alt) ? $img->img_alt : '' ?>">
 
-                    <label for="image-alt-<?php echo $counter ?>">Alt:</label>
-                    <input type="text" id="image-alt-<?php echo $counter ?>" name="image-alt-<?php echo $counter ?>" class="image" value="<?php echo isset($img->img_alt) ? $img->img_alt : '' ?>">
-
-                    <label for="image-title-<?php echo $counter ?>">Title:</label>
-                    <input type="text" id="image-title-<?php echo $counter ?>" name="image-title-<?php echo $counter ?>" class="image" value="<?php echo isset($img->img_title) ? $img->img_title : '' ?>">                </div>
+                        <label for="image-title-<?php echo $counter ?>">Title:</label>
+                        <input type="text" id="image-title-<?php echo $counter ?>" name="image-title-<?php echo $counter ?>" class="image" value="<?php echo isset($img->img_title) ? $img->img_title : '' ?>">
+                    </div>
                 <?php endforeach; ?>
             </div>
-            <input type="hidden" name="projectID" value="<?php echo $projectID?>">
-            <input type="hidden" name="lang" value="<?php echo SYSTEM_LANG ?>">
-            <input type="submit" name="update" value="Editar" class="btn">
+            <input type="hidden" name="project_id" value="<?php echo $project_id ?>">
+            <input type="hidden" name="system_lang" value="<?php echo SYSTEM_LANG ?>">
+            <input type="hidden" name="system_lang_id" value="<?php echo SYSTEM_LANG_ID ?>">
+            <input type="submit" name="update" value="Editar Proyecto" class="btn">
+        </form>
+        <div class="delete-hide-container">
+            <form class="hide-project" action="http://localhost/app/controllers/formsController.php">
+                <input type="hidden" name="project_id" value="<?php echo $project_id ?>">
+                <input type="hidden" name="project_state" value="<?php echo $projectState ?>">
+                <input type="hidden" name="system_lang" value="<?php echo SYSTEM_LANG ?>">
+                <input type="hidden" name="system_lang_id" value="<?php echo SYSTEM_LANG_ID ?>">
+                <input type="submit" name="hide-project" value="<?php echo $projectState == 1 ? 'Ocultar Proyecto' : 'Mostrar proyecto'?>" class="btn">
             </form>
-        </section>
-    <?php endforeach; ?>
+            <form class="delete-project" action="http://localhost/app/controllers/formsController.php">
+                <input type="hidden" name="project_id" value="<?php echo $project_id ?>">
+                <input type="hidden" name="system_lang" value="<?php echo SYSTEM_LANG ?>">
+                <input type="hidden" name="system_lang_id" value="<?php echo SYSTEM_LANG_ID ?>">
+                <input type="submit" name="delete" value="Eliminar Proyecto" class="btn">
+            </form>
+        </div>
+    </section>
+<?php endforeach; ?>

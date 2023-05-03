@@ -66,58 +66,101 @@ section.projects > div:first-of-type {
 }
 
 .admin-project {
-    padding: 50px 0;
-    margin: 10px 0;
-    border-top: 1px solid green;
+    padding: 20px 0;
 }
 
-.admin-project .elements {
+/* Update Project */
+
+.admin-project > .update,
+.admin-project > .delete-hide-container {
     margin: 0 auto;
     display: grid;
     grid-template: auto / repeat(2,600px);
     justify-content: center;
+    column-gap: 80px;
 }
 
-.admin-project .elements > label {
+.admin-project > .delete-hide-container {
+    padding-top: 30px;
+}
+
+.admin-project > .delete-hide-container > form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.admin-project form.update.hided {
+    background-color: rgba(0,0,0,0.48) !important;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.admin-project form.update.hided > .heading {
+    background-color: gainsboro;
+}
+
+.admin-project form.update > .heading{
+    grid-column: 1 / span 2;
+    grid-row: 1;
+    background-color: antiquewhite;
+    margin-bottom: 40px;
+}
+
+.admin-project form.update > .heading * {
+    text-align: center;
+    font-size: 30px;
+}
+
+.admin-project form.update > label {
     grid-column: 1;
 }
 
-.admin-project .elements > input,
-.admin-project .elements > textarea {
+.admin-project form.update > input,
+.admin-project form.update > textarea {
     grid-column: 2;
 }
 
-.admin-project .elements > .images-box {
+.admin-project form.update > .images-container {
     grid-column: 2;
-    grid-row: 1 / span 5;
+    grid-row: 2 / span 5;
 }
 
-.admin-project .elements > input.btn {
+.admin-project form.update > input.btn {
     grid-column: 1 / span 2;
-    margin: 050px auto;
+    margin: 50px auto 25px auto;
 }
 
-.admin-project .elements > .images-box > .images {
+.admin-project form.update > .images-container > .images {
     display: grid;
     grid-template-columns: 80px auto;
-    padding: 30px 0;
+    padding: 0 0 30px 0;
 }
 
-.admin-project .elements > .images-box > .images > * {
+.admin-project form.update > .images-container > .images > * {
     margin: 5px 0;
 }
 
-.admin-project .elements > .images-box > .images > p {
+.admin-project form.update > .images-container > .images > p,
+.admin-project form.update > .images-container > .images > img {
     grid-column: 1 / span 2;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.admin-project .elements > .images-box > .images > label {
+.admin-project form.update > .images-container > .images > label {
     display: flex;
     align-items: center;
 }
+
+.admin-project form.update > .images-container > .images > img{
+    width: 150px;
+    height: 100px;
+}
+
 
 
 

@@ -46,7 +46,7 @@ function tiny() {
         plugins: 'lists advlist code link image',
         menubar:'tools insert',
         height: '200px',
-        width: '500px',
+        width: '600px',
       });
     });
   }

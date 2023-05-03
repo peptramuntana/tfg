@@ -4,9 +4,10 @@ $projects = Database::getProjects(1);
 <section class="projects">
     <?php foreach ($projects as $project) : ?>
         <?php
-            $projectTexts = Database::getProjectTexts($project->id);
+            $projectTexts = Database::getProjectTexts($project->id, 1);
             $projectTitle = $projectTexts[0]->project_title;
-            $projectSlider = Database::getProjectSlider($project->id);
+            $projectDecription = $projectTexts[0]->project_description;
+            $projectSlider = Database::getProjectSlider($project->id, 1);
         ?>
         <div class="project">
             <div id="slider" class="swiper">
@@ -20,10 +21,11 @@ $projects = Database::getProjects(1);
                 <div class="swiper-button-next"></div>
             </div>
             <div class="project__info">
-                <h2 class="project__title"><?php echo isset($projectTitle) ? $projectTitle : '' ?></h2>
-                <?php foreach ($projectTexts as $text) : ?>
-                    <p class="project__description"><?php echo isset($text->project_description) ? $text->project_description : ''?></p>
-                <?php endforeach; ?>
+                <div class="project__title"><?php echo isset($projectTitle) ? $projectTitle : '' ?></div>
+                <div class="project__description">
+                    <?php echo isset($projectDecription) ? $projectDecription : ''?></div>
+                </div>
+
             </div>
         </div>
     <?php endforeach; ?>
