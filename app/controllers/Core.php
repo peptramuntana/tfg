@@ -124,61 +124,17 @@ class Core {
 
     static function loadView() {
         if(URL_LANG != SYSTEM_LANG || URL_MENU != SYSTEM_URL) {
-            // echo "Load view error 404";
-            // echo "<br>";
             require_once(SYSTEM_VIEW_URL."/error404.php");
             
         } else {
-            // echo "Load system view";
-            // echo "<br>";
             require_once(SYSTEM_VIEW_URL."/".SYSTEM_VIEW.".php");
-        }
-    }
-
-    static function checkLogin() {     
-        $counter = Database::checkLogin();
-        if ($counter != 0) {
-            session_start();
-            $_SESSION['login'] = $_POST["password"];
-            // echo ("
-            //     <script>
-            //         window.alert('Entrando al administrador...');
-            //         window.location.href = 'http://localhost/administrator';
-            //     </script>
-            // ");
-            header("Location: http://localhost/".SYSTEM_LANG."/administrator");
-            } else {
-            session_destroy();
-            // echo ("
-            //     <script>
-            //         window.alert('Usuario, password o ambos incorrecto.');
-            //         window.location.href = 'http://localhost/login';
-            //     </script>
-            // ");
-            header("Location: http://localhost/login");
         }
     }
 
     static function checkSession() {
         session_start();
         if (!isset($_SESSION['login'])) {
-            header("Location: http://localhost/login");
-            // echo ("
-            //         <script>
-            //             window.alert('Necesitas iniciar sesión para acceder.');
-            //             window.location.href = 'http://localhost/login';
-            //         </script>
-            //     ");
+            header("Location: http://localhost/".SYSTEM_LANG."/login");
             }
     }
-
-    static function closeSession() {
-        session_start();
-        if (isset($_SESSION['login'])) {
-            unset($_SESSION['login']);
-            session_destroy();
-            header("Location: http://localhost/login");
-        } else {
-            header("Location: http://localhost/administrator");
-        }
-}}
+}

@@ -4,14 +4,47 @@ Core::checkSession();
 
 <div class="log-out">
     <form action="http://localhost/app/controllers/formsController.php" method="POST">
+        <input type="hidden" name="system_lang" value="<?php echo SYSTEM_LANG ?>">
         <input type="submit" name="logout" value="Cerrar sesión" class="btn">
     </form>
 </div>
 
-<?php
-$projects = Database::getProjects(0);
+<?php $projects = Database::getProjects(0);?>
 
-?>
+<section class="admin-project">
+    <form method="POST" action="http://localhost/app/controllers/formsController.php" class="create">
+        <div class="heading">
+            <h2>NUEVO PROYECTO</h2>
+        </div>
+        <label for="project_title">Título del proyecto:</label>
+        <input type="text" id="project_title" name="project_title" class="editable">
+        <label for="project_content">Descripción:</label>
+        <textarea id="project_content" name="project_content" class="editable"></textarea>
+        <div class="images-container">
+            <div class="images">
+                <p>IMÁGEN 1</p>
+                <label for="image-url-1">URL:</label>
+                <input type="text" id="image-url-1" name="image-url-1">
+                <label for="image-alt-1">Alt:</label>
+                <input type="text" id="image-alt-1" name="image-alt-1">
+                <label for="image-title-1">Title:</label>
+                <input type="text" id="image-title-1" name="image-title-1">
+            </div>
+            <div class="images">
+                <p>IMÁGEN 2</p>
+                <label for="image-url-2">URL:</label>
+                <input type="text" id="image-url-2" name="image-url-2">
+                <label for="image-alt-2">Alt:</label>
+                <input type="text" id="image-alt-2" name="image-alt-2">
+                <label for="image-title-2">Title:</label>
+                <input type="text" id="image-title-2" name="image-title-2">
+            </div>
+        </div>
+        <input type="hidden" name="system_lang" value="<?php echo SYSTEM_LANG ?>">
+        <input type="hidden" name="system_lang_id" value="<?php echo SYSTEM_LANG_ID ?>">
+        <input type="submit" name="create-project" value="Crear Proyecto" class="btn">
+    </form>
+</section>
 
 <?php foreach ($projects as $project) : ?>
     <?php
@@ -22,7 +55,7 @@ $projects = Database::getProjects(0);
     $projectSlider = Database::getProjectSlider($project->id, 0);
     $counter = 0;
     ?>
-    <section class="admin-project">
+    <section class="admin-project" id="<?php echo $project_id ?>">
         <form class="update <?php echo $projectState == 1 ? '' : 'hided'?>" action="http://localhost/app/controllers/formsController.php"  method="POST">
             <div class="heading"><?php echo $projectTitle?></div>
             <label for="project_title">Título del proyecto:</label>
@@ -56,14 +89,14 @@ $projects = Database::getProjects(0);
             <input type="submit" name="update" value="Editar Proyecto" class="btn">
         </form>
         <div class="delete-hide-container">
-            <form class="hide-project" action="http://localhost/app/controllers/formsController.php">
+            <form class="hide-project" action="http://localhost/app/controllers/formsController.php" method="POST">
                 <input type="hidden" name="project_id" value="<?php echo $project_id ?>">
                 <input type="hidden" name="project_state" value="<?php echo $projectState ?>">
                 <input type="hidden" name="system_lang" value="<?php echo SYSTEM_LANG ?>">
                 <input type="hidden" name="system_lang_id" value="<?php echo SYSTEM_LANG_ID ?>">
                 <input type="submit" name="hide-project" value="<?php echo $projectState == 1 ? 'Ocultar Proyecto' : 'Mostrar proyecto'?>" class="btn">
             </form>
-            <form class="delete-project" action="http://localhost/app/controllers/formsController.php">
+            <form class="delete-project" action="http://localhost/app/controllers/formsController.php" method="POST">
                 <input type="hidden" name="project_id" value="<?php echo $project_id ?>">
                 <input type="hidden" name="system_lang" value="<?php echo SYSTEM_LANG ?>">
                 <input type="hidden" name="system_lang_id" value="<?php echo SYSTEM_LANG_ID ?>">

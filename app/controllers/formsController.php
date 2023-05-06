@@ -8,11 +8,25 @@
     $system_lang_id = SYSTEM_LANG_ID;
 
     if (isset($_POST['login'])) {
-        Core::checkLogin();
-    }
+        $counter = Database::checkLogin();
+        if ($counter != 0) {
+            session_start();
+            $_SESSION['login'] = $_POST["password"];
+            header("Location: http://localhost/".SYSTEM_LANG."/administrator");
+            } else {
+            session_destroy();
+            header("Location: http://localhost/".SYSTEM_LANG."/login");
+        }    }
     
     if (isset($_POST['logout'])) {
-        Core::closeSession();
+        session_start();
+        if (isset($_SESSION['login'])) {
+            unset($_SESSION['login']);
+            session_destroy();
+            header("Location: http://localhost/".SYSTEM_LANG."/login");
+        } else {
+            header("Location: http://localhost/".SYSTEM_LANG."/administrator");
+        }
     }
 
     if (isset($_POST['update'])) {
@@ -42,14 +56,40 @@
             $image_title = $value['title'];
             Database::updateImageProject($system_lang_id, $project_id, $image_id, $image_url, $image_title, $image_alt);
         }
-        header("Location: http://localhost/".SYSTEM_LANG."/administrator");
+        header("Location: http://localhost/".SYSTEM_LANG."/administrator/#$project_id");
     }
 
     if (isset($_POST['hide-project'])) {
         $project_id = $_POST['project_id'];
         $project_state = $_POST['project_state'];
-        $project_state === 1 ? $switched_state = 0 : $switched_state = 1;
+        $switched_state = $project_state == 1 ? 0 : 1;
         Database::hideProject($system_lang_id, $project_id, $switched_state);
-        header("Location: http://localhost/".SYSTEM_LANG."/administrator");
+        header("Location: http://localhost/".SYSTEM_LANG."/administrator/#$project_id");
+    }
+    
+    if (isset($_POST['delete'])) {
+        $project_id = $_POST['project_id'];
+        Database::deleteProjectTexts($project_id);
+        Database::deleteProjectSlider($project_id);
+        Database::deleteProject($project_id);
+        header("Location: http://localhost/".SYSTEM_LANG."/administrator/");
+    }
+
+    if (isset($_POST['create-project'])) {
+        $project_title = $_POST['project_title'];
+        $project_content = $_POST['project_content'];
+        $image_url_1 = $_POST['image-url-1'];
+        $image_alt_1 = $_POST['image-alt-1'];
+        $image_title_1 = $_POST['image-title-1'];
+        $image_url_2 = $_POST['image-url-2'];
+        $image_alt_2 = $_POST['image-alt-2'];
+        $image_title_2 = $_POST['image-title-2'];
+        
+        $project_id = Database::createProject($project_title, 0);    
+        Database::createProjectTexts($system_lang_id, $project_id, $project_title, $project_content);
+        $gallery_id = Database::createGallery($name, $project_id);
+        Database::createImage($system_lang_id, $gallery_id, $image_url_1, $image_alt_1, $image_title_1, 1);
+        Database::createImage($system_lang_id, $gallery_id, $image_url_2, $image_alt_2, $image_title_2, 1);
+        header("Location: http://localhost/".SYSTEM_LANG."/administrator/");
     }
 ?>

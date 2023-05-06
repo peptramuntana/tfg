@@ -9,7 +9,7 @@ $projects = Database::getProjects(1);
             $projectDecription = $projectTexts[0]->project_description;
             $projectSlider = Database::getProjectSlider($project->id, 1);
         ?>
-        <div class="project">
+        <div class="project" id="project-<?php echo $project -> id?>">
             <div id="slider" class="swiper">
                 <div class="swiper-wrapper">
                 <?php foreach ($projectSlider as $img) : ?>
