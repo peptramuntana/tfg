@@ -14,7 +14,7 @@
     //If we are not in the root
     // if(!empty($urlData)) {
         // Get the data from the Database with the URL
-        $systemLangData = Database::getLang();
+        $systemLangData = Database::getUrlLang();
         // Define the language of the system
         Core::defineSystemLang($systemLangData);
 

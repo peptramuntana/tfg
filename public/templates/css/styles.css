@@ -13,6 +13,24 @@ body {
     text-transform: uppercase;
 }
 
+.btn-blue {
+    background-color: royalblue;
+    color: white;
+    border: none;
+}
+
+.btn-red {
+    background-color:sienna;
+    color: white;
+    border: none;
+}
+
+.btn-green {
+    background-color:darkolivegreen;
+    color: white;
+    border: none;
+}
+
 /* Slider */
 #slider img {
     width: 650px;
@@ -24,18 +42,18 @@ body {
 .swiper {
     width: 650px;
     height: 455px;
-  }
+}
 
-  section.projects {
+section.projects {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
-    grid-template-rows: repeat(3,1fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     column-gap: 60px;
     row-gap: 80px;
     justify-items: center;
 }
 
-section.projects > div {
+section.projects>div {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -45,11 +63,11 @@ section.projects > div {
     grid-row: auto / span 3;
 }
 
-section.projects > div {
+section.projects>div {
     grid-row: auto / span 3;
 }
 
-section.projects > div:first-of-type {
+section.projects>div:first-of-type {
     grid-row: 2 / span 3;
     grid-column: 2;
 }
@@ -60,32 +78,36 @@ section.projects > div:first-of-type {
 
 .log-out form {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     padding: 50px 0;
 }
 
+.log-out form .btn {
+    margin-right: 50px;
+}
+
 .admin-project {
     padding: 20px 0;
+    max-width: 1360px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 /* Update Project */
 
-.admin-project > .update,
-.admin-project > .delete-hide-container,
-.admin-project > .create {
+.admin-project>.update,
+.admin-project>.delete-hide-container,
+.admin-project>.create {
     margin: 0 auto;
     display: grid;
-    grid-template: auto / repeat(2,600px);
+    grid-template: auto / repeat(2, 600px);
     justify-content: center;
     column-gap: 80px;
+    padding-bottom: 40px;
 }
 
-.admin-project > .delete-hide-container {
-    padding-top: 30px;
-}
-
-.admin-project > .delete-hide-container > form {
+.admin-project>.delete-hide-container>form {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -93,99 +115,105 @@ section.projects > div:first-of-type {
 }
 
 .admin-project form.update.hided {
-    background-color: rgba(0,0,0,0.48) !important;
+    background-color: rgba(0, 0, 0, 0.48) !important;
     overflow: hidden;
     pointer-events: none;
 }
 
-.admin-project form.update.hided > .heading {
+.admin-project .heading.hided {
     background-color: gainsboro;
 }
 
 
-.admin-project form.update > .heading,
-.admin-project form.create > .heading
-{
+.admin-project .heading{
     grid-column: 1 / span 2;
     grid-row: 1;
     background-color: antiquewhite;
     margin-bottom: 40px;
 }
 
-.admin-project form.update > .heading {
+.admin-project .heading {
     background-color: antiquewhite;
 }
 
-.admin-project > form.create > .heading {
-    background-color:olive;
+.admin-project .heading.create-heading {
+    background-color: lightsteelblue;
 }
-
-.admin-project form.update > .heading *,
-.admin-project > form.create > .heading * {
+.admin-project .heading * {
+    padding: 30px 0;
+}
+.admin-project .heading * {
     text-align: center;
     font-size: 30px;
 }
 
-.admin-project form.update > label,
-.admin-project form.create > label {
+.admin-project form.update>label,
+.admin-project form.create>label,
+.admin-project form.update .tox {
     grid-column: 1;
 }
 
-.admin-project form.update > input,
-.admin-project form.update > textarea,
-.admin-project form.create > input,
-.admin-project form.create > textarea{
+.admin-project form.update>input,
+.admin-project form.update>textarea,
+.admin-project form.create>input,
+.admin-project form.create>textarea {
     grid-column: 2;
 }
 
-.admin-project form.update > .images-container,
-.admin-project form.create > .images-container {
+.admin-project form.update>.images-container,
+.admin-project form.create>.images-container {
     grid-column: 2;
     grid-row: 2 / span 5;
 }
 
-.admin-project form.update > input.btn ,
-.admin-project form.create > input.btn {
+.admin-project form.update>input.btn,
+.admin-project form.create>input.btn {
     grid-column: 1 / span 2;
-    margin: 50px auto 25px auto;
+    margin: 40px auto;
 }
 
-.admin-project form.update > .images-container > .images,
-.admin-project form.create > .images-container > .images {
+.admin-project form.update>.images-container>.images,
+.admin-project form.create>.images-container>.images {
     display: grid;
-    grid-template-columns: 80px auto;
+    grid-template-columns: 150px 80px auto;
+    column-gap: 10px;
     padding: 0 0 30px 0;
 }
 
-.admin-project form.update > .images-container > .images > *,
-.admin-project form.create > .images-container > .images > * {
+.admin-project> form .project_title {
+    padding-bottom: 20px;
+}
+
+.admin-project> form .project_content {
+    padding: 20px 0;
+}
+
+.admin-project form.update>.images-container>.images>*,
+.admin-project form.create>.images-container>.images>* {
     margin: 5px 0;
 }
 
-.admin-project form.update > .images-container > .images > p,
-.admin-project form.update > .images-container > .images > img,
-.admin-project form.create > .images-container > .images > p,
-.admin-project form.create > .images-container > .images > img {
-    grid-column: 1 / span 2;
-    margin: 0 auto;
+.admin-project form.update>.images-container>.images>img,
+.admin-project form.create>.images-container>.images>img,
+.admin-project form.create>.images-container>.images>p  {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.admin-project form.update > .images-container > .images > label,
-.admin-project form.create > .images-container > .images > label {
-    display: flex;
-    align-items: center;
-}
-
-.admin-project form.update > .images-container > .images > img,
-.admin-project form.create > .images-container > .images > img {
     width: 150px;
     height: 100px;
+    grid-column: 1;
+    grid-row: 1 / span 3;
 }
 
+.admin-project form.update>.images-container>.images>label,
+.admin-project form.create>.images-container>.images>label {
+    display: flex;
+    align-items: center;
+    grid-column: 2;
+    justify-content: center;
+}
 
-
-
+.admin-project form.update>.images-container>.images input {
+    grid-column: 3;
+}
 

@@ -71,6 +71,7 @@
         $project_id = $_POST['project_id'];
         Database::deleteProjectTexts($project_id);
         Database::deleteProjectSlider($project_id);
+        Database::deleteGallery($project_id);
         Database::deleteProject($project_id);
         header("Location: http://localhost/".SYSTEM_LANG."/administrator/");
     }
@@ -85,11 +86,14 @@
         $image_alt_2 = $_POST['image-alt-2'];
         $image_title_2 = $_POST['image-title-2'];
         
-        $project_id = Database::createProject($project_title, 0);    
-        Database::createProjectTexts($system_lang_id, $project_id, $project_title, $project_content);
-        $gallery_id = Database::createGallery($name, $project_id);
-        Database::createImage($system_lang_id, $gallery_id, $image_url_1, $image_alt_1, $image_title_1, 1);
-        Database::createImage($system_lang_id, $gallery_id, $image_url_2, $image_alt_2, $image_title_2, 1);
+        $project_id = Database::createProject($project_title, 0);  
+        $gallery_id = Database::createGallery($project_title, $project_id);
+
+        $langs = Database::getLangs();  
+        foreach($langs as $lang) {
+            Database::createProjectTexts($lang->id, $project_id, $project_title, $project_content);
+            Database::createImage($lang->id, $gallery_id, $image_url_1, $image_alt_1, $image_title_1, 1);
+            Database::createImage($lang->id, $gallery_id, $image_url_2, $image_alt_2, $image_title_2, 1);    
+        }
         header("Location: http://localhost/".SYSTEM_LANG."/administrator/");
     }
-?>
