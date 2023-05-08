@@ -1,10 +1,143 @@
-body {
-    margin: 0;
-    font-family: "Inter", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+/*--------------------------------------------------------------
+>>> TABLA DE CONTENIDOS:
+----------------------------------------------------------------
+
+1.0 General
+  1.1 Fonts
+  1.2 Root
+  1.3 Basics
+  1.4 Blocks
+    1.4.1 - Header
+    1.4.2 - Modal Menu
+    1.4.3 - Footer
+  1.5 Animations
+  1.8 Backgrounds
+*/
+
+/*--------------------------------------------------------------
+    1.0 General
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+    1.1 Fonts
+--------------------------------------------------------------*/
+
+@font-face {
+    font-family: var(--main-font);
+    src: url("../../fonts/static/Montserrat-ThinItalic.ttf"),
+        url("../../fonts/static/Montserrat-Thin.ttf"),
+        url("../../fonts/static/Montserrat-ExtraLightItalic.ttf"),
+        url("../../fonts/static/Montserrat-ExtraLight.ttf"),
+        url("../../fonts/static/Montserrat-LightItalic.ttf"),
+        url("../../fonts/static/Montserrat-Light.ttf"),
+        url("../../fonts/static/Montserrat-Regular.ttf"),
+        url("../../fonts/static/Montserrat-Italic.ttf"),
+        url("../../fonts/static/Montserrat-MediumItalic.ttf"),
+        url("../../fonts/static/Montserrat-Medium.ttf"),
+        url("../../fonts/static/Montserrat-SemiBoldItalic.ttf"),
+        url("../../fonts/static/Montserrat-SemiBold.ttf"),
+        url("../../fonts/static/Montserrat-BoldItalic.ttf"),
+        url("../../fonts/static/Montserrat-Bold.ttf"),
+        url("../../fonts/static/Montserrat-ExtraBoldItalic.ttf"),
+        url("../../fonts/static/Montserrat-ExtraBold.ttf"),
+        url("../../fonts/static/Montserrat-BlackItalic.ttf"),
+        url("../../fonts/static/Montserrat-Black.ttf");
 }
 
+@font-face {
+    font-family: var(--tile-font);
+    src: url("../../fonts/static/Rubik-BlackItalic.ttf"),
+        url("../../fonts/static/Rubik-Black.ttf"),
+        url("../../fonts/static/Rubik-BoldItalic.ttf"),
+        url("../../fonts/static/Rubik-Bold.ttf"),
+        url("../../fonts/static/Rubik-Italic.ttf"),
+        url("../../fonts/static/Rubik-LightItalic.ttf"),
+        url("../../fonts/static/Rubik-Light.ttf"),
+        url("../../fonts/static/Rubik-MediumItalic.ttf"),
+        url("../../fonts/static/Rubik-Medium.ttf"),
+        url("../../fonts/static/Rubik-Regular.ttf"),
+        url("../../fonts/static/Rubik-SemiBoldItalic.ttf"),
+        url("../../fonts/static/Rubik-SemiBold.ttf"),
+        url("../../fonts/static/Rubik-ThinItalic.ttf"),
+        url("../../fonts/static/Rubik-Thin.ttf");
+}
+
+
+/*--------------------------------------------------------------
+    1.2 Root
+--------------------------------------------------------------*/
+
+:root {
+    --main-font: 'Montserrat', sans-serif;
+    --tile-font: 'Rubik', sans-serif;
+    --font-p: 16px;
+    --font-title: 35px;
+    --main-color: #1D1E1A;
+    --white-color: #fff;
+    --corp-color: #8ABE3B;
+    --width: 92vw;
+}
+
+/*--------------------------------------------------------------
+    1.3 Basics
+--------------------------------------------------------------*/
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6  {
+    font-family: var(--tile-font);
+    font-weight: 900;
+}
+
+body,
+div,
+ul,
+li,
+a,
+span,
+p,
+table,
+td,
+tr,
+button,
+input,
+select,
+label {
+    font-family: var(--main-font);
+    font-weight: 400;
+    font-size: var(--font-p);
+}
+
+a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: inherit;
+    text-decoration: underline;
+}
+
+::selection {
+    background: var(--or-main-color);
+    color: #fff !important;
+}
+
+h1 {
+    font-size: 115px;
+}
+
+h2 {
+    font-size: 35px;
+}
 .btn {
     max-width: 300px;
     width: 100%;
@@ -30,6 +163,82 @@ body {
     color: white;
     border: none;
 }
+
+/*--------------------------------------------------------------
+    1.4 Blocks
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+    1.4.1 Header
+--------------------------------------------------------------*/
+.head-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--corp-color);
+    align-items: center;
+}
+
+.head-bar .logo {
+    margin-left: calc((100vw - var(--width)) / 2);
+}
+
+.head-bar .logo img {
+    width: 261px;
+    height: 53px;
+}
+
+.head-bar .lang-burger {
+    margin-right: calc((100vw - var(--width)) / 2);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border: 0;
+    background: transparent;
+    gap: .65rem;
+    cursor: pointer;
+    margin-left: 40px;
+}
+
+.burger > div {
+    background: var(--main-color);
+    height: 3px;
+    width: 100%;
+    border-radius: 5px;
+    transition: all .5s;
+    transform-origin: left;
+}
+
+.burger:hover div:first-child {
+    transform: rotate(45deg);
+}
+
+.burger:hover div:nth-child(2) {
+    opacity: 0;
+}
+
+.burger:hover div:last-child {
+    transform: rotate(-45deg);
+}
+
+.menu {
+    display: none;
+}
+/*--------------------------------------------------------------
+    1.4.2 - Modal Menu
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+    1.4.3 - Footer
+--------------------------------------------------------------*/
 
 /* Slider */
 #slider img {

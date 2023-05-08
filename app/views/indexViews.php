@@ -8,6 +8,7 @@
 <body>
     <?php
         if(SYSTEM_VIEW !== "administrator") {
+            include __DIR__ . '/modules/menu.php';
             include __DIR__ . '/modules/header.php';
         }
     ?>
