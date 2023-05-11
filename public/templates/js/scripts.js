@@ -1,5 +1,5 @@
 /*
-    1.0 - Slider
+    1.0 - Sliders
     2.0 - TinyMCE
     3.0 - Create Form
     4.0 - Update Form
@@ -8,12 +8,16 @@
     7.0 - Show Form
     8.0 - Create Modal
     9.0 - Close Modal
+    10.0 Burger Menu
+    11.0 - Resize
 */
 
 let stateCheck = setInterval(() => {
   if (document.readyState === 'complete') {
     // Slider
-    slider();
+    resize();
+    homeSlider();
+    projectsSliders();
     tiny();
     burgerMenu();
     clearInterval(stateCheck);
@@ -21,21 +25,15 @@ let stateCheck = setInterval(() => {
 }, 100);
 
 
-// 1.0 - Slider
-function slider() {
-  let sliders = document.querySelectorAll('.swiper');
+// 1.0 - Sliders
+function projectsSliders() {
+  let sliders = document.querySelectorAll('.projects-swiper');
   if (sliders) {
     sliders.forEach(slider => {
-      const swiper = new Swiper('.swiper', {
+      const swiper = new Swiper('.projects-swiper', {
         // Optional parameters
         direction: 'horizontal',
         loop: true,
-
-        // If we need pagination
-        pagination: {
-          el: '.swiper-pagination',
-        },
-
         // Navigation arrows
         navigation: {
           nextEl: '.swiper-button-next',
@@ -47,6 +45,23 @@ function slider() {
   }
 }
 
+function homeSlider() {
+  let sliders = document.querySelectorAll('.home-swiper');
+  if (sliders) {
+    sliders.forEach(slider => {
+      const swiper = new Swiper('.home-swiper', {
+        // Optional parameters
+        direction: 'horizontal',
+        loop: true,
+        // Navigation arrows
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      });
+    });
+  }
+}
 // 2.0 - TinyMCE
 function tiny() {
   let editable = document.querySelectorAll('.editable');
@@ -150,7 +165,8 @@ function createModal(id, $content) {
       let closeModal = document.createElement('div')
       closeModal.classList.add('close')
       closeModal.addEventListener('click', () => {
-          closeModal(id)
+          console.log('close')
+          toCloseModal(id)
       })
 
       // Add the closing to the header
@@ -171,16 +187,17 @@ function createModal(id, $content) {
 }
 
 // 9.0 - Close Modal
-function closeModal(id) {
+function toCloseModal(id) {
+  console.log('closeModal')
   let modal = document.querySelector(`#${id}`)
   // Show the content
+  console.log(modal)
   modal.classList.add('hide')
   setTimeout(
       () => {
           modal.classList.add('none')
           modal.classList.remove('hide')
-
-          if(modal.classList.contains('autokill')){modal.remove()}
+          modal.remove()
       }, 500
   )
 }
@@ -194,4 +211,16 @@ function burgerMenu() {
   burger.addEventListener('click', () => {
     createModal('modal-menu', menu);
   });
+}
+
+// 11.0 - Resize
+function resize() {
+  let height = window.innerHeight;
+  let headBar = document.querySelector('.head-bar');
+  let resize = document.querySelector('.resize');
+  if(resize) {
+    resize.style.width = '100%';
+    resize.style.height = `${height}px`;
+  }
+
 }

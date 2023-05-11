@@ -7,11 +7,14 @@
   1.2 Root
   1.3 Basics
   1.4 Blocks
-    1.4.1 - Header
-    1.4.2 - Modal Menu
-    1.4.3 - Footer
+    1.4.1 Header
+    1.4.2 Modal Menu
+    1.4.3 Footer
+    1.4.4 Sliders
+    1.4.5 img-text
+    1.4.6 bg-text
   1.5 Animations
-  1.8 Backgrounds
+  1.6 Backgrounds
 */
 
 /*--------------------------------------------------------------
@@ -69,18 +72,32 @@
 
 :root {
     --main-font: 'Montserrat', sans-serif;
-    --tile-font: 'Rubik', sans-serif;
+    --title-font: 'Rubik', sans-serif;
     --font-p: 16px;
     --font-title: 35px;
     --main-color: #1D1E1A;
     --white-color: #fff;
+    --alt-color: lightgray;
     --corp-color: #8ABE3B;
-    --width: 92vw;
+    --width: 80vw;
+    --head-bar-height: 75px;
 }
 
 /*--------------------------------------------------------------
     1.3 Basics
 --------------------------------------------------------------*/
+
+* {
+    box-sizing: border-box;
+    letter-spacing: .01em;
+    will-change: auto !important;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-end: 0;
+    padding-inline-start: 0;
+}
 
 body {
     margin: 0;
@@ -92,9 +109,16 @@ h2,
 h3,
 h4,
 h5,
-h6  {
-    font-family: var(--tile-font);
+h6 {
+    font-family: var(--title-font);
     font-weight: 900;
+    font-size: 35px;
+    text-transform: uppercase;
+    text-shadow:2px 2px 8px rgb(160 160 160 / 60%);
+}
+
+em {
+    text-shadow:2px 2px 8px rgb(160 160 160 / 60%);
 }
 
 body,
@@ -110,10 +134,12 @@ tr,
 button,
 input,
 select,
-label {
+label,
+em {
     font-family: var(--main-font);
     font-weight: 400;
     font-size: var(--font-p);
+    font-style: normal;
 }
 
 a {
@@ -132,19 +158,61 @@ a:hover {
 }
 
 h1 {
-    font-size: 115px;
+    padding-bottom: 40px;
 }
 
-h2 {
-    font-size: 35px;
+h1>em {
+    display: block;
+    font-weight: 600;
+    color: var(--corp-color);
 }
+
+h2 {}
+
+h2>em {
+    display: block;
+    font-weight: 600;
+    color: var(--corp-color);}
+
+p {
+    padding-bottom: 30px;
+}
+
+p:last-of-type {
+    padding-bottom: 0px;
+}
+
+.none {
+    display: none !important;
+}
+
+.pad {
+    padding: 180px 0;
+}
+
+.pad.no_bot {
+    padding-bottom: 0px;
+}
+
 .btn {
+    display: flex;
     max-width: 300px;
     width: 100%;
     height: 50px;
     cursor: pointer;
     text-transform: uppercase;
+    align-items: center;
+    justify-content: center;
+    background-color: darkgray;
+    text-decoration: none;
 }
+
+.btn:hover {
+    text-decoration: none;
+    background-color: var(--corp-color);
+    color: var(--white-color);
+}
+
 
 .btn-blue {
     background-color: royalblue;
@@ -153,15 +221,30 @@ h2 {
 }
 
 .btn-red {
-    background-color:sienna;
+    background-color: sienna;
     color: white;
     border: none;
 }
 
 .btn-green {
-    background-color:darkolivegreen;
+    background-color: darkolivegreen;
     color: white;
     border: none;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.container {
+    width: 100%;
+    max-width: var(--width);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+    margin: 0 auto;
 }
 
 /*--------------------------------------------------------------
@@ -172,11 +255,14 @@ h2 {
     1.4.1 Header
 --------------------------------------------------------------*/
 .head-bar {
+    position: fixed;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     background-color: var(--corp-color);
     align-items: center;
+    z-index: 2;
 }
 
 .head-bar .logo {
@@ -184,8 +270,8 @@ h2 {
 }
 
 .head-bar .logo img {
-    width: 261px;
-    height: 53px;
+    width: 272px;
+    height: 72px;
 }
 
 .head-bar .lang-burger {
@@ -199,26 +285,29 @@ h2 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 3rem;
-    height: 3rem;
+    width: 52px;
+    height: 50px;
     border: 0;
     background: transparent;
-    gap: .65rem;
     cursor: pointer;
     margin-left: 40px;
 }
 
-.burger > div {
+.burger>div {
     background: var(--main-color);
     height: 3px;
     width: 100%;
-    border-radius: 5px;
-    transition: all .5s;
+    border-radius: 3px;
+    transition: all .4s;
     transform-origin: left;
 }
 
+.burger div:nth-child(2) {
+    margin: 10px 0;
+}
+
 .burger:hover div:first-child {
-    transform: rotate(45deg);
+    transform: rotate(30deg);
 }
 
 .burger:hover div:nth-child(2) {
@@ -226,32 +315,283 @@ h2 {
 }
 
 .burger:hover div:last-child {
-    transform: rotate(-45deg);
+    transform: rotate(-30deg);
 }
 
 .menu {
     display: none;
 }
-/*--------------------------------------------------------------
-    1.4.2 - Modal Menu
---------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
-    1.4.3 - Footer
+    1.4.2 Modal Menu
 --------------------------------------------------------------*/
+#modal-menu {
+    -webkit-animation: slide-in-fwd-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-in-fwd-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    z-index: 10;
+    background-color: var(--main-color);
+    flex-direction: column;
+}
+
+#modal-menu .modal-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+#modal-menu .modal-container>.modal-header {
+    height: 0px;
+    display: flex;
+}
+
+#modal-menu .modal-container>.modal-header .close {
+    position: absolute;
+    right: calc((100vw - var(--width)) / 2);
+    top: 25px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transform: rotate(-90deg);
+    transition: all .5s ease-in-out;
+
+}
+
+#modal-menu .modal-container>.modal-header .close:hover {
+    transform: rotate(90deg);
+    transition: all .5s ease-in-out;
+}
+
+#modal-menu .modal-container>.modal-header .close:before,
+#modal-menu .modal-container>.modal-header .close:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 32px;
+    width: 2px;
+    background-color: var(--white-color)
+}
+
+#modal-menu .modal-container>.modal-header .close:before {
+    transform: rotate(45deg);
+}
+
+#modal-menu .modal-container>.modal-header .close:after {
+    transform: rotate(-45deg);
+}
+
+#modal-menu .modal-container>.modal-body {
+    height: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#modal-menu .modal-container>.modal-body .menu {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+#modal-menu .modal-container>.modal-body .menu nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    padding-left: 10vw;
+}
+
+#modal-menu .modal-container>.modal-body .menu nav ul {
+    list-style: none;
+}
+
+#modal-menu .modal-container>.modal-body .menu nav ul li {
+    color: var(--corp-color);
+    padding: 20px 0px;
+}
+
+#modal-menu .modal-container>.modal-body .menu nav ul li a {
+    text-transform: uppercase;
+    font-family: var(--title-font);
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 35px;
+}
+
+#modal-menu .modal-container>.modal-body .menu nav ul li a:hover {
+    color: var(--white-color);
+}
+
+#modal-menu.hide {
+    -webkit-animation: slide-out-bck-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-out-bck-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+/*--------------------------------------------------------------
+    1.4.3 Footer
+--------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------
+    1.4.4 Sliders
+--------------------------------------------------------------*/
+
+/* Home */
+
+.home-swiper {
+    background-color: red;
+}
+
+.home-swiper,
+.home-swiper .swiper-slide img {
+    height:100vh;
+    width: 100%;
+}
+
+/*--------------------------------------------------------------
+    1.4.5 img-text
+--------------------------------------------------------------*/
+
+.img-text {
+    display: flex;
+    align-items: center;
+    height: 835px;
+}
+
+.img-text>.img-text__text {
+    background-color: var(--alt-color);
+    padding: 120px 80px;
+    display: flex;
+    flex-grow: 1;
+    height: 100%;
+    flex-direction: column;
+}
+
+.img-text>.img-text__text .img-text__description {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.img-text .img-btn .btn {
+    margin-top: 60px;
+}
+
+/*--------------------------------------------------------------
+    1.4.6 bg-text
+--------------------------------------------------------------*/
+
+.bg-text > div{
+    display: flex;
+
+}
+.bg-text.right > div {
+    justify-content: flex-end;
+}
+/*--------------------------------------------------------------
+    1.5 Animations
+--------------------------------------------------------------*/
+
+@-webkit-keyframes slide-in-fwd-center {
+    0% {
+        -webkit-transform: translateZ(-1400px);
+        transform: translateZ(-1400px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-fwd-center {
+    0% {
+        -webkit-transform: translateZ(-1400px);
+        transform: translateZ(-1400px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes slide-out-bck-center {
+    0% {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translateZ(-1100px);
+        transform: translateZ(-1100px);
+        opacity: 0;
+    }
+}
+
+@keyframes slide-out-bck-center {
+    0% {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translateZ(-1100px);
+        transform: translateZ(-1100px);
+        opacity: 0;
+    }
+}
+
+/*--------------------------------------------------------------
+    1.6 Backgrounds
+--------------------------------------------------------------*/
+
+[class*="bg-"], [class*="bg_"] {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.bg_home-services {
+    background-image: url(../../images/home/bg_home-services.jpg);
+    min-height: 800px;
+}
+
 
 /* Slider */
-#slider img {
+#projects-slider img {
     width: 650px;
     height: 455px;
     width: 100%;
     height: 100%;
 }
 
-.swiper {
+
+
+.projects-swiper {
     width: 650px;
     height: 455px;
 }
+
+
 
 section.projects {
     display: grid;
@@ -334,7 +674,7 @@ section.projects>div:first-of-type {
 }
 
 
-.admin-project .heading{
+.admin-project .heading {
     grid-column: 1 / span 2;
     grid-row: 1;
     background-color: antiquewhite;
@@ -348,9 +688,11 @@ section.projects>div:first-of-type {
 .admin-project .heading.create-heading {
     background-color: lightsteelblue;
 }
+
 .admin-project .heading * {
     padding: 30px 0;
 }
+
 .admin-project .heading * {
     text-align: center;
     font-size: 30px;
@@ -389,11 +731,11 @@ section.projects>div:first-of-type {
     padding: 0 0 30px 0;
 }
 
-.admin-project> form .project_title {
+.admin-project>form .project_title {
     padding-bottom: 20px;
 }
 
-.admin-project> form .project_content {
+.admin-project>form .project_content {
     padding: 20px 0;
 }
 
@@ -404,7 +746,7 @@ section.projects>div:first-of-type {
 
 .admin-project form.update>.images-container>.images>img,
 .admin-project form.create>.images-container>.images>img,
-.admin-project form.create>.images-container>.images>p  {
+.admin-project form.create>.images-container>.images>p {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -425,4 +767,3 @@ section.projects>div:first-of-type {
 .admin-project form.update>.images-container>.images input {
     grid-column: 3;
 }
-
