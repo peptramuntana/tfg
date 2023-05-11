@@ -1,5 +1,5 @@
 <?php
-    $textsData = Database::getTetxs();
+    $textsData = Database::getTexts();
     $links = Database::getLinks();
 ?>
 <section class="resize">
@@ -17,7 +17,7 @@
 
 <section class="pad">
     <div class="container">
-        <div class="img-text">
+        <div class="img-text img-transition">
             <div class="img-text__img">
                 <img src="../../public/images/home/montport-intro.jpg" alt="Montport Intro" title="Montport Intro">
             </div>
@@ -32,10 +32,38 @@
     </div>
 </section>
 
-<section class="bg_home-services pad no_bot">
+<section class="bg_home-services bg-text right shadow pad no_bot">
     <div class="container">
-        <div class="bg-text right">
+        <div class="">
             <div class="text__title"><?php echo $textsData['home-services-h2']; ?></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pad">
+    <div class="container alt_background">
+        <div class="grid-services img-transition">
+            <div>
+                <div class="grid_img"><img alt="" title="Vilkeer Projects Services 1" src="../../public/images/home/grid-services-1.jpg"></div>
+                <div class="grid_text">
+                    <div class="grid_text__title"><?php echo $textsData['home-services-h3-1']; ?></div>
+                    <div class="grid_text__description"><?php echo $textsData['home-services-p1']; ?></div>
+                </div>
+            </div>
+            <div>
+                <div class="grid_img"><img alt="" title="Vilkeer Projects Services 2" src="../../public/images/home/grid-services-2.jpg"></div>
+                <div class="grid_text">
+                    <div class="grid_text__title"><?php echo $textsData['home-services-h3-2']; ?></div>
+                    <div class="grid_text__description"><?php echo $textsData['home-services-p2']; ?></div>
+                </div>
+            </div>
+            <div>
+                <div class="grid_img"><img alt="" title="Vilkeer Projects Services 3" src="../../public/images/home/grid-services-3.jpg"></div>
+                <div class="grid_text">
+                    <div class="grid_text__title"><?php echo $textsData['home-services-h3-3']; ?></div>
+                    <div class="grid_text__description"><?php echo $textsData['home-services-p3']; ?></div>
+                </div>
             </div>
         </div>
     </div>

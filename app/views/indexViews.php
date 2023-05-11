@@ -15,7 +15,7 @@
     <?php Core::loadView(); ?>
     <?php
         if(SYSTEM_VIEW !== "administrator") {
-            include __DIR__ . '/modules/footer.php';    
+            include __DIR__ . '/modules/footer.php';  
         }
     ?>
 </body>
