@@ -3,24 +3,25 @@ $menusData = Database::getMenus();
 foreach ($menusData as $key) {
 
     if ($key->name == "Home") {
-        $home = $key->name;
+        $home = str_replace('-', ' ', ucwords(strtolower($key->url)));
         $home_url = $key->url;
     }
 
-    if ($key->name == "Proyectos" || $key->name == "Projects") {
-        $projects = $key->name;
+    if ($key->name == "Projects") {
+        $projects = str_replace('-', ' ', ucwords(strtolower($key->url)));
         $projects_url = $key->url;
     }
 
-    if ($key->name == "Sobre Nosotros" || $key->name == "About Us") {
-        $about_us = $key->name;
+    if ($key->name == "About Us") {
+        $about_us = str_replace('-', ' ', ucwords(strtolower($key->url)));
         $about_us_url = $key->url;
     }
 
-    if ($key->name == "Contacto" || $key->name == "Contact") {
-        $contact = $key->name;
+    if ($key->name == "Contact") {
+        $contact = str_replace('-', ' ', ucwords(strtolower($key->url)));
         $contact_url = $key->url;
     }
+
 }
 
 ?>

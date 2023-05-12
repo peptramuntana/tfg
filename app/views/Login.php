@@ -1,5 +1,5 @@
 <h1>Login</h1>
-<div class="login">
+<div class="login pad">
     <form action="http://localhost/app/controllers/formsController.php" method="POST">
         <input type="text" name="name" placeholder="Username" required>
         <input type="password" name="password" placeholder="Password" required>

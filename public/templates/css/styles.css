@@ -150,7 +150,6 @@ table,
 td,
 tr,
 button,
-input,
 select,
 label,
 em {
@@ -159,6 +158,11 @@ em {
     font-weight: 400;
     font-size: var(--font-p);
     font-style: normal;
+}
+
+input {
+    padding: 10px;
+    min-height: 30px;
 }
 
 a {
@@ -236,7 +240,12 @@ p:last-of-type {
     align-items: center;
     justify-content: center;
     background-color: var(--btn-color);
+    color: var(--main-color);
     text-decoration: none;
+}
+
+input.btn {
+    border: none;
 }
 
 .btn:hover {
@@ -582,6 +591,19 @@ footer .footer-block > .contact div > p:nth-child(2) {
 }
 
 /* Home Slider */
+
+.home-swiper .swiper-button-prev,
+.home-swiper .swiper-rtl .swiper-button-next {
+    left: var(--home-swiper-navigation-sides-offset,10px);
+    right: auto;
+}
+
+.home-swiper .swiper-button-next,
+.home-swiper .swiper-rtl .swiper-button-prev {
+    right: var(--home-swiper-navigation-sides-offset,10px);
+    left: auto;
+}
+
 .home-swiper .swiper-button-next:hover:after,
 .home-swiper .swiper-button-prev:hover:after {
     font-size: var(--home-swiper-navigation-size-hover);
@@ -838,6 +860,23 @@ section.projects .project__info p {
 
 
 /* Login */
+
+.login form {
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: repeat(2,300px);
+    justify-content: center;
+}
+
+.login form >.btn {
+    grid-column: 1 / span 2;
+    margin: 0 auto;
+    /* border: none; */
+}
+
+.login form > input:not(.btn) {
+    height: 40px;
+}
 
 /* Administrator  */
 
