@@ -2,7 +2,7 @@
 $projects = Database::getProjects(1);
 $textsData = Database::getTexts();
 ?>
-<section class="bg-header-projects header resize bg-text shadow pad">
+<section class="bg-header-projects header bg-text shadow pad">
     <div class="container">
         <div class="text__title"><?php echo $textsData['projects-header-h1']; ?></div>
     </div>

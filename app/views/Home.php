@@ -2,7 +2,7 @@
     $textsData = Database::getTexts();
     $links = Database::getLinks();
 ?>
-<section class="resize">
+<section class="resize top_menu">
     <div id="home-slider" class="swiper home-swiper">
         <div class="swiper-wrapper">
             <img class="swiper-slide" src="../../public/images/home/bg-header-home-1.jpg" alt="Intro 1" title="Home Slider 1">
@@ -24,7 +24,7 @@
             <div class="img-text__text">
                 <div class="img-text__title"><?php echo $textsData['home-intro-h1']; ?></div>
                 <div class="img-text__description"><?php echo $textsData['home-intro-p1']; ?></div>
-                <div class="img-btn">
+                <div class="img-text__btn">
                     <a class="btn" href="/<?php echo SYSTEM_LANG ?>/<?php echo $links['About Us']; ?> "><?php echo str_replace('-', ' ', ucwords(strtolower($links['About Us']))) ?></a>
                 </div>
             </div>
@@ -35,14 +35,14 @@
 <section class="bg_home-services bg-text right shadow pad no_bot">
     <div class="container">
         <div class="">
-            <div class="text__title"><?php echo $textsData['home-services-h2']; ?></div>
+            <div class="bg-text__title"><?php echo $textsData['home-services-h2']; ?></div>
             </div>
         </div>
     </div>
 </section>
 
 <section class="pad">
-    <div class="container alt_background">
+    <div class="grid-services-block container alt_background">
         <div class="grid-services img-transition">
             <div>
                 <div class="grid_img"><img alt="" title="Vilkeer Projects Services 1" src="../../public/images/home/grid-services-1.jpg"></div>

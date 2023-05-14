@@ -16,9 +16,46 @@
     1.4.7 Shadow
     1.4.8 grid-services
     1.4.9 img-transition
-    1.4.10 Section Projects
+    1.4.10 Projects Section
+    1.4.11 Error
+    1.4.12 Login
+    1.4.13 Logout
+    1.4.14 Admin Project
   1.5 Animations
   1.6 Backgrounds
+2.0 Mobile                      @media (max-width:991px);
+    2.1 Basics
+    2.2 Bloques
+        2.2.1 Sliders
+        2.2.2 Head Bar
+        2.2.3 Grid Services
+        2.2.4 Footer
+        2.2.5 img-text
+        2.2.6 bg-text
+        2.2.7 Modal Menu
+    2.3 Fondos
+3.0 Not Touchscreen Devices     @media (max-width: 1366px) and (pointer:coarse)
+4.0 Tablets                     @media (min-width: 992px) and (max-width: 1280px)
+    4.1 Basics
+    4.2 Bloques
+        4.2.1 Grid Services
+        4.2.2 Footer
+        4.2.3 img-text
+        4.2.4 Projects Section
+    4.3 Fondos
+5.0 Mobile + Tablets            @media (max-width: 1280px)
+    5.1 Basics
+    5.2 Bloques
+        5.2.1 Sliders
+        5.2.2 Admin Project
+        5.2.3 Log Out
+6.0 Laptops                      @media (min-width: 1280px) and (max-width: 1680px)
+    6.1 Basics
+    6.2 Bloques
+7.0 Small Tablets               @media (min-width: 768px) and (max-width: 991px)
+    7.1 Basics
+    7.2 Bloques
+        7.2.1 Projects Section
 */
 
 /*--------------------------------------------------------------
@@ -181,14 +218,14 @@ a:hover {
 }
 
 h1 {
-    padding-bottom: 40px;
+    padding-bottom: 38px;
     font-size: 50px;
 }
 
 h1>em {
     display: block;
     font-weight: 900;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 h2 {
@@ -279,6 +316,10 @@ section {
     flex-grow: 1;
 }
 
+section.top_menu {
+    padding-top: var(--head-bar-height);
+}
+
 .container {
     width: 100%;
     max-width: var(--width);
@@ -291,6 +332,10 @@ section {
 
 .alt_background {
     background-color: var(--alt-color);
+}
+
+img {
+    max-width: 100vw;
 }
 
 /*--------------------------------------------------------------
@@ -367,6 +412,59 @@ section {
 
 .menu {
     display: none;
+}
+
+.lang {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.lang.display {
+    height: auto;
+}
+
+.lang>a {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.lang a {
+    text-decoration: none;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.lang>ul {
+    display: none;
+}
+
+.lang.display {
+    height: auto;
+}
+
+.lang.display>ul {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 100px;
+    height: auto;
+    width: 50px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(29, 30, 26, .3);
 }
 
 /*--------------------------------------------------------------
@@ -497,38 +595,38 @@ footer {
 footer .footer-block {
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(3,300px);
+    grid-template-columns: repeat(3, 300px);
     justify-items: center;
     align-items: center;
 }
 
-footer .footer-block > .links > p {
+footer .footer-block>.links>p {
     font-size: 12px;
     padding-bottom: 0;
     margin-bottom: 10px;
 }
 
-footer .footer-block > .links p:hover {
+footer .footer-block>.links p:hover {
     text-decoration: underline;
     cursor: pointer;
 }
 
-footer .footer-block > .links > p:last-of-type {
+footer .footer-block>.links>p:last-of-type {
     margin-bottom: 0;
 }
 
-footer .footer-block > .contact div > p {
+footer .footer-block>.contact div>p {
     padding-bottom: 8px;
     text-transform: uppercase;
 }
 
-footer .footer-block .contact > div {
+footer .footer-block .contact>div {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-footer .footer-block > .contact > div:first-of-type {
+footer .footer-block>.contact>div:first-of-type {
     margin-bottom: 40px;
     padding-bottom: 40px;
     border-bottom: 3px solid var(--corp-color);
@@ -539,30 +637,26 @@ footer .footer-block > .contact > div:first-of-type {
 }
 
 
-footer .footer-block > .contact div > p:nth-child(1),
-footer .footer-block > .contact div > p:nth-child(3) {
+footer .footer-block>.contact div>p:nth-child(1),
+footer .footer-block>.contact div>p:nth-child(3) {
     font-weight: 600;
 }
 
-footer .footer-block > .contact div > p:nth-child(2) {
+footer .footer-block>.contact div>p:nth-child(2) {
     font-size: 12px;
     color: var(--corp-color);
     font-weight: 900;
-    font-family: var(--title-font);}
+    font-family: var(--title-font);
+}
 
 /*--------------------------------------------------------------
     1.4.4 Sliders
 --------------------------------------------------------------*/
 
 /* Home */
-
-.home-swiper {
-    background-color: red;
-}
-
 .home-swiper,
 .home-swiper .swiper-slide img {
-    height:100vh;
+    height: auto;
     width: 100%;
 }
 
@@ -581,7 +675,7 @@ footer .footer-block > .contact div > p:nth-child(2) {
 /* All Sliders */
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
-    color: var(--swiper-navigation-color-hover,var(--swiper-theme-color-hover));
+    color: var(--swiper-navigation-color-hover, var(--swiper-theme-color-hover));
 }
 
 /* Projects Sliders */
@@ -594,13 +688,13 @@ footer .footer-block > .contact div > p:nth-child(2) {
 
 .home-swiper .swiper-button-prev,
 .home-swiper .swiper-rtl .swiper-button-next {
-    left: var(--home-swiper-navigation-sides-offset,10px);
+    left: var(--home-swiper-navigation-sides-offset, 10px);
     right: auto;
 }
 
 .home-swiper .swiper-button-next,
 .home-swiper .swiper-rtl .swiper-button-prev {
-    right: var(--home-swiper-navigation-sides-offset,10px);
+    right: var(--home-swiper-navigation-sides-offset, 10px);
     left: auto;
 }
 
@@ -615,14 +709,36 @@ footer .footer-block > .contact div > p:nth-child(2) {
 --------------------------------------------------------------*/
 
 .img-text {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    max-width: 1496px;
+    margin: 0 auto;
     height: 835px;
+    overflow: hidden;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
 }
+
+
+.img-text .img-text__img {
+    object-fit: cover;
+    object-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: calc(var(--width) / 2);
+}
+/* 
+.img-text .img-text__img img {
+    object-fit: cover;
+    object-position: center;
+} */
 
 .img-text>.img-text__text {
     background-color: var(--alt-color);
-    padding: 120px 80px;
+    padding: 120px 5vw;
     display: flex;
     flex-grow: 1;
     height: 100%;
@@ -635,7 +751,7 @@ footer .footer-block > .contact div > p:nth-child(2) {
     flex-direction: column;
 }
 
-.img-text .img-btn .btn {
+.img-text .img-text__btn .btn {
     margin-top: 60px;
 }
 
@@ -647,15 +763,15 @@ footer .footer-block > .contact div > p:nth-child(2) {
     padding-top: 150px;
 }
 
-.bg-text > div{
+.bg-text>div {
     display: flex;
 }
 
-.bg-text.right > div {
+.bg-text.right>div {
     align-items: flex-end;
 }
 
-.bg-text.center > div {
+.bg-text.center>div {
     align-items: center;
 }
 
@@ -675,16 +791,12 @@ footer .footer-block > .contact div > p:nth-child(2) {
 .shadow h4,
 .shadow h5,
 .shadow h6 {
-    text-shadow:2px 2px 8px rgb(0 0 0 / 60%);
+    text-shadow: 2px 2px 8px rgb(0 0 0 / 60%);
 }
 
-.shadow h1 > em,
-.shadow h2 > em
-.shadow h3 > em
-.shadow h4 > em
-.shadow h5 > em
-.shadow h6 > em {
-    text-shadow:2px 2px 8px rgb(0 0 0/ 60%);
+.shadow h1>em,
+.shadow h2>em .shadow h3>em .shadow h4>em .shadow h5>em .shadow h6>em {
+    text-shadow: 2px 2px 8px rgb(0 0 0/ 60%);
 }
 
 /*--------------------------------------------------------------
@@ -693,21 +805,23 @@ footer .footer-block > .contact div > p:nth-child(2) {
 
 .grid-services {
     display: grid;
-    grid-template-columns: repeat(3,400px);
-    grid-gap: 60px;
+    grid-template-columns: repeat(3, 400px);
     justify-items: center;
     align-items: start;
     margin: 0 auto;
     padding: 100px 0;
+    width: 95%;
+    justify-content: space-around;
 }
 
-.grid-services .grid_text .grid_text__description ul > li {
+
+.grid-services .grid_text .grid_text__description ul>li {
     list-style: none;
     padding-bottom: 10px;
     color: var(--main-color);
 }
 
-.grid-services .grid_text .grid_text__description ul > li:last-of-type {
+.grid-services .grid_text .grid_text__description ul>li:last-of-type {
     padding-bottom: 0;
 }
 
@@ -728,10 +842,10 @@ footer .footer-block > .contact div > p:nth-child(2) {
 }
 
 /*--------------------------------------------------------------
-    1.4.10 Section Projects 
+    1.4.10 Projects Section
 --------------------------------------------------------------*/
 
-body > section.projects:first-of-type {
+body>section.projects:first-of-type {
     padding-top: calc(var(--head-bar-height) * 2);
 }
 
@@ -772,113 +886,52 @@ section.projects .project__info p {
     font-size: 14px;
 }
 
-
-/*--------------------------------------------------------------
-    1.5 Animations
---------------------------------------------------------------*/
-
-@-webkit-keyframes slide-in-fwd-center {
-    0% {
-        -webkit-transform: translateZ(-1400px);
-        transform: translateZ(-1400px);
-        opacity: 0;
-    }
-
-    100% {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        opacity: 1;
-    }
-}
-
-@keyframes slide-in-fwd-center {
-    0% {
-        -webkit-transform: translateZ(-1400px);
-        transform: translateZ(-1400px);
-        opacity: 0;
-    }
-
-    100% {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        opacity: 1;
-    }
-}
-
-@-webkit-keyframes slide-out-bck-center {
-    0% {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        opacity: 1;
-    }
-
-    100% {
-        -webkit-transform: translateZ(-1100px);
-        transform: translateZ(-1100px);
-        opacity: 0;
-    }
-}
-
-@keyframes slide-out-bck-center {
-    0% {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        opacity: 1;
-    }
-
-    100% {
-        -webkit-transform: translateZ(-1100px);
-        transform: translateZ(-1100px);
-        opacity: 0;
-    }
+.error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 /*--------------------------------------------------------------
-    1.6 Backgrounds
+    1.4.11 Error
 --------------------------------------------------------------*/
 
-[class*="bg-"], [class*="bg_"] {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+.error p {
+    text-transform: uppercase;
+    color: red;
+    font-size: 20px;
+    font-weight: 800;
 }
 
-.bg-header-projects {
-    background-image: url(../../images/projects/bg-header-projects.jpg);
+.error .btn {
+    margin-top: 60px
 }
 
-.bg_home-services {
-    background-image: url(../../images/home/bg_home-services.jpg);
-    min-height: 800px;
-}
-
-.bg_contact {
-    background-image: url(../../images/modules/bg_contact.jpg);
-    min-height: 400px;
-}
-
-
-
-/* Login */
+/*--------------------------------------------------------------
+    1.4.12 Login
+--------------------------------------------------------------*/
 
 .login form {
     display: grid;
     grid-gap: 30px;
-    grid-template-columns: repeat(2,300px);
+    grid-template-columns: repeat(2, 300px);
     justify-content: center;
 }
 
-.login form >.btn {
+.login form>.btn {
     grid-column: 1 / span 2;
     margin: 0 auto;
     /* border: none; */
 }
 
-.login form > input:not(.btn) {
+.login form>input:not(.btn) {
     height: 40px;
 }
 
-/* Administrator  */
+/*--------------------------------------------------------------
+    1.4.13 Logout
+--------------------------------------------------------------*/
 
 .log-out form {
     display: flex;
@@ -891,9 +944,13 @@ section.projects .project__info p {
     margin-right: 50px;
 }
 
+/*--------------------------------------------------------------
+    1.4.14 Admin Project
+--------------------------------------------------------------*/
+
 .admin-project {
     padding: 20px 0;
-    max-width: 1360px;
+    max-width: 1280px;
     margin: 0 auto;
     width: 100%;
 }
@@ -919,7 +976,10 @@ section.projects .project__info p {
 }
 
 .admin-project form.update.hided {
-    background-color: rgba(0, 0, 0, 0.48) !important;
+    background-image: url(/public/images/icons/icon-hided.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgba(0, 0, 0, 0.5) !important;
     overflow: hidden;
     pointer-events: none;
 }
@@ -1021,4 +1081,484 @@ section.projects .project__info p {
 
 .admin-project form.update>.images-container>.images input {
     grid-column: 3;
+}
+
+/*--------------------------------------------------------------
+    1.5 Animations
+--------------------------------------------------------------*/
+
+@-webkit-keyframes slide-in-fwd-center {
+    0% {
+        -webkit-transform: translateZ(-1400px);
+        transform: translateZ(-1400px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-fwd-center {
+    0% {
+        -webkit-transform: translateZ(-1400px);
+        transform: translateZ(-1400px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes slide-out-bck-center {
+    0% {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translateZ(-1100px);
+        transform: translateZ(-1100px);
+        opacity: 0;
+    }
+}
+
+@keyframes slide-out-bck-center {
+    0% {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translateZ(-1100px);
+        transform: translateZ(-1100px);
+        opacity: 0;
+    }
+}
+
+/*--------------------------------------------------------------
+    1.6 Backgrounds
+--------------------------------------------------------------*/
+
+[class*="bg-"],
+[class*="bg_"] {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.bg-header-projects {
+    background-image: url(../../images/projects/bg-header-projects.jpg);
+}
+
+.bg_home-services {
+    background-image: url(../../images/home/bg_home-services.jpg);
+    min-height: 800px;
+}
+
+.bg_contact {
+    background-image: url(../../images/modules/bg_contact.jpg);
+    min-height: 400px;
+}
+
+/*--------------------------------------------------------------
+    2.0 Mobile 
+--------------------------------------------------------------*/
+
+@media (max-width:991px) {
+
+    /*--------------------------------------------------------------
+    2.1 Basics
+    --------------------------------------------------------------*/
+    h1 {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 25px;
+    }
+
+    .pad {
+        padding: 50px 0;
+    }
+
+
+    .container {
+        max-width: 100%;
+    }
+
+    /*--------------------------------------------------------------
+    2.2 Bloques
+    --------------------------------------------------------------*/
+
+    /*--------------------------------------------------------------
+        2.2.1 Sliders
+    --------------------------------------------------------------*/
+
+    section.projects .container {
+        grid-template-columns: repeat(1,300px);
+        row-gap: 60px;
+        justify-content: center;
+        justify-items: center;
+    }
+
+    section.projects .container>div {
+        grid-row: auto;
+        max-width: 300px;
+    }
+
+
+    /*--------------------------------------------------------------
+        2.2.2 Head Bar
+    --------------------------------------------------------------*/
+
+    .head-bar .logo {
+        margin-left: 20px;
+    }
+
+    .head-bar .lang-burger {
+        margin-right: 20px;
+    }
+
+    .head-bar .logo img {
+        max-width: 200px;
+        height: auto;
+    }
+
+    .lang,
+    .lang a {
+        width: 40px;
+        height: 40px;
+    }
+
+    .lang.display>ul {
+        width: 40px;
+    }
+
+    .burger {
+        margin-left: 20px;
+        width: 32px;
+        height: 30px;
+    }
+
+    .burger div:nth-child(2) {
+        margin: 5px 0;
+    }
+
+    /*--------------------------------------------------------------
+    2.2.3 Grid Services
+    --------------------------------------------------------------*/
+
+    .grid-services {
+        display: flex;
+        flex-direction: column;
+        padding: 50px 0;
+        align-items: center;
+        justify-content: flex-start;
+        grid-gap: 0;
+    }
+
+    .grid-services .grid_text {
+        padding: 40px 10vw;
+    }
+
+    .grid-services>div:last-of-type .grid_text {
+        padding: 40px 10vw 0 10vw;
+    }
+
+    .grid-services .grid_text .grid_text__title h3 {
+        padding-top: 0;
+    }
+
+    .grid-services .grid_img {
+        display: flex;
+        justify-content: center;
+    }
+
+    /*--------------------------------------------------------------
+    2.2.4 Footer
+    --------------------------------------------------------------*/
+
+    footer .footer-block {
+        display: flex;
+        flex-direction: column;
+    }
+
+    footer .footer-block>div.links {
+        padding-top: 40px;
+        text-align: center;
+    }
+
+    /*--------------------------------------------------------------
+    2.2.5 img-text
+    --------------------------------------------------------------*/
+
+    .img-text {
+        grid-template-columns: 1fr;
+        height: auto;
+        max-width: 100%;
+    }
+
+    .img-text>.img-text__text {
+        padding: 40px 10vw;
+    }
+
+    .img-text>.img-text__img {
+        width: auto;
+        overflow: hidden;
+        max-width: 100%;
+    }
+
+    /*--------------------------------------------------------------
+    2.2.6 bg-text
+    --------------------------------------------------------------*/
+
+    .bg-text {
+        padding: 150px 10vw;
+    }
+
+    /*--------------------------------------------------------------
+    2.2.7 Modal Menu
+    --------------------------------------------------------------*/
+
+    #modal-menu .modal-container>.modal-body .menu nav ul li a {
+        font-size: 25px;
+    }
+
+    /*--------------------------------------------------------------
+    2.2.7 Login
+    --------------------------------------------------------------*/
+
+    .login form {
+        grid-template-columns: repeat(1, 270px);
+    }
+    
+    .login form>.btn {
+        grid-column: auto;
+    }
+
+
+    /*--------------------------------------------------------------
+    2.3 Fondos
+    --------------------------------------------------------------*/
+
+
+
+}
+
+/*--------------------------------------------------------------
+    3.0 Not Touchscreen devices                        
+--------------------------------------------------------------*/
+
+@media (max-width: 1366px) and (pointer:coarse) {
+    .img-transition img {
+        transition: none;
+    }
+
+    .img-transition img:hover {
+        transform: none;
+    }
+}
+
+
+/*--------------------------------------------------------------
+    4.0 Tablets                     
+--------------------------------------------------------------*/
+
+@media (min-width: 991px) and (max-width:1280px) {
+
+
+    /*--------------------------------------------------------------
+    4.1 Basics
+    --------------------------------------------------------------*/
+    h1 {
+        font-size: 35px;
+    }
+
+    h2 {
+        font-size: 30px;
+    }
+
+    .pad {
+        padding: 80px 0;
+    }
+    /*--------------------------------------------------------------
+    4.2 Bloques
+    --------------------------------------------------------------*/
+
+    /*--------------------------------------------------------------
+    4.2.1 Grid Services
+    --------------------------------------------------------------*/
+
+    .grid-services-block.container {
+        max-width: 100%;
+    }
+
+    .grid-services {
+        grid-template-columns: repeat(2,400px);
+        justify-content: center;
+        grid-gap: 90px;
+    }
+
+    .grid-services > .odd {
+        grid-column: 1 / span 2;
+    }
+
+    /*--------------------------------------------------------------
+    4.2.2 Footer
+    --------------------------------------------------------------*/
+    
+    footer .footer-block {
+        grid-template-columns: repeat(3,280px);
+    }
+
+    /*--------------------------------------------------------------
+    4.2.3 img-text
+    --------------------------------------------------------------*/
+
+    .img-text>.img-text__text {
+        padding: 80px 5vw;
+    }
+
+    /*--------------------------------------------------------------
+    4.2.4 Projects Section
+    --------------------------------------------------------------*/
+
+    section.projects .container {
+        grid-template-columns: repeat(3,300px);
+        justify-content: space-around;
+    }
+    /*--------------------------------------------------------------
+    4.3 Fondos
+    --------------------------------------------------------------*/
+}
+
+/*--------------------------------------------------------------
+    5.0 Mobile + Tablets                    
+--------------------------------------------------------------*/
+
+@media (max-width:1280px) {
+
+    :root {
+        --home-swiper-navigation-sides-offset: 30px;
+        --swiper-navigation-size: 35px;
+        --font-p:16px
+    }
+
+    /*--------------------------------------------------------------
+        5.1 Basics                   
+    --------------------------------------------------------------*/
+
+    /*--------------------------------------------------------------
+        5.2 Bloques
+    --------------------------------------------------------------*/
+
+    /*--------------------------------------------------------------
+        5.2.1 Sliders
+    --------------------------------------------------------------*/
+
+    .projects-swiper {
+        width: 300px;
+        height: 180px;
+    }
+
+    /*--------------------------------------------------------------
+        5.2.2 Admin Project
+    --------------------------------------------------------------*/
+
+    
+    .admin-project>.update, .admin-project>.delete-hide-container, .admin-project>.create {
+        grid-template-rows: auto;
+        grid-template-columns: 280px;
+        column-gap: 0;
+        justify-items: center;
+    }
+    
+    .admin-project form.update>.images-container, .admin-project form.create>.images-container {
+        grid-column: 1;
+    }
+    
+    .admin-project form.update>input, .admin-project form.update>textarea, .admin-project form.create>input, .admin-project form.create>textarea {
+        grid-column: 1;
+    }
+    
+    .admin-project form.update>input.btn, .admin-project form.create>input.btn {
+        grid-column: 1;
+    }
+    
+    .admin-project form.update>.images-container>.images, .admin-project form.create>.images-container>.images {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .admin-project form.update>.images-container>.images>*, .admin-project form.create>.images-container>.images>* {
+        grid-column: 2;
+        grid-row: 2;
+        width: 90vw;
+    }
+    
+    .admin-project>.delete-hide-container>form {
+        margin-bottom: 40px;
+    }
+    
+    .admin-project .tox {
+        width: 90vw !important;
+    }
+
+
+    /*--------------------------------------------------------------
+        5.2.3 Log Out
+    --------------------------------------------------------------*/
+
+    .log-out form .btn {
+        margin: 0 auto;
+    }
+
+    /*--------------------------------------------------------------
+        5.2 Fondos
+    --------------------------------------------------------------*/
+
+    .bg_home-services {
+        min-height: 500px;
+    }   
+}
+
+/*--------------------------------------------------------------
+    6.0 Laptops
+--------------------------------------------------------------*/
+@media (min-width: 1280px) and (max-width: 1680px) {
+
+    :root {
+    }
+
+    .grid-services-block.container {
+        max-width: 100%;
+    }
+
+    section.projects .container {
+        grid-template-columns: repeat(2,500px);
+        justify-content: space-around;
+    }
+}
+
+/*--------------------------------------------------------------
+    7.0 Small Tablets
+--------------------------------------------------------------*/
+@media (min-width: 678px) and (max-width: 991px) {
+
+    :root {
+    }
+
+    section.projects .container {
+        grid-template-columns: repeat(2,300px);
+        justify-content: space-around;
+    }
 }

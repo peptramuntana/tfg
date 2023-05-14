@@ -9,7 +9,7 @@
     <?php
         if(SYSTEM_VIEW !== "administrator") {
             include __DIR__ . '/modules/menu.php';
-            include __DIR__ . '/modules/header.php';
+            include __DIR__ . '/modules/head-bar.php';
         }
     ?>
     <?php Core::loadView(); ?>

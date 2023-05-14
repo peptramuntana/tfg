@@ -10,16 +10,20 @@
     9.0 - Close Modal
     10.0 Burger Menu
     11.0 - Resize
+    12.0 - Deploy Langs
+    13.0 - Grid Services Counter
 */
 
 let stateCheck = setInterval(() => {
   if (document.readyState === 'complete') {
     // Slider
+    gridServicesCounter();
     resize();
     homeSlider();
     projectsSliders();
     tiny();
     burgerMenu();
+    deployLangs();
     clearInterval(stateCheck);
   }
 }, 100);
@@ -136,51 +140,49 @@ function showForm(e) {
 function createModal(id, $content) {
 
   let modal = document.getElementById(id)
-  if(!modal){
-      // Crete the container if modal doesn't exist:
-      let buildModal = document.createElement('div')
-      buildModal.id = id
+  if (!modal) {
+    // Crete the container if modal doesn't exist:
+    let buildModal = document.createElement('div')
+    buildModal.id = id
 
-      // Create the container
-      let containerModal = document.createElement('div')
-      containerModal.classList.add('modal-container')
+    // Create the container
+    let containerModal = document.createElement('div')
+    containerModal.classList.add('modal-container')
 
-      // Create the header
-      let headerModal = document.createElement('div')
-      headerModal.classList.add('modal-header')
+    // Create the header
+    let headerModal = document.createElement('div')
+    headerModal.classList.add('modal-header')
 
-      // Create the body
-      let bodyModal = document.createElement('div')
-      bodyModal.classList.add('modal-body')
+    // Create the body
+    let bodyModal = document.createElement('div')
+    bodyModal.classList.add('modal-body')
 
-      // Crete the content
-      let contentNode = $content
-      if ( typeof contentNode === 'object' )
-      {
-          contentNode = $content.cloneNode(true)
-          contentNode.id = contentNode.id + '-clone';
-      }
+    // Crete the content
+    let contentNode = $content
+    if (typeof contentNode === 'object') {
+      contentNode = $content.cloneNode(true)
+      contentNode.id = contentNode.id + '-clone';
+    }
 
-      // Crete the closing
-      let closeModal = document.createElement('div')
-      closeModal.classList.add('close')
-      closeModal.addEventListener('click', () => {
-          console.log('close')
-          toCloseModal(id)
-      })
+    // Crete the closing
+    let closeModal = document.createElement('div')
+    closeModal.classList.add('close')
+    closeModal.addEventListener('click', () => {
+      toCloseModal(id)
+    })
 
-      // Add the closing to the header
-      headerModal.append(closeModal)
-      //Add content to the body
-      bodyModal.append(contentNode)
-      // Add Header and Body to the container
-      containerModal.append(headerModal,bodyModal)
-      // Add container to Modal
-      buildModal.append(containerModal)
+    // Add the closing to the header
+    headerModal.append(closeModal)
+    //Add content to the body
+    bodyModal.append(contentNode)
+    // Add Header and Body to the container
+    containerModal.append(headerModal, bodyModal)
+    // Add container to Modal
+    buildModal.append(containerModal)
 
-      document.getElementById('head_modal_controller').append(buildModal)
+    document.getElementById('head_modal_controller').append(buildModal)
 
-      return buildModal
+    return buildModal
 
   }
   return modal
@@ -188,17 +190,15 @@ function createModal(id, $content) {
 
 // 9.0 - Close Modal
 function toCloseModal(id) {
-  console.log('closeModal')
   let modal = document.querySelector(`#${id}`)
   // Show the content
-  console.log(modal)
   modal.classList.add('hide')
   setTimeout(
-      () => {
-          modal.classList.add('none')
-          modal.classList.remove('hide')
-          modal.remove()
-      }, 500
+    () => {
+      modal.classList.add('none')
+      modal.classList.remove('hide')
+      modal.remove()
+    }, 500
   )
 }
 
@@ -206,21 +206,52 @@ function toCloseModal(id) {
 function burgerMenu() {
   let burger = document.querySelector('.burger');
   let menu = document.querySelector('#menu');
-
-  console.log(menu);
-  burger.addEventListener('click', () => {
-    createModal('modal-menu', menu);
-  });
+  if(burger) {
+    burger.addEventListener('click', () => {
+      createModal('modal-menu', menu);
+    });
+  }
 }
 
 // 11.0 - Resize
 function resize() {
-  let height = window.innerHeight;
   let headBar = document.querySelector('.head-bar');
+  if(headBar) {
+    let headBarHeight = headBar.offsetHeight;
+  }
   let resize = document.querySelector('.resize');
-  if(resize) {
+  if (resize && headBar) {
     resize.style.width = '100%';
-    resize.style.height = `${height}px`;
+    resize.style.height = `calc(100%)`;
+    resize.style.maxHeight = `${parseFloat(document.documentElement.clientHeight)}px`;
+    // resize.style.height = `${parseFloat(document.documentElement.clientHeight)}px`;
+  } else if (resize) {
+    resize.style.width = '100%';
+    resize.style.height = '100%';
   }
 
+}
+
+// 12.0 - Deploy Langs
+function deployLangs() {
+  let langs = document.querySelector('.head-bar .lang');
+
+  if (langs) {
+    langs.addEventListener('click', () => {
+      langs.classList.toggle('display');
+    });
+  }
+}
+
+// 13.0 - Grid Services Counter
+function gridServicesCounter() {
+  let servicesParent = document.querySelector('.grid-services');
+  let services = document.querySelectorAll('.grid-services > div');
+  if(services) {
+    if(!services.length % 2 === 0) {
+      if(servicesParent) {
+        servicesParent.lastElementChild.classList.add('odd');
+      }
+  }
+}
 }
