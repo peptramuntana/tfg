@@ -10,7 +10,7 @@
 
 <?php 
     if(SYSTEM_VIEW == "administrator") {
-        echo '<script src="https://cdn.tiny.cloud/1/7f0itvzdvwj3038qoaktkp5rh9kxycahhcgmgl17vcn9blyr/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>';
+        // echo '<script src="https://cdn.tiny.cloud/1/7f0itvzdvwj3038qoaktkp5rh9kxycahhcgmgl17vcn9blyr/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>';
     }
 ?>
 <link rel="stylesheet" href="../../../public/templates/css/styles.css">

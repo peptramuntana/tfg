@@ -28,9 +28,9 @@ $textsData = Database::getTexts();
                     <div class="swiper-button-next"></div>
                 </div>
                 <div class="project__info">
-                    <div class="project__title"><?php echo isset($projectTitle) ? $projectTitle : '' ?></div>
+                    <div class="project__title"><h2><?php echo isset($projectTitle) ? $projectTitle : '' ?></h2></div>
                     <div class="project__description">
-                        <?php echo isset($projectDecription) ? $projectDecription : '' ?></div>
+                        <p><?php echo isset($projectDecription) ? $projectDecription : '' ?></p></div>
                 </div>
             </div>
         <?php endforeach; ?>

@@ -7,21 +7,23 @@
     6.0 - Hide Form
     7.0 - Show Form
     8.0 - Create Modal
-    9.0 - Close Modal
-    10.0 Burger Menu
-    11.0 - Resize
-    12.0 - Deploy Langs
-    13.0 - Grid Services Counter
+    9.0 - Validate Form
+    10.0 - Close Modal
+    11.0 Burger Menu
+    12.0 - Resize
+    13.0 - Deploy Langs
+    14.0 - Grid Services Counter
 */
 
 let stateCheck = setInterval(() => {
   if (document.readyState === 'complete') {
     // Slider
-    gridServicesCounter();
-    resize();
+    tiny();
     homeSlider();
     projectsSliders();
-    tiny();
+
+    gridServicesCounter();
+    resize();
     burgerMenu();
     deployLangs();
     clearInterval(stateCheck);
@@ -79,6 +81,10 @@ function tiny() {
         menubar: 'tools insert',
         height: '200px',
         width: '600px',
+          init_instance_callback: function (editor) {
+    // Your custom event handler code here
+    console.log('Editor: ' + editor.id + ' is now initialized.');
+  }
       });
     });
   }
@@ -97,17 +103,17 @@ function tiny() {
 }
 
 // 3.0 - Create Form
-function createForm(e) {
+function createForm(e, form) {
   let confirmation = confirm("¿Estás seguro que quiéres crear este proyecto?");
-  if (!confirmation) {
+  if (!confirmation || !validateForm(form)) {
     e.preventDefault();
   }
 }
 
 // 4.0 - Update Form
-function updateForm(e) {
+function updateForm(e, form) {
   let confirmation = confirm("¿Estás seguro que quiéres actualizar este proyecto?");
-  if (!confirmation) {
+  if (!confirmation || !validateForm(form)) {
     e.preventDefault();
   }
 }
@@ -136,7 +142,73 @@ function showForm(e) {
   }
 }
 
-// 8.0 - Create Modal
+// 8.0 Validate Form
+function validateForm(form) {
+  // let projectTitleEditor = form.tinymce.get(projectTitle.id);
+  // let projectContentEditor = form.tinymce.get(projectContent.id);
+  // let projectTitleText = projectTitleEditor.getContent({ format: 'text' });
+  // let projectContentText = projectContentEditor.getContent({ format: 'text' });
+  // console.log(projectTitle)
+  // console.log(projectContent)
+  // console.log(projectTitleEditor)
+  // console.log(projectContentEditor)
+  // console.log(projectTitleText)
+  // console.log(projectContentText)
+  // console.log("validateForm");
+  // console.log("projectTitleText.length: " + projectTitleText.length);
+  // console.log("projectContentText.length: " + projectContentText.length);
+  // alert("isValid before title validation:" + isValid);
+
+  // Validate project_title
+
+  let projectTitle = form.querySelector('#project_title');
+  let projectContent = form.querySelector('#project_content');
+
+  let images = form.querySelectorAll('.images');
+  let isValid = true;
+
+  if (projectTitle.value.length < 2 || projectTitle.value.length > 30) {
+    alert('El título del proyecto ha de tener entre 2 y 30 caracteres.');
+    projectTitle.focus();
+    isValid = false;
+  }
+
+  // Validate project_content
+  if (projectContent.value.length < 2 || projectContent.value.length > 60) {
+    alert('La descripción del proyecto ha de tener entre 2 y 60 caracteres.');
+    projectContent.focus();
+    isValid = false;
+  }
+
+  // Validate image fields
+  images.forEach((image, index) => {
+    let imageUrl = image.querySelector(`#image-url-${index + 1}`);
+    let imageAlt = image.querySelector(`#image-alt-${index + 1}`);
+    let imageTitle = image.querySelector(`#image-title-${index + 1}`);
+
+    if (imageUrl.value.length < 2 || imageUrl.value.length > 60) {
+      alert(`La URL de la imágen ${index + 1} ha de tener entre 2 y 60 caracteres.`);
+      imageUrl.focus();
+      isValid = false;
+    }
+
+    if (imageAlt.value.length < 2 || imageAlt.value.length > 60) {
+      alert(`El ALT de la imágen ${index + 1} ha de tener entre 2 y 60 caracteres`);
+      imageAlt.focus();
+      isValid = false;
+    }
+
+    if (imageTitle.value.length < 2 || imageTitle.value.length > 60) {
+      alert(`EL Title de la imágen ${index + 1} ha de tener entre 2 y 60 caracteres`);
+      imageTitle.focus();
+      isValid = false;
+    }
+  });
+
+  return isValid;
+}
+
+// 9.0 - Create Modal
 function createModal(id, $content) {
 
   let modal = document.getElementById(id)
@@ -188,7 +260,7 @@ function createModal(id, $content) {
   return modal
 }
 
-// 9.0 - Close Modal
+// 10.0 - Close Modal
 function toCloseModal(id) {
   let modal = document.querySelector(`#${id}`)
   // Show the content
@@ -202,7 +274,7 @@ function toCloseModal(id) {
   )
 }
 
-// 10.0 Burger Menu
+// 11.0 Burger Menu
 function burgerMenu() {
   let burger = document.querySelector('.burger');
   let menu = document.querySelector('#menu');
@@ -213,7 +285,7 @@ function burgerMenu() {
   }
 }
 
-// 11.0 - Resize
+// 12.0 - Resize
 function resize() {
   let headBar = document.querySelector('.head-bar');
   if(headBar) {
@@ -232,7 +304,7 @@ function resize() {
 
 }
 
-// 12.0 - Deploy Langs
+// 13.0 - Deploy Langs
 function deployLangs() {
   let langs = document.querySelector('.head-bar .lang');
 
@@ -243,7 +315,7 @@ function deployLangs() {
   }
 }
 
-// 13.0 - Grid Services Counter
+// 14.0 - Grid Services Counter
 function gridServicesCounter() {
   let servicesParent = document.querySelector('.grid-services');
   let services = document.querySelectorAll('.grid-services > div');

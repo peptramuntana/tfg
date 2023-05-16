@@ -15,15 +15,15 @@ Core::checkSession();
     <div class="heading create-heading">
         <h2>NUEVO PROYECTO</h2>
     </div>
-    <form method="POST" action="http://localhost/app/controllers/formsController.php" onsubmit="createForm(event)" class="create">
+    <form method="POST" action="http://localhost/app/controllers/formsController.php" onsubmit="createForm(event, this)" class="create">
         <input type="hidden" name="system_lang" value="<?php echo SYSTEM_LANG ?>">
         <input type="hidden" name="system_lang_id" value="<?php echo SYSTEM_LANG_ID ?>">
         <input type="submit" name="create-project" value="Crear Proyecto" class="btn btn-green">
 
         <label for="project_title" class="project_title">Título del proyecto:</label>
-        <input type="text" id="project_title" name="project_title" class="editable">
+        <input type="text" id="project_title" name="project_title" >
         <label for="project_content" class="project_content">Descripción:</label>
-        <textarea id="project_content" name="project_content" class="editable"></textarea>
+        <textarea id="project_content" name="project_content"></textarea>
         <div class="images-container">
             <div class="images">
                 <img src="/public/images/placeholder.jpg">
@@ -57,7 +57,9 @@ Core::checkSession();
     $counter = 0;
     ?>
     <section class="admin-project" id="<?php echo $project_id ?>">
-        <div class="heading <?php echo $projectState == 1 ? '' : 'hided' ?>"><?php echo $projectTitle ?></div>
+        <div class="heading <?php echo $projectState == 1 ? '' : 'hided' ?>">
+            <h2><?php echo $projectTitle ?></h2>
+        </div>
         <div class="delete-hide-container">
             <form class="hide-project" action="http://localhost/app/controllers/formsController.php" onsubmit="<?php echo $projectState == 1 ? 'hideForm(event)' : 'showForm(event)' ?>" method="POST">
                 <input type="hidden" name="project_id" value="<?php echo $project_id ?>">
@@ -73,16 +75,16 @@ Core::checkSession();
                 <input type="submit" name="delete" value="Eliminar Proyecto" class="btn btn-red">
             </form>
         </div>
-        <form class="update <?php echo $projectState == 1 ? '' : 'hided' ?>" action="http://localhost/app/controllers/formsController.php"  onsubmit="updateForm(event);" method="POST">
+        <form class="update <?php echo $projectState == 1 ? '' : 'hided' ?>" action="http://localhost/app/controllers/formsController.php"  onsubmit="updateForm(event, this);" method="POST">
             <input type="hidden" name="project_id" value="<?php echo $project_id ?>">
             <input type="hidden" name="system_lang" value="<?php echo SYSTEM_LANG ?>">
             <input type="hidden" name="system_lang_id" value="<?php echo SYSTEM_LANG_ID ?>">
             <input type="submit" name="update" value="Editar Proyecto" class="btn">
             <label for="project_title">Título del proyecto:</label>
-            <input type="text" id="project_title" name="project_title" value="<?php echo isset($projectTitle) ? $projectTitle : '' ?>" class="editable">
+            <input type="text" id="project_title" name="project_title" value="<?php echo isset($projectTitle) ? $projectTitle : '' ?>" >
             <?php foreach ($projectTexts as $text) : ?>
                 <label for="project_content">Descripción:</label>
-                <textarea id="project_content" name="project_content" class="editable"><?php echo isset($text->project_description) ? $text->project_description : '' ?></textarea>
+                <textarea id="project_content" name="project_content"><?php echo isset($text->project_description) ? $text->project_description : '' ?></textarea>
             <?php endforeach; ?>
             <div class="images-container">
                 <?php foreach ($projectSlider as $img) : ?>
