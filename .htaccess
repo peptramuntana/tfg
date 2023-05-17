@@ -2,34 +2,28 @@
 #Options +FollowSymLinks --> Follow the links and directorys of the website
 #Options +Indexes --> Show any file of the directory with no index needed.
 Options +Indexes +FollowSymlinks
+
 #Work only if the server let rewrite the urls activating the mod_rewrite module.
 <IfModule mod_rewrite.c> 
+
+# Define the base url of the website, in this case: the root.
 RewriteEngine on
-#Define the base url of the website, in this case: the root.
 RewriteBase /
 
-# Exclude specific POST requests from the redirect
+# Exclude the POST requests from the redirect
 RewriteCond %{REQUEST_METHOD} =POST
-RewriteCond %{REQUEST_URI} !^/login
-RewriteCond %{REQUEST_URI} !^/login/
-RewriteCond %{REQUEST_URI} !^/es/login
-RewriteCond %{REQUEST_URI} !^/es/login/
 RewriteRule ^ - [L]
 
-#Condition the directory to redirect to: 
+# Condition the directory to redirect to: 
 RewriteCond %{REQUEST_FILENAME} !-d
-#Condition the systems file (like css, js, php...) to redirect to: 
+
+# Condition the systems file (like css, js, php...) to redirect to: 
 RewriteCond %{REQUEST_FILENAME} !-f
-#Condition the regular files (like jpg, pdf...) to redirect to: 
+
+# Condition the regular files (like jpg, pdf...) to redirect to: 
 RewriteCond %{REQUEST_FILENAME} !-l
 
-#RewriteCond %{REQUEST_URI} !^/administrator/
-#RewriteCond %{REQUEST_URI} !^/login/
-#RewriteCond %{REQUEST_URI} !^/es/administrator/
-#RewriteCond %{REQUEST_URI} !^/es/login/
-
-
-#Login and Administrator URL are excluded from the redirect
-#The conditions above rewrite to the index.php file.
+# The conditions above rewrite to the index.php file.
 RewriteRule ^(.+)$ index.php [QSA,L]
+
 </IfModule>

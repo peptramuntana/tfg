@@ -1,45 +1,26 @@
 <?php
-
+    // Import the Core Class
     require_once('Core.php');
 
-    
     // Get the URL
     $urlData = Core::getClientUrl();
-    // Define the global variables from the URL
+
+    // Define the global variables from the client (URL)
     Core::defineClientVariables($urlData);
-    
-    // print_r($urlData);
-    // echo "<br>";
 
-    //If we are not in the root
-    // if(!empty($urlData)) {
-        // Get the data from the Database with the URL
-        $systemLangData = Database::getUrlLang();
-        // Define the language of the system
-        Core::defineSystemLang($systemLangData);
+    // Find the language with the data of the Client (URL)
+    $systemLangData = Database::getUrlLang();
 
-        $viewData = Database::getView();
+    // Compare the client language (URL) with the database languages (SYSTEM)
+    // If the client language is not in the database define default language as system language, if not, define the system language as client language
+    Core::defineSystemLang($systemLangData);
 
-        Core::defineSystemURL($viewData);
+    // Find the view with the data of the Client (URL)
+    $viewData = Database::getView();
 
-        // echo "----------------------------";
-        // echo "<br>";
-        // print_r("URL_LANG --> ". URL_LANG);
-        // echo "<br>";
-        // print_r("URL_MENU --> ". URL_MENU);
-        // echo "<br>";
-        // echo "----------------------------";
-        // echo "<br>";
-        // print_r("System Lang --> ". SYSTEM_LANG);
-        // echo "<br>";
-        // print_r("System URL --> ". SYSTEM_URL);
-        // echo "<br>";
-        // print_r("System View --> ". SYSTEM_VIEW);
-        // echo "<br>";
-        // print_r("System View URL--> ". SYSTEM_VIEW_URL);
-        // echo "<br>";
-        // echo "----------------------------";
-        // echo "<br>";
+    // Compare the client data (URL) with the database data (SYSTEM) of the views and the define tje system URL
+    Core::defineSystemURL($viewData);
 
-        Core::redirect();
+    // Redirect to error if the URL is not correct
+    Core::redirect();
 ?>

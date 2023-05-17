@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="<?php echo SYSTEM_LANG; ?>">
 
+
 <head>
     <?php include __DIR__ . '/modules/head.php'; ?>
 </head> 

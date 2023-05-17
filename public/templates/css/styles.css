@@ -119,8 +119,8 @@
     --main-color: #fff;
     --alt-color: #1D1E1A;
     --corp-color: #8ABE3B;
-    --btn-color: lightslategray;
-    --lightgray-color: lightgray;
+    --btn-color: #778899;
+    --lightgray-color: #d3d3d3;
     --width: 80vw;
     --head-bar-height: 75px;
     /* Swiper */
@@ -245,6 +245,7 @@ h3 {
 
 p {
     padding-bottom: 30px;
+    line-height: 1.8;
 }
 
 p:last-of-type {

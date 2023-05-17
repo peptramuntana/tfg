@@ -15,9 +15,10 @@
     14.0 - Grid Services Counter
 */
 
+
 let stateCheck = setInterval(() => {
   if (document.readyState === 'complete') {
-    // Slider
+    // Every 0.1s, check if the page is fully loaded and do this:
     tiny();
     homeSlider();
     projectsSliders();
@@ -26,6 +27,8 @@ let stateCheck = setInterval(() => {
     resize();
     burgerMenu();
     deployLangs();
+
+    // Stop checking when page loaded
     clearInterval(stateCheck);
   }
 }, 100);
@@ -68,6 +71,7 @@ function homeSlider() {
     });
   }
 }
+
 // 2.0 - TinyMCE
 function tiny() {
   let editable = document.querySelectorAll('.editable');
@@ -104,40 +108,50 @@ function tiny() {
 
 // 3.0 - Create Form
 function createForm(e, form) {
+  // Ask for confirmation
   let confirmation = confirm("¿Estás seguro que quiéres crear este proyecto?");
   if (!confirmation || !validateForm(form)) {
+    // If not confirmed or form not valid, prevent default
     e.preventDefault();
   }
 }
 
 // 4.0 - Update Form
 function updateForm(e, form) {
+  // Ask for confirmation
   let confirmation = confirm("¿Estás seguro que quiéres actualizar este proyecto?");
   if (!confirmation || !validateForm(form)) {
+    // If not confirmed or form not valid, prevent default
     e.preventDefault();
   }
 }
 
 // 5.0 - Delete Form
 function deleteForm(e) {
+  // Ask for confirmation
   let confirmation = confirm("¿Estás seguro que quiéres borrar este proyecto?");
   if (!confirmation) {
+    // If not confirmed or form not valid, prevent default
     e.preventDefault();
   }
 }
 
 // 6.0 - Hide Form
 function hideForm(e) {
+  // Ask for confirmation
   let confirmation = confirm("¿Estás seguro que quiéres ocultar este proyecto?");
   if (!confirmation) {
+    // If not confirmed or form not valid, prevent default
     e.preventDefault();
   }
 }
 
 // 7.0 - Show Form
 function showForm(e) {
+  // Ask for confirmation
   let confirmation = confirm("¿Estás seguro que quiéres mostrar este proyecto?");
   if (!confirmation) {
+    // If not confirmed or form not valid, prevent default
     e.preventDefault();
   }
 }
@@ -148,22 +162,10 @@ function validateForm(form) {
   // let projectContentEditor = form.tinymce.get(projectContent.id);
   // let projectTitleText = projectTitleEditor.getContent({ format: 'text' });
   // let projectContentText = projectContentEditor.getContent({ format: 'text' });
-  // console.log(projectTitle)
-  // console.log(projectContent)
-  // console.log(projectTitleEditor)
-  // console.log(projectContentEditor)
-  // console.log(projectTitleText)
-  // console.log(projectContentText)
-  // console.log("validateForm");
-  // console.log("projectTitleText.length: " + projectTitleText.length);
-  // console.log("projectContentText.length: " + projectContentText.length);
-  // alert("isValid before title validation:" + isValid);
 
-  // Validate project_title
-
+  // Select form fields and set Valid boolean to true
   let projectTitle = form.querySelector('#project_title');
   let projectContent = form.querySelector('#project_content');
-
   let images = form.querySelectorAll('.images');
   let isValid = true;
 
@@ -180,31 +182,36 @@ function validateForm(form) {
     isValid = false;
   }
 
-  // Validate image fields
+  // Validate each image fields
   images.forEach((image, index) => {
+    // Select image fields
     let imageUrl = image.querySelector(`#image-url-${index + 1}`);
     let imageAlt = image.querySelector(`#image-alt-${index + 1}`);
     let imageTitle = image.querySelector(`#image-title-${index + 1}`);
 
     if (imageUrl.value.length < 2 || imageUrl.value.length > 60) {
+      // Show alert if not pass validation and focus on field
       alert(`La URL de la imágen ${index + 1} ha de tener entre 2 y 60 caracteres.`);
       imageUrl.focus();
       isValid = false;
     }
 
     if (imageAlt.value.length < 2 || imageAlt.value.length > 60) {
+      // Show alert if not pass validation and focus on field
       alert(`El ALT de la imágen ${index + 1} ha de tener entre 2 y 60 caracteres`);
       imageAlt.focus();
       isValid = false;
     }
 
     if (imageTitle.value.length < 2 || imageTitle.value.length > 60) {
+      // Show alert if not pass validation and focus on field
       alert(`EL Title de la imágen ${index + 1} ha de tener entre 2 y 60 caracteres`);
       imageTitle.focus();
       isValid = false;
     }
   });
 
+  // Return isValid boolean
   return isValid;
 }
 
@@ -232,11 +239,12 @@ function createModal(id, $content) {
     // Crete the content
     let contentNode = $content
     if (typeof contentNode === 'object') {
+      // If content is an object (DOM), clone it
       contentNode = $content.cloneNode(true)
       contentNode.id = contentNode.id + '-clone';
     }
 
-    // Crete the closing
+    // Crete the closing button (X) 
     let closeModal = document.createElement('div')
     closeModal.classList.add('close')
     closeModal.addEventListener('click', () => {
@@ -254,6 +262,7 @@ function createModal(id, $content) {
 
     document.getElementById('head_modal_controller').append(buildModal)
 
+    // return the modal created
     return buildModal
 
   }
@@ -267,6 +276,7 @@ function toCloseModal(id) {
   modal.classList.add('hide')
   setTimeout(
     () => {
+      // Add classes to smooth the transition to create an animation
       modal.classList.add('none')
       modal.classList.remove('hide')
       modal.remove()
@@ -276,10 +286,13 @@ function toCloseModal(id) {
 
 // 11.0 Burger Menu
 function burgerMenu() {
+  // Select burger and menu
   let burger = document.querySelector('.burger');
   let menu = document.querySelector('#menu');
   if(burger) {
+    // Add event listener to burger
     burger.addEventListener('click', () => {
+      // Show menu creating a modal
       createModal('modal-menu', menu);
     });
   }
@@ -287,17 +300,21 @@ function burgerMenu() {
 
 // 12.0 - Resize
 function resize() {
+  // Select headBar and resize
   let headBar = document.querySelector('.head-bar');
   if(headBar) {
+    // Get headBar height if headBar exists
     let headBarHeight = headBar.offsetHeight;
   }
   let resize = document.querySelector('.resize');
+
   if (resize && headBar) {
+    // If resize and headBar exists, set resize height to 100% minus headBar height
     resize.style.width = '100%';
     resize.style.height = `calc(100%)`;
     resize.style.maxHeight = `${parseFloat(document.documentElement.clientHeight)}px`;
-    // resize.style.height = `${parseFloat(document.documentElement.clientHeight)}px`;
   } else if (resize) {
+    // If resize exists, set resize height to 100%
     resize.style.width = '100%';
     resize.style.height = '100%';
   }
@@ -306,10 +323,13 @@ function resize() {
 
 // 13.0 - Deploy Langs
 function deployLangs() {
+  // Select langs
   let langs = document.querySelector('.head-bar .lang');
 
   if (langs) {
+    // Add event listener to langs
     langs.addEventListener('click', () => {
+      // Toggle display class to langs
       langs.classList.toggle('display');
     });
   }
@@ -317,9 +337,11 @@ function deployLangs() {
 
 // 14.0 - Grid Services Counter
 function gridServicesCounter() {
+  // Select servicesParent and services
   let servicesParent = document.querySelector('.grid-services');
   let services = document.querySelectorAll('.grid-services > div');
   if(services) {
+    // If services exists, add class odd to last element if services length is odd
     if(!services.length % 2 === 0) {
       if(servicesParent) {
         servicesParent.lastElementChild.classList.add('odd');
