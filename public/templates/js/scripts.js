@@ -15,8 +15,7 @@
     14.0 - Grid Services Counter
 */
 
-
-let stateCheck = setInterval(() => {
+const stateCheck = setInterval(() => {
   if (document.readyState === 'complete') {
     // Every 0.1s, check if the page is fully loaded and do this:
     tiny();
@@ -33,12 +32,11 @@ let stateCheck = setInterval(() => {
   }
 }, 100);
 
-
 // 1.0 - Sliders
 function projectsSliders() {
-  let sliders = document.querySelectorAll('.projects-swiper');
+  const sliders = document.querySelectorAll('.projects-swiper');
   if (sliders) {
-    sliders.forEach(slider => {
+    sliders.forEach((slider) => {
       const swiper = new Swiper('.projects-swiper', {
         // Optional parameters
         direction: 'horizontal',
@@ -55,9 +53,9 @@ function projectsSliders() {
 }
 
 function homeSlider() {
-  let sliders = document.querySelectorAll('.home-swiper');
+  const sliders = document.querySelectorAll('.home-swiper');
   if (sliders) {
-    sliders.forEach(slider => {
+    sliders.forEach((slider) => {
       const swiper = new Swiper('.home-swiper', {
         // Optional parameters
         direction: 'horizontal',
@@ -74,27 +72,27 @@ function homeSlider() {
 
 // 2.0 - TinyMCE
 function tiny() {
-  let editable = document.querySelectorAll('.editable');
-  let editableSmall = document.querySelectorAll('.editable-small');
+  const editable = document.querySelectorAll('.editable');
+  const editableSmall = document.querySelectorAll('.editable-small');
 
   if (editable) {
-    editable.forEach(element => {
+    editable.forEach((element) => {
       tinymce.init({
         selector: '.editable',
         plugins: 'lists advlist code link image',
         menubar: 'tools insert',
         height: '200px',
         width: '600px',
-          init_instance_callback: function (editor) {
-    // Your custom event handler code here
-    console.log('Editor: ' + editor.id + ' is now initialized.');
-  }
+        init_instance_callback(editor) {
+          // Your custom event handler code here
+          console.log(`Editor: ${editor.id} is now initialized.`);
+        },
       });
     });
   }
 
   if (editableSmall) {
-    editableSmall.forEach(element => {
+    editableSmall.forEach((element) => {
       tinymce.init({
         selector: '.editable-small',
         menubar: false,
@@ -109,7 +107,7 @@ function tiny() {
 // 3.0 - Create Form
 function createForm(e, form) {
   // Ask for confirmation
-  let confirmation = confirm("¿Estás seguro que quiéres crear este proyecto?");
+  const confirmation = confirm('¿Estás seguro que quiéres crear este proyecto?');
   if (!confirmation || !validateForm(form)) {
     // If not confirmed or form not valid, prevent default
     e.preventDefault();
@@ -119,7 +117,7 @@ function createForm(e, form) {
 // 4.0 - Update Form
 function updateForm(e, form) {
   // Ask for confirmation
-  let confirmation = confirm("¿Estás seguro que quiéres actualizar este proyecto?");
+  const confirmation = confirm('¿Estás seguro que quiéres actualizar este proyecto?');
   if (!confirmation || !validateForm(form)) {
     // If not confirmed or form not valid, prevent default
     e.preventDefault();
@@ -129,7 +127,7 @@ function updateForm(e, form) {
 // 5.0 - Delete Form
 function deleteForm(e) {
   // Ask for confirmation
-  let confirmation = confirm("¿Estás seguro que quiéres borrar este proyecto?");
+  const confirmation = confirm('¿Estás seguro que quiéres borrar este proyecto?');
   if (!confirmation) {
     // If not confirmed or form not valid, prevent default
     e.preventDefault();
@@ -139,7 +137,7 @@ function deleteForm(e) {
 // 6.0 - Hide Form
 function hideForm(e) {
   // Ask for confirmation
-  let confirmation = confirm("¿Estás seguro que quiéres ocultar este proyecto?");
+  const confirmation = confirm('¿Estás seguro que quiéres ocultar este proyecto?');
   if (!confirmation) {
     // If not confirmed or form not valid, prevent default
     e.preventDefault();
@@ -149,7 +147,7 @@ function hideForm(e) {
 // 7.0 - Show Form
 function showForm(e) {
   // Ask for confirmation
-  let confirmation = confirm("¿Estás seguro que quiéres mostrar este proyecto?");
+  const confirmation = confirm('¿Estás seguro que quiéres mostrar este proyecto?');
   if (!confirmation) {
     // If not confirmed or form not valid, prevent default
     e.preventDefault();
@@ -164,9 +162,9 @@ function validateForm(form) {
   // let projectContentText = projectContentEditor.getContent({ format: 'text' });
 
   // Select form fields and set Valid boolean to true
-  let projectTitle = form.querySelector('#project_title');
-  let projectContent = form.querySelector('#project_content');
-  let images = form.querySelectorAll('.images');
+  const projectTitle = form.querySelector('#project_title');
+  const projectContent = form.querySelector('#project_content');
+  const images = form.querySelectorAll('.images');
   let isValid = true;
 
   if (projectTitle.value.length < 2 || projectTitle.value.length > 30) {
@@ -185,9 +183,9 @@ function validateForm(form) {
   // Validate each image fields
   images.forEach((image, index) => {
     // Select image fields
-    let imageUrl = image.querySelector(`#image-url-${index + 1}`);
-    let imageAlt = image.querySelector(`#image-alt-${index + 1}`);
-    let imageTitle = image.querySelector(`#image-title-${index + 1}`);
+    const imageUrl = image.querySelector(`#image-url-${index + 1}`);
+    const imageAlt = image.querySelector(`#image-alt-${index + 1}`);
+    const imageTitle = image.querySelector(`#image-title-${index + 1}`);
 
     if (imageUrl.value.length < 2 || imageUrl.value.length > 60) {
       // Show alert if not pass validation and focus on field
@@ -217,79 +215,75 @@ function validateForm(form) {
 
 // 9.0 - Create Modal
 function createModal(id, $content) {
-
-  let modal = document.getElementById(id)
+  const modal = document.getElementById(id);
   if (!modal) {
     // Crete the container if modal doesn't exist:
-    let buildModal = document.createElement('div')
-    buildModal.id = id
+    const buildModal = document.createElement('div');
+    buildModal.id = id;
 
     // Create the container
-    let containerModal = document.createElement('div')
-    containerModal.classList.add('modal-container')
+    const containerModal = document.createElement('div');
+    containerModal.classList.add('modal-container');
 
     // Create the header
-    let headerModal = document.createElement('div')
-    headerModal.classList.add('modal-header')
+    const headerModal = document.createElement('div');
+    headerModal.classList.add('modal-header');
 
     // Create the body
-    let bodyModal = document.createElement('div')
-    bodyModal.classList.add('modal-body')
+    const bodyModal = document.createElement('div');
+    bodyModal.classList.add('modal-body');
 
     // Crete the content
-    let contentNode = $content
+    let contentNode = $content;
     if (typeof contentNode === 'object') {
       // If content is an object (DOM), clone it
-      contentNode = $content.cloneNode(true)
-      contentNode.id = contentNode.id + '-clone';
+      contentNode = $content.cloneNode(true);
+      contentNode.id += '-clone';
     }
 
-    // Crete the closing button (X) 
-    let closeModal = document.createElement('div')
-    closeModal.classList.add('close')
+    // Crete the closing button (X)
+    const closeModal = document.createElement('div');
+    closeModal.classList.add('close');
     closeModal.addEventListener('click', () => {
-      toCloseModal(id)
-    })
+      toCloseModal(id);
+    });
 
     // Add the closing to the header
-    headerModal.append(closeModal)
-    //Add content to the body
-    bodyModal.append(contentNode)
+    headerModal.append(closeModal);
+    // Add content to the body
+    bodyModal.append(contentNode);
     // Add Header and Body to the container
-    containerModal.append(headerModal, bodyModal)
+    containerModal.append(headerModal, bodyModal);
     // Add container to Modal
-    buildModal.append(containerModal)
+    buildModal.append(containerModal);
 
-    document.getElementById('head_modal_controller').append(buildModal)
+    document.getElementById('head_modal_controller').append(buildModal);
 
     // return the modal created
-    return buildModal
-
+    return buildModal;
   }
-  return modal
+  return modal;
 }
 
 // 10.0 - Close Modal
 function toCloseModal(id) {
-  let modal = document.querySelector(`#${id}`)
+  const modal = document.querySelector(`#${id}`);
   // Show the content
-  modal.classList.add('hide')
-  setTimeout(
-    () => {
-      // Add classes to smooth the transition to create an animation
-      modal.classList.add('none')
-      modal.classList.remove('hide')
-      modal.remove()
-    }, 500
-  )
+  modal.classList.add('hide');
+  setTimeout(() => {
+    // Add classes to smooth the transition to create an animation
+    modal.classList.add('none');
+    modal.classList.remove('hide');
+    modal.remove();
+  }, 500);
 }
 
 // 11.0 Burger Menu
 function burgerMenu() {
   // Select burger and menu
-  let burger = document.querySelector('.burger');
-  let menu = document.querySelector('#menu');
-  if(burger) {
+  const burger = document.querySelector('.burger');
+  const menu = document.querySelector('#menu');
+  if (burger) {
     // Add event listener to burger
     burger.addEventListener('click', () => {
       // Show menu creating a modal
@@ -301,30 +295,29 @@ function burgerMenu() {
 // 12.0 - Resize
 function resize() {
   // Select headBar and resize
-  let headBar = document.querySelector('.head-bar');
-  if(headBar) {
+  const headBar = document.querySelector('.head-bar');
+  if (headBar) {
     // Get headBar height if headBar exists
-    let headBarHeight = headBar.offsetHeight;
+    const headBarHeight = headBar.offsetHeight;
   }
-  let resize = document.querySelector('.resize');
+  const resize = document.querySelector('.resize');
 
   if (resize && headBar) {
     // If resize and headBar exists, set resize height to 100% minus headBar height
     resize.style.width = '100%';
-    resize.style.height = `calc(100%)`;
+    resize.style.height = 'calc(100%)';
     resize.style.maxHeight = `${parseFloat(document.documentElement.clientHeight)}px`;
   } else if (resize) {
     // If resize exists, set resize height to 100%
     resize.style.width = '100%';
     resize.style.height = '100%';
   }
-
 }
 
 // 13.0 - Deploy Langs
 function deployLangs() {
   // Select langs
-  let langs = document.querySelector('.head-bar .lang');
+  const langs = document.querySelector('.head-bar .lang');
 
   if (langs) {
     // Add event listener to langs
@@ -338,14 +331,14 @@ function deployLangs() {
 // 14.0 - Grid Services Counter
 function gridServicesCounter() {
   // Select servicesParent and services
-  let servicesParent = document.querySelector('.grid-services');
-  let services = document.querySelectorAll('.grid-services > div');
-  if(services) {
+  const servicesParent = document.querySelector('.grid-services');
+  const services = document.querySelectorAll('.grid-services > div');
+  if (services) {
     // If services exists, add class odd to last element if services length is odd
-    if(!services.length % 2 === 0) {
-      if(servicesParent) {
+    if (!services.length % 2 === 0) {
+      if (servicesParent) {
         servicesParent.lastElementChild.classList.add('odd');
       }
+    }
   }
-}
 }
