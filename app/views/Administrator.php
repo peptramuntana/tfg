@@ -21,7 +21,7 @@ Core::checkSession();
         <input type="submit" name="create-project" value="Crear Proyecto" class="btn btn-green">
 
         <label for="project_title" class="project_title">Título del proyecto:</label>
-        <input type="text" id="project_title" name="project_title" >
+        <input type="text" id="project_title" name="project_title">
         <label for="project_content" class="project_content">Descripción:</label>
         <textarea id="project_content" name="project_content"></textarea>
         <div class="images-container">
@@ -75,13 +75,13 @@ Core::checkSession();
                 <input type="submit" name="delete" value="Eliminar Proyecto" class="btn btn-red">
             </form>
         </div>
-        <form class="update <?php echo $projectState == 1 ? '' : 'hided' ?>" action="http://localhost/app/controllers/formsController.php"  onsubmit="updateForm(event, this);" method="POST">
+        <form class="update <?php echo $projectState == 1 ? '' : 'hided' ?>" action="http://localhost/app/controllers/formsController.php" onsubmit="updateForm(event, this);" method="POST">
             <input type="hidden" name="project_id" value="<?php echo $project_id ?>">
             <input type="hidden" name="system_lang" value="<?php echo SYSTEM_LANG ?>">
             <input type="hidden" name="system_lang_id" value="<?php echo SYSTEM_LANG_ID ?>">
             <input type="submit" name="update" value="Editar Proyecto" class="btn">
             <label for="project_title">Título del proyecto:</label>
-            <input type="text" id="project_title" name="project_title" value="<?php echo isset($projectTitle) ? $projectTitle : '' ?>" >
+            <input type="text" id="project_title" name="project_title" value="<?php echo isset($projectTitle) ? $projectTitle : '' ?>">
             <?php foreach ($projectTexts as $text) : ?>
                 <label for="project_content">Descripción:</label>
                 <textarea id="project_content" name="project_content"><?php echo isset($text->project_description) ? $text->project_description : '' ?></textarea>

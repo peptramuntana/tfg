@@ -11,12 +11,12 @@ $langs = Database::getLangs();
         <div class="lang">
             <a class="active"><?php echo strtoupper(SYSTEM_LANG) ?></a>
             <ul>
-                <?php 
-                    foreach ($langs as $key) {
-                        if ($key->tag != SYSTEM_LANG) {
-                            echo '<a href="/' . $key->tag . '">' . strtoupper($key->tag) . '</a>';
-                        }
+                <?php
+                foreach ($langs as $key) {
+                    if ($key->tag != SYSTEM_LANG) {
+                        echo '<a href="/' . $key->tag . '">' . strtoupper($key->tag) . '</a>';
                     }
+                }
                 ?>
             </ul>
         </div>

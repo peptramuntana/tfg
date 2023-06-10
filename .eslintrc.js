@@ -9,5 +9,6 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'no-unused-vars': ['warning', { vars: 'all', args: 'after-used', ignoreRestSiblings: false }],
   },
 };

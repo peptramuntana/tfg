@@ -1,6 +1,6 @@
 <?php
-    $textsData = Database::getTexts();
-    $links = Database::getLinks();
+$textsData = Database::getTexts();
+$links = Database::getLinks();
 ?>
 <section class="resize top_menu">
     <div id="home-slider" class="swiper home-swiper">
@@ -36,8 +36,8 @@
     <div class="container">
         <div class="">
             <div class="bg-text__title"><?php echo $textsData['home-services-h2']; ?></div>
-            </div>
         </div>
+    </div>
     </div>
 </section>
 
@@ -68,6 +68,3 @@
         </div>
     </div>
 </section>
-
-    
-

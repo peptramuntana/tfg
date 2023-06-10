@@ -3,7 +3,7 @@
     <div class="container">
         <div class="error">
             <?php echo $textsData['error']; ?>
-            <a class="btn" href="/<?php echo SYSTEM_LANG?>">Home</a>
+            <a class="btn" href="/<?php echo SYSTEM_LANG ?>">Home</a>
         </div>
     </div>
 </section>

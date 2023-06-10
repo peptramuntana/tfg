@@ -7,5 +7,3 @@
 
     // Import the main file of the Views
     include('app/views/indexViews.php');
-    
-?>

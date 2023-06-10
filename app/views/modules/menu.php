@@ -21,7 +21,6 @@ foreach ($menusData as $key) {
         $contact = str_replace('-', ' ', ucwords(strtolower($key->url)));
         $contact_url = $key->url;
     }
-
 }
 
 ?>

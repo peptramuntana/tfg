@@ -1,4 +1,5 @@
-<?php $textsData = Database::getTexts(); $links = Database::getLinks()?>
+<?php $textsData = Database::getTexts();
+$links = Database::getLinks() ?>
 <section class="bg_contact bg-text center shadow pad">
     <div class="container">
         <div class="">

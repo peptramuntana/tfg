@@ -23,4 +23,3 @@
 
     // Redirect to error if the URL is not correct
     Core::redirect();
-?>
