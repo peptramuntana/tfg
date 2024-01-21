@@ -12,11 +12,6 @@ foreach ($menusData as $key) {
         $projects_url = $key->url;
     }
 
-    if ($key->name == "About Us") {
-        $about_us = str_replace('-', ' ', ucwords(strtolower($key->url)));
-        $about_us_url = $key->url;
-    }
-
     if ($key->name == "Contact") {
         $contact = str_replace('-', ' ', ucwords(strtolower($key->url)));
         $contact_url = $key->url;
@@ -30,7 +25,6 @@ foreach ($menusData as $key) {
             <ul>
                 <li><a href="/<?php echo SYSTEM_LANG ?>">Home</a></li>
                 <li><a href="/<?php echo SYSTEM_LANG ?>/<?php echo $projects_url ?>"><?php echo $projects ?></a></li>
-                <li><a href="/<?php echo SYSTEM_LANG ?>/<?php echo $about_us_url ?>"><?php echo $about_us ?></a></li>
                 <li><a href="/<?php echo SYSTEM_LANG ?>/<?php echo $contact_url ?>"><?php echo $contact ?></a></li>
             </ul>
         </nav>

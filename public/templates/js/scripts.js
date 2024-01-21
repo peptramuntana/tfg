@@ -41,6 +41,7 @@ function projectsSliders() {
         // Optional parameters
         direction: 'horizontal',
         loop: true,
+        speed: 1000,
         // Navigation arrows
         navigation: {
           nextEl: '.swiper-button-next',
@@ -60,6 +61,7 @@ function homeSlider() {
         // Optional parameters
         direction: 'horizontal',
         loop: true,
+        speed: 2000,
         // Navigation arrows
         navigation: {
           nextEl: '.swiper-button-next',

@@ -21,6 +21,7 @@
     1.4.12 Login
     1.4.13 Logout
     1.4.14 Admin Project
+    1.4.15 Contact Form
   1.5 Animations
   1.6 Backgrounds
 2.0 Mobile                      @media (max-width:991px);
@@ -221,6 +222,7 @@ a:hover {
 h1 {
     padding-bottom: 38px;
     font-size: 50px;
+    line-height: 1.5;
 }
 
 h1>em {
@@ -231,11 +233,16 @@ h1>em {
 
 h2 {
     font-size: 35px;
+    line-height: 1.5;
 }
 
 h2>em {
     display: block;
     font-weight: 900;
+}
+
+.t-altem em {
+    color: var(--alt-color);
 }
 
 h3 {
@@ -281,6 +288,7 @@ p:last-of-type {
     background-color: var(--btn-color);
     color: var(--main-color);
     text-decoration: none;
+    transition: all .2s ease-in-out;
 }
 
 input.btn {
@@ -338,6 +346,32 @@ section.top_menu {
 
 img {
     max-width: 100vw;
+}
+
+body::-webkit-scrollbar {
+    width: 6px;
+    height: 6px
+}
+
+body::-webkit-scrollbar-button {
+    width: 1px;
+    height: 1px
+}
+
+body::-webkit-scrollbar-corner {
+    background: transparent
+}
+
+body::-webkit-scrollbar-thumb {
+    background: var(--alt-color);
+    border: 1px solid var(--lightgray-color);
+    border-radius: 10px
+}
+
+body::-webkit-scrollbar-track {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px
 }
 
 /*--------------------------------------------------------------
@@ -483,6 +517,18 @@ img {
     background-color: var(--corp-color);
 }
 
+.lang:hover {
+    background-color: white;
+}
+
+.lang:hover a {
+    color: var(--corp-color);
+}
+
+.lang.display ul a {
+    color: white;
+}
+
 /*--------------------------------------------------------------
     1.4.2 Modal Menu
 --------------------------------------------------------------*/
@@ -611,24 +657,9 @@ footer {
 footer .footer-block {
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(3, 300px);
+    grid-template-rows: auto auto;
     justify-items: center;
     align-items: center;
-}
-
-footer .footer-block>.links>p {
-    font-size: 12px;
-    padding-bottom: 0;
-    margin-bottom: 10px;
-}
-
-footer .footer-block>.links p:hover {
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-footer .footer-block>.links>p:last-of-type {
-    margin-bottom: 0;
 }
 
 footer .footer-block>.contact div>p {
@@ -643,13 +674,10 @@ footer .footer-block .contact>div {
 }
 
 footer .footer-block>.contact>div:first-of-type {
-    margin-bottom: 40px;
-    padding-bottom: 40px;
+    margin-top: 40px;
+    padding: 40px 0;
+    border-top: 3px solid var(--corp-color);
     border-bottom: 3px solid var(--corp-color);
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
 }
 
 
@@ -659,10 +687,18 @@ footer .footer-block>.contact div>p:nth-child(3) {
 }
 
 footer .footer-block>.contact div>p:nth-child(2) {
-    font-size: 12px;
+    font-size: 16px;
     color: var(--corp-color);
     font-weight: 900;
     font-family: var(--title-font);
+}
+
+footer .footer-block>.contact div>a {
+    text-decoration: none;
+}
+
+footer .footer-block>.contact div>a:hover {
+    text-decoration: underline;
 }
 
 /*--------------------------------------------------------------
@@ -1111,6 +1147,55 @@ section.projects .project__info p {
 }
 
 /*--------------------------------------------------------------
+    1.4.15 Contact Form
+--------------------------------------------------------------*/
+
+.contact .contact__intro {
+    padding-bottom: 90px;
+}
+
+.contact .contact__form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact .contact__form .contact__item.is-100 {
+    grid-column: 1 / span 2;
+}
+
+.contact .contact__form .contact__item input,
+.contact .contact__form .contact__item textarea {
+    font-family: var(--main-font);
+    padding: 10px;
+}
+
+.contact .contact__form .contact__item input,
+.contact .contact__form .contact__item textarea,
+.contact .contact__form .contact__item button {
+    width: 100%;
+    margin: 0 auto;
+    min-height: 50px;
+    border: 0;
+    border-radius: 3px;
+}
+
+.contact .contact__form .contact__item textarea {
+    min-height: 230px;
+}
+
+.contact .contact__form .contact__item input:focus,
+.contact .contact__form .contact__item input:invalid:focus,
+.contact .contact__form .contact__item textarea:focus,
+.contact .contact__form .contact__item textarea:invalid:focus {
+    border: none;
+    opacity: 1;
+    outline: 0;
+}
+
+/*--------------------------------------------------------------
     1.5 Animations
 --------------------------------------------------------------*/
 
@@ -1183,6 +1268,14 @@ section.projects .project__info p {
 
 .bg-header-projects {
     background-image: url(../../images/projects/bg-header-projects.jpg);
+}
+
+.bg-header-about-us {
+    background-image: url(../../images/about-us/bg-header-about-us.jpg);
+}
+
+.bg-header-contact {
+    background-image: url(../../images/contact/bg-header-contact.jpg);
 }
 
 .bg_home-services {
@@ -1313,16 +1406,6 @@ section.projects .project__info p {
     2.2.4 Footer
     --------------------------------------------------------------*/
 
-    footer .footer-block {
-        display: flex;
-        flex-direction: column;
-    }
-
-    footer .footer-block>div.links {
-        padding-top: 40px;
-        text-align: center;
-    }
-
     /*--------------------------------------------------------------
     2.2.5 img-text
     --------------------------------------------------------------*/
@@ -1442,10 +1525,6 @@ section.projects .project__info p {
     4.2.2 Footer
     --------------------------------------------------------------*/
     
-    footer .footer-block {
-        grid-template-columns: repeat(3,280px);
-    }
-
     /*--------------------------------------------------------------
     4.2.3 img-text
     --------------------------------------------------------------*/

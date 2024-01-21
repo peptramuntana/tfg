@@ -18,13 +18,6 @@ $links = Database::getLinks() ?>
                 <div>
                     <?php echo $textsData['footer-contact-p1']; ?>
                 </div>
-                <div>
-                    <?php echo $textsData['footer-contact-p2']; ?>
-                </div>
-            </div>
-            <div class="links">
-                <?php echo $textsData['footer-legal-notice']; ?>
-                <?php echo $textsData['footer-privacy-policy']; ?>
             </div>
         </div>
     </div>
