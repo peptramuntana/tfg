@@ -34,6 +34,8 @@
         2.2.5 img-text
         2.2.6 bg-text
         2.2.7 Modal Menu
+        2.2.8 Login
+        2.2.9 Contact Form
     2.3 Fondos
 3.0 Not Touchscreen Devices     @media (max-width: 1366px) and (pointer:coarse)
 4.0 Tablets                     @media (min-width: 992px) and (max-width: 1280px)
@@ -1386,11 +1388,11 @@ section.projects .project__info p {
     }
 
     .grid-services .grid_text {
-        padding: 40px 10vw;
+        padding: 40px 5vw;
     }
 
     .grid-services>div:last-of-type .grid_text {
-        padding: 40px 10vw 0 10vw;
+        padding: 40px 5vw 0 5vw;
     }
 
     .grid-services .grid_text .grid_text__title h3 {
@@ -1417,7 +1419,7 @@ section.projects .project__info p {
     }
 
     .img-text>.img-text__text {
-        padding: 40px 10vw;
+        padding: 40px 5vw;
     }
 
     .img-text>.img-text__img {
@@ -1431,7 +1433,7 @@ section.projects .project__info p {
     --------------------------------------------------------------*/
 
     .bg-text {
-        padding: 150px 10vw;
+        padding: 150px 5vw;
     }
 
     /*--------------------------------------------------------------
@@ -1443,7 +1445,7 @@ section.projects .project__info p {
     }
 
     /*--------------------------------------------------------------
-    2.2.7 Login
+    2.2.8 Login
     --------------------------------------------------------------*/
 
     .login form {
@@ -1453,7 +1455,22 @@ section.projects .project__info p {
     .login form>.btn {
         grid-column: auto;
     }
+    
+    /*--------------------------------------------------------------
+        2.2.9 Contact Form
+    --------------------------------------------------------------*/
 
+    .contact .contact__intro, .contact form {
+        padding: 25px 5vw;
+    }
+    
+    .contact .contact__form {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact .contact__form .contact__item.is-100 {
+        grid-column: 1;
+    }
 
     /*--------------------------------------------------------------
     2.3 Fondos

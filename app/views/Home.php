@@ -24,9 +24,6 @@ $links = Database::getLinks();
             <div class="img-text__text">
                 <div class="img-text__title"><?php echo $textsData['home-intro-h1']; ?></div>
                 <div class="img-text__description"><?php echo $textsData['home-intro-p1']; ?></div>
-                <div class="img-text__btn">
-                    <a class="btn" href="/<?php echo SYSTEM_LANG ?>/<?php echo $links['About Us']; ?> "><?php echo str_replace('-', ' ', ucwords(strtolower($links['About Us']))) ?></a>
-                </div>
             </div>
         </div>
     </div>
