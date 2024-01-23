@@ -1197,6 +1197,27 @@ section.projects .project__info p {
     outline: 0;
 }
 
+.contact .contact__message {
+    color: red;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 0;
+    opacity: 0;
+    background-color: snow;
+    transition: opacity .5s ease-in-out;
+    transition-delay: .5s;
+}
+
+.contact .contact__message.is-displayed {
+    padding: 30px;
+    margin-bottom: 30px;
+    opacity: 1;
+}
+.contact .contact__message.is-success {
+    color: var(--corp-color);
+}
+
 /*--------------------------------------------------------------
     1.5 Animations
 --------------------------------------------------------------*/

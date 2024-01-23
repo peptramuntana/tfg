@@ -26,6 +26,7 @@ const stateCheck = setInterval(() => {
     resize();
     burgerMenu();
     deployLangs();
+    contactForm();
 
     // Stop checking when page loaded
     clearInterval(stateCheck);
@@ -343,4 +344,46 @@ function gridServicesCounter() {
       }
     }
   }
+}
+
+// 15.0 - Contact Form
+function contactForm() {
+  let form = document.getElementById('contactForm')
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    let formData = new FormData(form);
+    formData.append('send', '1');
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', form.action, true);
+    xhr.onload = function () {
+      console.log(this.status)
+      let formMessage = document.getElementById('formMessage');
+      if (this.status == 200 && this.response) {
+        let response = JSON.parse(this.response);
+        formMessage.textContent = response.message;
+        if (response.success) {
+          form.style.display = 'none';
+          formMessage.classList.remove('is-error');
+          formMessage.classList.add('is-success');
+          formMessage.classList.add('is-displayed');
+        } else {
+          formMessage.classList.remove('is-success');
+          formMessage.classList.add('is-error');
+          formMessage.classList.add('is-displayed');
+        }
+      }
+    };
+    xhr.send(formData);
+  })
+}
+
+// 16.0 - Prevent Default
+function preventDefault(query) {
+  let queryString = query.join();
+  let elements = document.querySelectorAll(queryString);
+  elements.forEach(element => {
+    element.addEventListener('click', (e) => {
+      e.preventDefault();
+    })
+  })
 }

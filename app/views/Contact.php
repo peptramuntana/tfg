@@ -14,19 +14,20 @@ $links = Database::getLinks();
         <div class="contact__intro t-altem">
             <?php echo $textsData['contact-intro-h2']; ?>
         </div>
-        <form action="/app/lib/PHPMailer/config.php" method="post">
+        <div id="formMessage" class="contact__message"></div>
+        <form id="contactForm" action="/app/lib/PHPMailer/config.php" method="post">
             <div class="contact__form">
             <div class="contact__item">
-                    <input required type="text" name="name" placeholder="<?php echo $textsData['contact-form-name']; ?>">
+                    <input  type="text" name="name" title="<?php echo $textsData['contact-form-name-title']?>" placeholder="<?php echo $textsData['contact-form-name']; ?>">
                 </div>
                 <div class="contact__item">
-                    <input required type="text" name="email" placeholder="<?php echo $textsData['contact-form-email']; ?>">
+                    <input  type="email" name="email" placeholder="<?php echo $textsData['contact-form-email']; ?>">
                 </div>
                 <div class="contact__item is-100">
-                    <input required type="text" name="subject" placeholder="<?php echo $textsData['contact-form-subject']; ?>">
+                    <input  type="text" name="subject" placeholder="<?php echo $textsData['contact-form-subject']; ?>">
                 </div>
                 <div class="contact__item is-100">
-                    <textarea required type="text" name="message" placeholder="<?php echo $textsData['contact-form-message']; ?>"></textarea>
+                    <textarea  type="text" name="message" placeholder="<?php echo $textsData['contact-form-message']; ?>"></textarea>
                 </div>
                 <div class="contact__item is-100">
                     <input type="hidden" name="system_lang" value="<?php echo SYSTEM_LANG ?>">
@@ -34,5 +35,6 @@ $links = Database::getLinks();
                 </div>
             </div>
         </form>
+        
     </div>
 </section>
