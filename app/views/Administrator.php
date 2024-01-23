@@ -3,7 +3,7 @@ Core::checkSession();
 ?>
 
 <div class="log-out">
-    <form action="http://localhost/app/controllers/formsController.php" method="POST">
+    <form action="/app/controllers/formsController.php" method="POST">
         <input type="hidden" name="system_lang" value="<?php echo SYSTEM_LANG ?>">
         <input type="submit" name="logout" value="Cerrar sesión" class="btn btn-blue">
     </form>
@@ -15,7 +15,7 @@ Core::checkSession();
     <div class="heading create-heading">
         <h2>NUEVO PROYECTO</h2>
     </div>
-    <form method="POST" action="http://localhost/app/controllers/formsController.php" onsubmit="createForm(event, this)" class="create">
+    <form method="POST" action="/app/controllers/formsController.php" onsubmit="createForm(event, this)" class="create">
         <input type="hidden" name="system_lang" value="<?php echo SYSTEM_LANG ?>">
         <input type="hidden" name="system_lang_id" value="<?php echo SYSTEM_LANG_ID ?>">
         <input type="submit" name="create-project" value="Crear Proyecto" class="btn btn-green">
@@ -61,21 +61,21 @@ Core::checkSession();
             <h2><?php echo $projectTitle ?></h2>
         </div>
         <div class="delete-hide-container">
-            <form class="hide-project" action="http://localhost/app/controllers/formsController.php" onsubmit="<?php echo $projectState == 1 ? 'hideForm(event)' : 'showForm(event)' ?>" method="POST">
+            <form class="hide-project" action="/app/controllers/formsController.php" onsubmit="<?php echo $projectState == 1 ? 'hideForm(event)' : 'showForm(event)' ?>" method="POST">
                 <input type="hidden" name="project_id" value="<?php echo $project_id ?>">
                 <input type="hidden" name="project_state" value="<?php echo $projectState ?>">
                 <input type="hidden" name="system_lang" value="<?php echo SYSTEM_LANG ?>">
                 <input type="hidden" name="system_lang_id" value="<?php echo SYSTEM_LANG_ID ?>">
                 <input type="submit" name="hide-project" value="<?php echo $projectState == 1 ? 'Ocultar Proyecto' : 'Mostrar proyecto' ?>" class="btn">
             </form>
-            <form class="delete-project" action="http://localhost/app/controllers/formsController.php" onsubmit="deleteForm(event);" method="POST">
+            <form class="delete-project" action="app/controllers/formsController.php" onsubmit="deleteForm(event);" method="POST">
                 <input type="hidden" name="project_id" value="<?php echo $project_id ?>">
                 <input type="hidden" name="system_lang" value="<?php echo SYSTEM_LANG ?>">
                 <input type="hidden" name="system_lang_id" value="<?php echo SYSTEM_LANG_ID ?>">
                 <input type="submit" name="delete" value="Eliminar Proyecto" class="btn btn-red">
             </form>
         </div>
-        <form class="update <?php echo $projectState == 1 ? '' : 'hided' ?>" action="http://localhost/app/controllers/formsController.php" onsubmit="updateForm(event, this);" method="POST">
+        <form class="update <?php echo $projectState == 1 ? '' : 'hided' ?>" action="/app/controllers/formsController.php" onsubmit="updateForm(event, this);" method="POST">
             <input type="hidden" name="project_id" value="<?php echo $project_id ?>">
             <input type="hidden" name="system_lang" value="<?php echo SYSTEM_LANG ?>">
             <input type="hidden" name="system_lang_id" value="<?php echo SYSTEM_LANG_ID ?>">

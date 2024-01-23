@@ -16,10 +16,10 @@ if (isset($_POST['login'])) {
     if ($counter != 0) {
         session_start();
         $_SESSION['login'] = $_POST["password"];
-        header("Location: http://localhost/" . SYSTEM_LANG . "/administrator");
+        header("Location: /" . SYSTEM_LANG . "/administrator");
     } else {
         session_destroy();
-        header("Location: http://localhost/" . SYSTEM_LANG . "/login");
+        header("Location: /" . SYSTEM_LANG . "/login");
     }
 }
 
@@ -29,9 +29,9 @@ if (isset($_POST['logout'])) {
     if (isset($_SESSION['login'])) {
         unset($_SESSION['login']);
         session_destroy();
-        header("Location: http://localhost/" . SYSTEM_LANG . "/login");
+        header("Location: /" . SYSTEM_LANG . "/login");
     } else {
-        header("Location: http://localhost/" . SYSTEM_LANG . "/administrator");
+        header("Location: /" . SYSTEM_LANG . "/administrator");
     }
 }
 
@@ -69,7 +69,7 @@ if (isset($_POST['update'])) {
         $image_title = $value['title'];
         Database::updateImageProject($system_lang_id, $project_id, $image_id, $image_url, $image_title, $image_alt);
     }
-    header("Location: http://localhost/" . SYSTEM_LANG . "/administrator/#$project_id");
+    header("Location: /" . SYSTEM_LANG . "/administrator/#$project_id");
 }
 
 if (isset($_POST['hide-project'])) {
@@ -81,7 +81,7 @@ if (isset($_POST['hide-project'])) {
     $switched_state = $project_state == 1 ? 0 : 1;
     // Hide the project
     Database::hideProject($system_lang_id, $project_id, $switched_state);
-    header("Location: http://localhost/" . SYSTEM_LANG . "/administrator/#$project_id");
+    header("Location: /" . SYSTEM_LANG . "/administrator/#$project_id");
 }
 
 if (isset($_POST['delete'])) {
@@ -95,7 +95,7 @@ if (isset($_POST['delete'])) {
     Database::deleteGallery($project_id);
     // Delete the project
     Database::deleteProject($project_id);
-    header("Location: http://localhost/" . SYSTEM_LANG . "/administrator/");
+    header("Location: /" . SYSTEM_LANG . "/administrator/");
 }
 
 if (isset($_POST['create-project'])) {
@@ -123,5 +123,5 @@ if (isset($_POST['create-project'])) {
         Database::createImage($lang->id, $gallery_id, $image_url_1, $image_alt_1, $image_title_1, 1);
         Database::createImage($lang->id, $gallery_id, $image_url_2, $image_alt_2, $image_title_2, 1);
     }
-    header("Location: http://localhost/" . SYSTEM_LANG . "/administrator/");
+    header("Location: /" . SYSTEM_LANG . "/administrator/");
 }

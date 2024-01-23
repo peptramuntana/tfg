@@ -14,7 +14,7 @@ $links = Database::getLinks();
         <div class="contact__intro t-altem">
             <?php echo $textsData['contact-intro-h2']; ?>
         </div>
-        <form action="../app/lib/PHPMailer/config.php" method="post">
+        <form action="/app/lib/PHPMailer/config.php" method="post">
             <div class="contact__form">
             <div class="contact__item">
                     <input required type="text" name="name" placeholder="<?php echo $textsData['contact-form-name']; ?>">

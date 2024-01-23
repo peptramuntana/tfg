@@ -109,7 +109,7 @@ class Core
     static function redirect()
     {
         if (URL_LANG != SYSTEM_LANG || URL_MENU != SYSTEM_URL) {
-            header("Location: http://localhost/" . SYSTEM_LANG . "/error404");
+            header("Location: /" . SYSTEM_LANG . "/error404");
         }
     }
 
@@ -131,7 +131,7 @@ class Core
         session_start();
         if (!isset($_SESSION['login'])) {
             // If the session is not set redirect to login
-            header("Location: http://localhost/" . SYSTEM_LANG . "/login");
+            header("Location: /" . SYSTEM_LANG . "/login");
         }
     }
 }
