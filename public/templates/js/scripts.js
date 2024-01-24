@@ -88,7 +88,6 @@ function tiny() {
         width: '600px',
         init_instance_callback(editor) {
           // Your custom event handler code here
-          console.log(`Editor: ${editor.id} is now initialized.`);
         },
       });
     });
@@ -348,33 +347,41 @@ function gridServicesCounter() {
 
 // 15.0 - Contact Form
 function contactForm() {
-  let form = document.getElementById('contactForm')
-  form.addEventListener('submit', function (event) {
-    event.preventDefault();
-    let formData = new FormData(form);
-    formData.append('send', '1');
-    let xhr = new XMLHttpRequest();
-    xhr.open('POST', form.action, true);
-    xhr.onload = function () {
-      console.log(this.status)
-      let formMessage = document.getElementById('formMessage');
-      if (this.status == 200 && this.response) {
-        let response = JSON.parse(this.response);
-        formMessage.textContent = response.message;
-        if (response.success) {
-          form.style.display = 'none';
-          formMessage.classList.remove('is-error');
-          formMessage.classList.add('is-success');
-          formMessage.classList.add('is-displayed');
-        } else {
-          formMessage.classList.remove('is-success');
-          formMessage.classList.add('is-error');
-          formMessage.classList.add('is-displayed');
-        }
-      }
-    };
-    xhr.send(formData);
-  })
+  let forms = document.querySelectorAll('#contactForm');
+  if (forms) {
+    forms.forEach(form => {
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        let formData = new FormData(form);
+        formData.append('send', '1');
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+          let contactMessage = document.querySelectorAll('.contact .contact__mesage');
+          if(contactMessage){
+            contactMessage.forEach(container => {
+              if (this.status == 200 && this.response) {
+                let response = JSON.parse(this.response);
+                container.textContent = response.message;
+                if (response.success) {
+                  form.style.display = 'none';
+                  container.classList.remove('is-error');
+                  container.classList.add('is-success');
+                  container.classList.add('is-displayed');
+                } else {
+                  container.classList.remove('is-success');
+                  container.classList.add('is-error');
+                  container.classList.add('is-displayed');
+                }
+              }
+            });
+          }
+        };
+        xhr.send(formData);
+      })
+    })
+  }
+
 }
 
 // 16.0 - Prevent Default
