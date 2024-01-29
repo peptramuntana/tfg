@@ -17,21 +17,23 @@ $links = Database::getLinks();
         <div id="formMessage" class="contact__message"></div>
         <form id="contactForm" action="/app/lib/PHPMailer/config.php" method="post">
             <div class="contact__form">
-            <div class="contact__item">
-                    <input  type="text" name="name" title="<?php echo $textsData['contact-form-name-title']?>" placeholder="<?php echo $textsData['contact-form-name']; ?>">
+                <div class="contact__item">
+                    <input type="text" name="name" title="<?php echo $textsData['contact-form-name-title'] ?>" placeholder="<?php echo $textsData['contact-form-name']; ?>">
                 </div>
                 <div class="contact__item">
-                    <input  type="email" name="email" placeholder="<?php echo $textsData['contact-form-email']; ?>">
+                    <input type="email" name="email" placeholder="<?php echo $textsData['contact-form-email']; ?>">
                 </div>
                 <div class="contact__item is-100">
-                    <input  type="text" name="subject" placeholder="<?php echo $textsData['contact-form-subject']; ?>">
+                    <input type="text" name="subject" placeholder="<?php echo $textsData['contact-form-subject']; ?>">
                 </div>
                 <div class="contact__item is-100">
-                    <textarea  type="text" name="message" placeholder="<?php echo $textsData['contact-form-message']; ?>"></textarea>
+                    <textarea type="text" name="message" placeholder="<?php echo $textsData['contact-form-message']; ?>"></textarea>
                 </div>
                 <div class="contact__item is-100">
                     <input type="hidden" name="system_lang" value="<?php echo SYSTEM_LANG ?>">
-                    <button type="submit" name="send" class="btn"><?php echo $textsData['contact-form-btn']; ?></button>
+                    <button type="submit" name="send" class="g-recaptcha btn" data-sitekey="6Le-V2ApAAAAAEsVtCSTQUPf6DzT6AfaBe2fRpZc" data-callback='onSubmit' data-action='submit'>
+                        <?php echo $textsData['contact-form-btn']; ?>
+                </button>
                 </div>
             </div>
         </form>

@@ -13,7 +13,21 @@
     12.0 - Resize
     13.0 - Deploy Langs
     14.0 - Grid Services Counter
+    15.0 - Contact Form
+    16.0 - Prevent Default
+    17.0 - Init Recaptcha
+    18.0 - Recaptcha Callback
+
 */
+
+window.onSubmit = function(token) {
+  // Get the form
+  let form = document.getElementById('contactForm');
+  // Create a new 'submit' event
+  let event = new Event('submit');
+  // Dispatch the event
+  form.dispatchEvent(event);
+};
 
 const stateCheck = setInterval(() => {
   if (document.readyState === 'complete') {
@@ -27,6 +41,7 @@ const stateCheck = setInterval(() => {
     burgerMenu();
     deployLangs();
     contactForm();
+    initRecaptcha();
 
     // Stop checking when page loaded
     clearInterval(stateCheck);
@@ -357,7 +372,7 @@ function contactForm() {
         let xhr = new XMLHttpRequest();
         xhr.open('POST', form.action, true);
         xhr.onload = function () {
-          let contactMessage = document.querySelectorAll('.contact .contact__mesage');
+          let contactMessage = document.querySelectorAll('.contact .contact__message');
           if(contactMessage){
             contactMessage.forEach(container => {
               if (this.status == 200 && this.response) {
@@ -393,4 +408,26 @@ function preventDefault(query) {
       e.preventDefault();
     })
   })
+}
+
+// 17.0 - Init Recaptcha
+function initRecaptcha() {
+  grecaptcha.ready(function() {
+    grecaptcha.execute('6Le-V2ApAAAAAEsVtCSTQUPf6DzT6AfaBe2fRpZc', {action: 'submit'}).then(function(token) {
+      // Add the token to the form
+      var form = document.getElementById('contactForm');
+      var input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'g-recaptcha-response';
+      input.value = token;
+      form.appendChild(input);
+    });
+  });
+}
+
+// 18.0 - Recaptcha Callback
+function recaptchaCallback() {
+  window.onSubmit = function(token) {
+    document.getElementById('contactForm').submit();
+  };
 }
