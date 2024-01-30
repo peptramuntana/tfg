@@ -134,7 +134,7 @@
     --swiper-theme-color-hover: var(--corp-color);
 
     /* Home Swiper */
-    --home-swiper-navigation-size-hover: 70px;
+    --home-swiper-navigation-size-hover: 50px;
     --home-swiper-navigation-sides-offset: 100px;
     --home-swiper-navigation-size: 50px;
 
@@ -732,6 +732,11 @@ footer .footer-block>.contact div>a:hover {
     color: var(--swiper-navigation-color-hover, var(--swiper-theme-color-hover));
 }
 
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    text-shadow: 0 0 5px #222;
+}
+
 /* Projects Sliders */
 .projects-swiper .swiper-button-next:after,
 .projects-swiper .swiper-button-prev:after {
@@ -1320,6 +1325,9 @@ section.projects .project__info p {
     /*--------------------------------------------------------------
     2.1 Basics
     --------------------------------------------------------------*/
+    :root {
+        --home-swiper-navigation-size-hover: 40px;
+    }
     h1 {
         font-size: 30px;
     }
@@ -1435,6 +1443,7 @@ section.projects .project__info p {
 
     .img-text {
         grid-template-columns: 1fr;
+        display: block;
         height: auto;
         max-width: 100%;
     }

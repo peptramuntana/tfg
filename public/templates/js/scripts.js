@@ -20,13 +20,15 @@
 
 */
 
-window.onSubmit = function(token) {
+window.onSubmit = function (token) {
   // Get the form
-  let form = document.getElementById('contactForm');
-  // Create a new 'submit' event
-  let event = new Event('submit');
-  // Dispatch the event
-  form.dispatchEvent(event);
+  let forms = document.querySelectorAll('.js-contactform');
+  forms.forEach(form => {
+    // Create a new 'submit' event
+    let event = new Event('submit');
+    // Dispatch the event
+    form.dispatchEvent(event);
+  })
 };
 
 const stateCheck = setInterval(() => {
@@ -41,7 +43,6 @@ const stateCheck = setInterval(() => {
     burgerMenu();
     deployLangs();
     contactForm();
-    initRecaptcha();
 
     // Stop checking when page loaded
     clearInterval(stateCheck);
@@ -362,7 +363,7 @@ function gridServicesCounter() {
 
 // 15.0 - Contact Form
 function contactForm() {
-  let forms = document.querySelectorAll('#contactForm');
+  let forms = document.querySelectorAll('.js-contactform');
   if (forms) {
     forms.forEach(form => {
       form.addEventListener('submit', function (event) {
@@ -373,7 +374,7 @@ function contactForm() {
         xhr.open('POST', form.action, true);
         xhr.onload = function () {
           let contactMessage = document.querySelectorAll('.contact .contact__message');
-          if(contactMessage){
+          if (contactMessage) {
             contactMessage.forEach(container => {
               if (this.status == 200 && this.response) {
                 let response = JSON.parse(this.response);
@@ -394,9 +395,22 @@ function contactForm() {
         };
         xhr.send(formData);
       })
+
+      // Init recaptcha
+      grecaptcha.ready(function () {
+        grecaptcha.execute('6Le-V2ApAAAAAEsVtCSTQUPf6DzT6AfaBe2fRpZc', { action: 'submit' }).then(function (token) {
+          // Add the token to the form
+
+          let input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = 'g-recaptcha-response';
+          input.value = token;
+          form.appendChild(input);
+        });
+      });
+
     })
   }
-
 }
 
 // 16.0 - Prevent Default
@@ -408,26 +422,4 @@ function preventDefault(query) {
       e.preventDefault();
     })
   })
-}
-
-// 17.0 - Init Recaptcha
-function initRecaptcha() {
-  grecaptcha.ready(function() {
-    grecaptcha.execute('6Le-V2ApAAAAAEsVtCSTQUPf6DzT6AfaBe2fRpZc', {action: 'submit'}).then(function(token) {
-      // Add the token to the form
-      var form = document.getElementById('contactForm');
-      var input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = 'g-recaptcha-response';
-      input.value = token;
-      form.appendChild(input);
-    });
-  });
-}
-
-// 18.0 - Recaptcha Callback
-function recaptchaCallback() {
-  window.onSubmit = function(token) {
-    document.getElementById('contactForm').submit();
-  };
 }
