@@ -1,6 +1,7 @@
 <?php
 require_once('app/models/db.php');
 $langs = Database::getLangs();
+$current_menu = Database::getCurrentMenu(); // Get the current menu from the database
 ?>
 
 <div class="head-bar">
@@ -14,7 +15,9 @@ $langs = Database::getLangs();
                 <?php
                 foreach ($langs as $key) {
                     if ($key->tag != SYSTEM_LANG) {
-                        echo '<a href="/' . $key->tag . '">' . strtoupper($key->tag) . '</a>';
+                        // Fetch the URL for the current menu in the selected language from the database
+                        $url = Database::getMenuUrl($key->tag, $current_menu);
+                        echo '<a href="/' . $key->tag . '/' . $url . '">' . strtoupper($key->tag) . '</a>';
                     }
                 }
                 ?>
@@ -27,5 +30,3 @@ $langs = Database::getLangs();
         </button>
     </div>
 </div>
-
-<?php

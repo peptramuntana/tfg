@@ -76,6 +76,55 @@ class Database
         }
     }
 
+    static function getCurrentMenu()
+    {
+        try {
+            $lang_id = SYSTEM_LANG_ID;
+            $url_menu = URL_MENU;
+
+            $db = Config::db();
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $db->exec("SET CHARACTER SET UTF8");
+            $sql = "SELECT name FROM menus WHERE lang = :lang_id AND url = :url";
+            $consult = $db->prepare($sql);
+            $consult->bindParam(':lang_id', $lang_id);
+            $consult->bindParam(':url', $url_menu);
+            $consult->execute();
+            $menu_name = $consult->fetchColumn();
+            return $menu_name;
+        } catch (Exception $e) {
+            die("Error: " . $e->getMessage());
+        }
+    }
+
+    static function getMenuUrl($lang_tag, $menu_name)
+    {
+        try {
+            $db = Config::db();
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $db->exec("SET CHARACTER SET UTF8");
+
+            // First, get the language ID for the given language tag
+            $sql = "SELECT id FROM langs WHERE tag = :tag";
+            $consult = $db->prepare($sql);
+            $consult->bindParam(':tag', $lang_tag);
+            $consult->execute();
+            $lang_id = $consult->fetchColumn();
+
+            // Then, get the URL for the given menu name in that language
+            $sql = "SELECT url FROM menus WHERE lang = :lang_id AND name = :name";
+            $consult = $db->prepare($sql);
+            $consult->bindParam(':lang_id', $lang_id);
+            $consult->bindParam(':name', $menu_name);
+            $consult->execute();
+            $url = $consult->fetchColumn();
+
+            return $url;
+        } catch (Exception $e) {
+            die("Error: " . $e->getMessage());
+        }
+    }
+
     static function getLinks()
     {
         try {
