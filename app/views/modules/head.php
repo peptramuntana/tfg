@@ -27,8 +27,8 @@
 <meta property="og:site_name" content="Vilkeer Projects">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image" content="https://www.vilkeerprojects.com/es/public/images/og/opengraph.jpg">
-<meta name="twitter:image:src" content="https://www.vilkeerprojects.com/es/public/images/og/opengraph.jpg">
+<meta property="og:image" content="https://www.vilkeerprojects.com/public/images/og/opengraph.jpg">
+<meta name="twitter:image:src" content="https://www.vilkeerprojects.com/public/images/og/opengraph.jpg">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="Vilkeer Projects">
 <?php
