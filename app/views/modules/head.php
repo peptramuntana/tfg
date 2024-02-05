@@ -70,6 +70,13 @@ if (SYSTEM_VIEW ==  "projects" || SYSTEM_VIEW == "home") {
 if (SYSTEM_VIEW == "administrator") {
     echo '<script src="https://cdn.tiny.cloud/1/7f0itvzdvwj3038qoaktkp5rh9kxycahhcgmgl17vcn9blyr/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>';
 }
+
+if (SYSTEM_VIEW == "administrator" || SYSTEM_VIEW == "login" || SYSTEM_VIEW == "error404") {
+    echo '<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">';
+} else {
+    echo '<META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">';
+}
+
 ?>
 
 

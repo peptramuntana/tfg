@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: /administrator/
+Disallow: /administrator
+Disallow: /app/
+Disallow: /app
+Disallow: /public/
+Disallow: /public
+Disallow: /login/
+Disallow: /login
+Disallow: /error404
+Disallow: /error404/
+
+Sitemap: https://www.vilkeerprojects.com/sitemap.xml

@@ -26,4 +26,8 @@ RewriteCond %{REQUEST_FILENAME} !-l
 # The conditions above rewrite to the index.php file.
 RewriteRule ^(.+)$ index.php [QSA,L]
 
+# Redirect the non-www to www
+RewriteCond %{HTTP_HOST} ^vilkeerprojects.com [NC]
+RewriteRule ^(.*)$ https://www.vilkeerprojects.com/$1 [L,R=301]
+
 </IfModule>
