@@ -72,9 +72,9 @@ if (SYSTEM_VIEW == "administrator") {
 }
 
 if (SYSTEM_VIEW == "administrator" || SYSTEM_VIEW == "login" || SYSTEM_VIEW == "error404") {
-    echo '<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">';
+    echo '<meta name="robots" content="noindex, nofollow">';
 } else {
-    echo '<META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">';
+    echo '<meta name="robots" content="index, follow">';
 }
 
 ?>

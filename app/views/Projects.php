@@ -21,7 +21,11 @@ $textsData = Database::getTexts();
                 <div id="projects-slider" class="swiper projects-swiper">
                     <div class="swiper-wrapper">
                         <?php foreach ($projectSlider as $img) : ?>
-                            <img class="swiper-slide" src="/public/images/projects/<?php echo isset($img->img_url) ? $img->img_url : '' ?>.jpg" alt="<?php echo isset($img->img_alt) ? $img->img_alt : '' ?>" title="<?php echo isset($img->img_title) ? $img->img_title : '' ?>">
+                            <picture class="swiper-slide">
+                                <source srcset="/public/images/projects/<?php echo isset($img->img_url) ? $img->img_url : '' ?>.webp"  type="image/webp">
+                                <source srcset="/public/images/projects/<?php echo isset($img->img_url) ? $img->img_url : '' ?>.jpg" type="image/jpeg">
+                            <img loading="lazy"  src="/public/images/projects/<?php echo isset($img->img_url) ? $img->img_url : '' ?>.jpg" alt="<?php echo isset($img->img_alt) ? $img->img_alt : '' ?>" title="<?php echo isset($img->img_title) ? $img->img_title : '' ?>">
+                            </picture>
                         <?php endforeach; ?>
                     </div>
                     <div class="swiper-button-prev"></div>

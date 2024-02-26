@@ -10,7 +10,7 @@ $current_menu = Database::getCurrentMenu(); // Get the current menu from the dat
     </div>
     <div class="lang-burger">
         <div class="lang">
-            <a class="active"><?php echo strtoupper(SYSTEM_LANG) ?></a>
+            <span class="active"><?php echo strtoupper(SYSTEM_LANG) ?></span>
             <ul>
                 <?php
                 foreach ($langs as $key) {
@@ -23,7 +23,7 @@ $current_menu = Database::getCurrentMenu(); // Get the current menu from the dat
                 ?>
             </ul>
         </div>
-        <button class="burger">
+        <button class="burger" type="button" aria-label="menu">
             <div></div>
             <div></div>
             <div></div>

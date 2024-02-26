@@ -123,6 +123,7 @@
     --alt-color: #1D1E1A;
     --corp-color: #8ABE3B;
     --btn-color: #778899;
+    --btn-color: var(--alt-color);
     --lightgray-color: #d3d3d3;
     --width: 80vw;
     --head-bar-height: 75px;
@@ -441,7 +442,7 @@ body::-webkit-scrollbar-track {
 }
 
 .burger div:nth-child(3) {
-    margin: 0px 0 10px 0px;
+    margin: 0px 0 5px 0px;
 }
 
 .burger:hover div:first-child {
@@ -467,6 +468,7 @@ body::-webkit-scrollbar-track {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    background-color: rgba(0, 0, 0, .7);
 }
 
 .lang.display {
@@ -474,11 +476,12 @@ body::-webkit-scrollbar-track {
     background-color: white;
 }
 
-.lang.display > a {
+.lang.display>span {
     color: var(--corp-color);
 }
 
-.lang>a {
+.lang>a,
+.lang>span {
     height: 50px;
     width: 50px;
     display: flex;
@@ -488,7 +491,8 @@ body::-webkit-scrollbar-track {
     cursor: pointer;
 }
 
-.lang a {
+.lang a,
+.lang span {
     text-decoration: none;
     height: 50px;
     width: 50px;
@@ -523,7 +527,8 @@ body::-webkit-scrollbar-track {
     background-color: white;
 }
 
-.lang:hover a {
+.lang:hover a,
+.lang:hover span{
     color: var(--corp-color);
 }
 
@@ -547,7 +552,7 @@ body::-webkit-scrollbar-track {
     width: 100%;
     height: 100%;
     max-width: 100%;
-    z-index: 10;
+    z-index: 999;
     background-color: var(--alt-color);
     flex-direction: column;
 }
@@ -769,7 +774,7 @@ footer .footer-block>.contact div>a:hover {
 
 .img-text {
     display: grid;
-    grid-template-columns: 46.6% 1fr;
+    grid-template-columns: 50% 1fr;
     margin: 0 auto;
     height: 835px;
     overflow: hidden;
@@ -1070,8 +1075,8 @@ section.projects .project__info p {
 .admin-project form.update>label,
 .admin-project form.create>label,
 .admin-project form.update .tox,
-.admin-project form >#project_title,
-.admin-project form >#project_content {
+.admin-project form>#project_title,
+.admin-project form>#project_content {
     grid-column: 1;
 }
 
@@ -1214,6 +1219,7 @@ section.projects .project__info p {
     margin-bottom: 30px;
     opacity: 1;
 }
+
 .contact .contact__message.is-success {
     color: var(--corp-color);
 }
@@ -1312,23 +1318,45 @@ picture img {
 }
 
 .bg-header-projects {
+    background-image: url(../../images/projects/bg-header-projects.webp);
+}
+
+.isSafari .bg-header-projects {
     background-image: url(../../images/projects/bg-header-projects.jpg);
 }
 
 .bg-header-about-us {
+    background-image: url(../../images/about-us/bg-header-about-us.webp);
+}
+
+.isSafari .bg-header-about-us {
     background-image: url(../../images/about-us/bg-header-about-us.jpg);
 }
 
 .bg-header-contact {
+    background-image: url(../../images/contact/bg-header-contact.webp);
+}
+
+.isSafari .bg-header-contact {
     background-image: url(../../images/contact/bg-header-contact.jpg);
 }
 
 .bg_home-services {
+    background-image: url(../../images/home/bg_home-services.webp);
+    min-height: 800px;
+}
+
+.isSafari .bg_home-services {
     background-image: url(../../images/home/bg_home-services.jpg);
     min-height: 800px;
 }
 
 .bg_contact {
+    background-image: url(../../images/modules/bg_contact.webp);
+    min-height: 400px;
+}
+
+.isSafari .bg_contact {
     background-image: url(../../images/modules/bg_contact.jpg);
     min-height: 400px;
 }
@@ -1345,6 +1373,7 @@ picture img {
     :root {
         --home-swiper-navigation-size-hover: 40px;
     }
+
     h1 {
         font-size: 30px;
     }
@@ -1363,15 +1392,19 @@ picture img {
     }
 
     /*--------------------------------------------------------------
-    2.2 Bloques
+        2.2 Bloques
     --------------------------------------------------------------*/
 
     /*--------------------------------------------------------------
         2.2.1 Sliders
     --------------------------------------------------------------*/
 
+    .home-swiper {
+        height: 100vh;
+    }
+
     section.projects .container {
-        grid-template-columns: repeat(1,300px);
+        grid-template-columns: repeat(1, 300px);
         row-gap: 60px;
         justify-content: center;
         justify-items: center;
@@ -1401,7 +1434,8 @@ picture img {
     }
 
     .lang,
-    .lang a {
+    .lang a,
+    .lang span {
         width: 40px;
         height: 40px;
     }
@@ -1421,7 +1455,7 @@ picture img {
     }
 
     /*--------------------------------------------------------------
-    2.2.3 Grid Services
+        2.2.3 Grid Services
     --------------------------------------------------------------*/
 
     .grid-services {
@@ -1498,23 +1532,24 @@ picture img {
     .login form {
         grid-template-columns: repeat(1, 270px);
     }
-    
+
     .login form>.btn {
         grid-column: auto;
     }
-    
+
     /*--------------------------------------------------------------
         2.2.9 Contact Form
     --------------------------------------------------------------*/
 
-    .contact .contact__intro, .contact form {
+    .contact .contact__intro,
+    .contact form {
         padding: 25px 5vw;
     }
-    
+
     .contact .contact__form {
         grid-template-columns: 1fr;
     }
-    
+
     .contact .contact__form .contact__item.is-100 {
         grid-column: 1;
     }
@@ -1563,6 +1598,7 @@ picture img {
     .pad {
         padding: 80px 0;
     }
+
     /*--------------------------------------------------------------
     4.2 Bloques
     --------------------------------------------------------------*/
@@ -1576,19 +1612,19 @@ picture img {
     }
 
     .grid-services {
-        grid-template-columns: repeat(2,400px);
+        grid-template-columns: repeat(2, 400px);
         justify-content: center;
         grid-gap: 90px;
     }
 
-    .grid-services > .odd {
+    .grid-services>.odd {
         grid-column: 1 / span 2;
     }
 
     /*--------------------------------------------------------------
     4.2.2 Footer
     --------------------------------------------------------------*/
-    
+
     /*--------------------------------------------------------------
     4.2.3 img-text
     --------------------------------------------------------------*/
@@ -1602,9 +1638,10 @@ picture img {
     --------------------------------------------------------------*/
 
     section.projects .container {
-        grid-template-columns: repeat(3,300px);
+        grid-template-columns: repeat(3, 300px);
         justify-content: space-around;
     }
+
     /*--------------------------------------------------------------
     4.3 Fondos
     --------------------------------------------------------------*/
@@ -1619,7 +1656,7 @@ picture img {
     :root {
         --home-swiper-navigation-sides-offset: 30px;
         --swiper-navigation-size: 35px;
-        --font-p:16px
+        --font-p: 16px
     }
 
     /*--------------------------------------------------------------
@@ -1643,51 +1680,61 @@ picture img {
         5.2.2 Admin Project
     --------------------------------------------------------------*/
 
-    
-    .admin-project>.update, .admin-project>.delete-hide-container, .admin-project>.create {
+
+    .admin-project>.update,
+    .admin-project>.delete-hide-container,
+    .admin-project>.create {
         grid-template-rows: auto;
         grid-template-columns: 280px;
         column-gap: 0;
         justify-items: center;
     }
-    
-    .admin-project form.update>.images-container, .admin-project form.create>.images-container {
+
+    .admin-project form.update>.images-container,
+    .admin-project form.create>.images-container {
         grid-column: 1;
         grid-row: auto;
         padding-top: 40px;
     }
-    
-    .admin-project form.update>input, .admin-project form.update>textarea,
-    .admin-project form.create>input, .admin-project form.create>textarea {
+
+    .admin-project form.update>input,
+    .admin-project form.update>textarea,
+    .admin-project form.create>input,
+    .admin-project form.create>textarea {
         grid-column: 1;
     }
-    
-    .admin-project form.update>input.btn, .admin-project form.create>input.btn {
+
+    .admin-project form.update>input.btn,
+    .admin-project form.create>input.btn {
         grid-column: 1;
     }
-    
-    .admin-project form.update>.images-container>.images, .admin-project form.create>.images-container>.images {
+
+    .admin-project form.update>.images-container>.images,
+    .admin-project form.create>.images-container>.images {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
-    
-    .admin-project form.update>label, .admin-project form.create>label,
-    .admin-project form.update .tox, .admin-project form >#project_title,
-    .admin-project form >#project_content {
+
+    .admin-project form.update>label,
+    .admin-project form.create>label,
+    .admin-project form.update .tox,
+    .admin-project form>#project_title,
+    .admin-project form>#project_content {
         width: 90vw;
     }
 
-    .admin-project form.update>.images-container>.images>*, .admin-project form.create>.images-container>.images>* {
+    .admin-project form.update>.images-container>.images>*,
+    .admin-project form.create>.images-container>.images>* {
         grid-column: 2;
         grid-row: 2;
         width: 90vw;
     }
-    
+
     .admin-project>.delete-hide-container>form {
         margin-bottom: 40px;
     }
-    
+
     .admin-project .tox {
         width: 90vw !important;
     }
@@ -1707,7 +1754,7 @@ picture img {
 
     .bg_home-services {
         min-height: 500px;
-    }   
+    }
 }
 
 /*--------------------------------------------------------------
@@ -1715,15 +1762,14 @@ picture img {
 --------------------------------------------------------------*/
 @media (min-width: 1280px) and (max-width: 1680px) {
 
-    :root {
-    }
+    :root {}
 
     .grid-services-block.container {
         max-width: 100%;
     }
 
     section.projects .container {
-        grid-template-columns: repeat(2,500px);
+        grid-template-columns: repeat(2, 500px);
         justify-content: space-around;
     }
 }
@@ -1733,11 +1779,10 @@ picture img {
 --------------------------------------------------------------*/
 @media (min-width: 678px) and (max-width: 991px) {
 
-    :root {
-    }
+    :root {}
 
     section.projects .container {
-        grid-template-columns: repeat(2,300px);
+        grid-template-columns: repeat(2, 300px);
         justify-content: space-around;
     }
 }

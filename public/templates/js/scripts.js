@@ -43,6 +43,7 @@ const stateCheck = setInterval(() => {
     burgerMenu();
     deployLangs();
     contactForm();
+    isSafari();
 
     // Stop checking when page loaded
     clearInterval(stateCheck);
@@ -422,4 +423,11 @@ function preventDefault(query) {
       e.preventDefault();
     })
   })
+}
+
+// 17.0 - Check Safari Devices
+function checkSafari() {
+  const checkSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);    
+  if (checkSafari) { document.body.classList.add('isSafari') }
+  return checkSafari;
 }
