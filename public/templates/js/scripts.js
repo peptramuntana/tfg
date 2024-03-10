@@ -43,7 +43,7 @@ const stateCheck = setInterval(() => {
     burgerMenu();
     deployLangs();
     contactForm();
-    isSafari();
+    checkSafari();
 
     // Stop checking when page loaded
     clearInterval(stateCheck);

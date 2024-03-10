@@ -331,6 +331,7 @@ section {
 
 section.top_menu {
     padding-top: var(--head-bar-height);
+    min-height: 100vh;
 }
 
 .container {
@@ -749,6 +750,11 @@ footer .footer-block>.contact div>a:hover {
 }
 
 /* Home Slider */
+
+.swiper-button-next, .swiper-button-prev {
+    position: absolute;
+    top: var(--swiper-navigation-top-offset, 50%);
+}
 
 .home-swiper .swiper-button-prev,
 .home-swiper .swiper-rtl .swiper-button-next {

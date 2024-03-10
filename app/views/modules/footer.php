@@ -12,7 +12,7 @@ $links = Database::getLinks() ?>
     <div class="container">
         <div class="footer-block">
             <div class="logo">
-                <img src="../../../public/images/icons/icon-corp-green-lettered-rounded.svg" alt="Vilkeer Projects Logo" title="Vilkeer Projects Logo">
+                <img width="121" height="99" src="../../../public/images/icons/icon-corp-green-lettered-rounded.svg" alt="Vilkeer Projects Logo" title="Vilkeer Projects Logo">
             </div>
             <div class="contact">
                 <div>

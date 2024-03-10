@@ -10,28 +10,28 @@ $links = Database::getLinks();
                 <source media="(max-width: 768px)" srcset="../../public/images/home/bg-header-home-1_mob.jpg" type="image/webp">
                 <source srcset="../../public/images/home/bg-header-home-1.webp" type="image/webp">
                 <source srcset="../../public/images/home/bg-header-home-1.jpg" type="image/jpeg">
-                <img loading="lazy" src="../../public/images/home/bg-header-home-1.jpg" alt="Intro 1" title="Home Slider 1">
+                <img width="1920" height="1080" src="../../public/images/home/bg-header-home-1.jpg" alt="Intro 1" title="Home Slider 1">
             </picture>
             <picture class="swiper-slide">
                 <source media="(max-width: 768px)" srcset="../../public/images/home/bg-header-home-2_mob.webp" type="image/webp">
                 <source media="(max-width: 768px)" srcset="../../public/images/home/bg-header-home-2_mob.jpg" type="image/webp">
                 <source srcset="../../public/images/home/bg-header-home-2.webp" type="image/webp">
                 <source srcset="../../public/images/home/bg-header-home-2.jpg" type="image/jpeg">
-                <img loading="lazy" src="../../public/images/home/bg-header-home-2.jpg" alt="Intro 2" title="Home Slider 2">
+                <img width="1920" height="1080" src="../../public/images/home/bg-header-home-2.jpg" alt="Intro 2" title="Home Slider 2">
             </picture>
             <picture class="swiper-slide">
                 <source media="(max-width: 768px)" srcset="../../public/images/home/bg-header-home-3_mob.webp" type="image/webp">
                 <source media="(max-width: 768px)" srcset="../../public/images/home/bg-header-home-3_mob.jpg" type="image/webp">
                 <source srcset="../../public/images/home/bg-header-home-3.webp" type="image/webp">
                 <source srcset="../../public/images/home/bg-header-home-3.jpg" type="image/jpeg">
-                <img loading="lazy" src="../../public/images/home/bg-header-home-3.jpg" alt="Intro 3" title="Home Slider 3">
+                <img width="1920" height="1080" src="../../public/images/home/bg-header-home-3.jpg" alt="Intro 3" title="Home Slider 3">
             </picture>
             <picture class="swiper-slide">
                 <source media="(max-width: 768px)" srcset="../../public/images/home/bg-header-home-4_mob.webp" type="image/webp">
                 <source media="(max-width: 768px)" srcset="../../public/images/home/bg-header-home-4_mob.jpg" type="image/webp">
                 <source srcset="../../public/images/home/bg-header-home-4.webp" type="image/webp">
                 <source srcset="../../public/images/home/bg-header-home-4.jpg" type="image/jpeg">
-                <img loading="lazy" src="../../public/images/home/bg-header-home-4.jpg" alt="Intro 4" title="Home Slider 4">
+                <img width="1920" height="1080" src="../../public/images/home/bg-header-home-4.jpg" alt="Intro 4" title="Home Slider 4">
             </picture>
         </div>
         <div class="swiper-button-prev"></div>
@@ -46,7 +46,7 @@ $links = Database::getLinks();
                 <picture>
                     <source srcset="../../public/images/home/montport-intro.webp" type="image/webp">
                     <source srcset="../../public/images/home/montport-intro.jpg" type="image/jpeg">
-                    <img loading="lazy" src="../../public/images/home/montport-intro.jpg" alt="Montport Intro" title="Montport Intro">
+                    <img width="699" height="835" src="../../public/images/home/montport-intro.jpg" alt="Montport Intro" title="Montport Intro">
                 </picture>
             </div>
             <div class="img-text__text">
@@ -74,7 +74,7 @@ $links = Database::getLinks();
                     <picture>
                         <source srcset="../../public/images/home/grid-services-1.webp" type="image/webp">
                         <source srcset="../../public/images/home/grid-services-1.jpg" type="image/jpeg">
-                        <img alt="Vilkeer Projects Services 1" title="Vilkeer Projects Services 1" src="../../public/images/home/grid-services-1.jpg">
+                        <img width="400" height="450" alt="Vilkeer Projects Services 1" title="Vilkeer Projects Services 1" src="../../public/images/home/grid-services-1.jpg">
                     </picture>
                 </div>
                 <div class="grid_text">
@@ -87,7 +87,7 @@ $links = Database::getLinks();
                     <picture>
                         <source srcset="../../public/images/home/grid-services-2.webp" type="image/webp">
                         <source srcset="../../public/images/home/grid-services-2.jpg" type="image/jpeg">
-                        <img loading="lazy" alt="Vilkeer Projects Services 2" title="Vilkeer Projects Services 2" src="../../public/images/home/grid-services-2.jpg">
+                        <img width="400" height="450" loading="lazy" alt="Vilkeer Projects Services 2" title="Vilkeer Projects Services 2" src="../../public/images/home/grid-services-2.jpg">
                     </picture>
                 </div>
                 <div class="grid_text">
@@ -100,7 +100,7 @@ $links = Database::getLinks();
                     <picture>
                         <source srcset="../../public/images/home/grid-services-3.webp" type="image/webp">
                         <source srcset="../../public/images/home/grid-services-3.jpg" type="image/jpeg">
-                        <img loading="lazy" alt="Vilkeer Projects Services 3" title="Vilkeer Projects Services 3" src="../../public/images/home/grid-services-3.jpg">
+                        <img width="400" height="450" loading="lazy" alt="Vilkeer Projects Services 3" title="Vilkeer Projects Services 3" src="../../public/images/home/grid-services-3.jpg">
                     </picture>
                 </div>
                 <div class="grid_text">
